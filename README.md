@@ -26,7 +26,7 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 
 **11/11 update:**
 
-刷题整理至Q12.
+刷题整理至[Q12](https://github.com/javamore/ACE-the-ACE/blob/main/Real%20Questions.md)
 
 开启了ACE官方学习路径：Associate Cloud Engineer
 
