@@ -10,7 +10,7 @@ Virtualized data centers brought you infrastructure as a service (IaaS) and plat
 
 Billing
 
-![20211111155411](C:\Users\mikemo\Desktop\20211111155411.png)
+![20211111155411](https://github.com/javamore/ACE-the-ACE/blob/main/1.GCP%20Fundamentals%20-%20Core%20Infrastructure/20211111155411.png)
 
 Google was the first major cloud provider to deliver per-second billing for its Infrastructure-as-a-Service compute offering, Google Compute Engine. Per-second billing is offered for users of Compute Engine, Kubernetes Engine (container infrastructure as a service), Cloud Dataproc (the open-source Big Data system Hadoop as a service), and App Engine flexible environment VMs (a Platform as a Service). 
 
@@ -22,8 +22,8 @@ Try the online pricing calculator to help estimate your costs.
 
 
 
-![20211111155645](C:\Users\mikemo\Desktop\20211111155645.png)
+![20211111155645](https://github.com/javamore/ACE-the-ACE/blob/main/1.GCP%20Fundamentals%20-%20Core%20Infrastructure/20211111155645.png)
 
 
 
-![20211111155826](C:\Users\mikemo\Desktop\20211111155826.png)
+![20211111155826](https://github.com/javamore/ACE-the-ACE/blob/main/1.GCP%20Fundamentals%20-%20Core%20Infrastructure/20211111155826.png)
