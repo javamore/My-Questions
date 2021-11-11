@@ -13,12 +13,21 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 除此之外，还可结合网上的题库网站进行每日刷题训练，网址是：https://www.examtopics.com/exams/google/associate-cloud-engineer/view/
 
 **11/10 update：**
+
 开始了这门课：Preparing for the Associate Cloud Engineer Exam
+
 完成了GCP两个相关实验。
+
 实验一：A Tour of Google Cloud Hands-on Labs
+
 实验二：Getting Started with Cloud Shell and gcloud
 
+
+
 **11/11 update:**
+
 刷题整理至Q12.
+
 开启了ACE官方学习路径：Associate Cloud Engineer
+
 开启 module 1：Google Cloud Platform Fundamentals - Core Infrastructure的学习
