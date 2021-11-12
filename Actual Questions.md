@@ -1,4 +1,4 @@
-**Q1. (Plan related)**
+**Q1. (#Plan)**
 
 Every employee of your company has a Google account. Your operational team needs to manage a large number of instances on Compute Engine. Each member of this team needs only administrative access to the servers. Your security team wants to ensure that the deployment of credentials is operationally efficient and must be able to determine who accessed a given instance. What should you do?
 
@@ -13,7 +13,7 @@ Reason: Some would choose D, but D is hard to "determine who accessed a given in
 
 
 
-**Q2.(IP related)**
+**Q2.(#IP)**
 
 You need to create a custom VPC with a single subnet. The subnet's range must be as large as possible. Which range should you use?
 
@@ -33,7 +33,7 @@ Reason: The private network range is defined by IETF (Ref: https://tools.ietf.or
 
 
 
-**Q3. (SQL related)**
+**Q3. (#SQL)**
 
 You want to select and configure a cost-effective solution for relational data on Google Cloud Platform. You are working with a small set of operational data in one geographic location. You need to support point-in-time recovery. What should you do?
 
@@ -48,7 +48,7 @@ Reason: You must enable binary logging to use point-in-time recovery. Enabling b
 
 
 
-**Q4.(Plan related)**
+**Q4.(#Plan #FewestSteps)**
 
 You want to configure autohealing for network load balancing for a group of Compute Engine instances that run in multiple zones, using the fewest possible steps.
 You need to configure re-creation of VMs if they are unresponsive after 3 attempts of 10 seconds each. What should you do?
@@ -64,7 +64,7 @@ Reason: Using a health-check with a lb (option A) would only probe if the backen
 
 
 
-**Q5.(Plan related)**
+**Q5.(#Plan #FewestSteps)**
 
 You are using multiple configurations for gcloud. You want to review the configured Kubernetes Engine cluster of an inactive configuration using the fewest possible steps. What should you do?
 
@@ -79,7 +79,7 @@ Reason: https://medium.com/google-cloud/kubernetes-engine-kubectl-config-b6270d2
 
 
 
-**Q6.(Plan related)**
+**Q6.(#Plan)**
 
 Your company uses Cloud Storage to store application backup files for disaster recovery purposes. You want to follow Google's recommended practices. Which storage option should you use?
 
@@ -94,7 +94,7 @@ Reason: Unless a withdraw frequency is mentioned, the recommended practice by go
 
 
 
-**Q7. (Billing related)**
+**Q7. (#Billing)**
 
 Several employees at your company have been creating projects with Cloud Platform and paying for it with their personal credit cards, which the company reimburses. The company wants to centralize all these projects under a single, new billing account. What should you do?
 
@@ -109,7 +109,7 @@ Reason:  C is incomplete. Moving projects under an organisation doesn't change t
 
 
 
-**Q8.(IP related)**
+**Q8.(#IP)**
 
 You have an application that looks for its licensing server on the IP 10.0.3.21. You need to deploy the licensing server on Compute Engine. You do not want to change the configuration of the application and want the application to be able to reach the licensing server. What should you do?
 
@@ -124,7 +124,7 @@ Reason: IP 10.0.3.21 is internal by default, and to ensure that it will be stati
 
 
 
-**Q9.(Plan related)**
+**Q9.(#Plan #Deploy)**
 
 You are deploying an application to App Engine. You want the number of instances to scale based on request rate. You need at least 3 unoccupied instances at all times. Which scaling type should you use?
 
@@ -139,7 +139,7 @@ Reason: Automatic scaling creates instances based on request rate, response late
 
 
 
-**Q10.(Plan related)**
+**Q10.(#Plan #FewestSteps)**
 
 You have a development project with appropriate IAM roles defined. You are creating a production project and want to have the same IAM roles on the new project, using the fewest possible steps. What should you do?
 
@@ -154,7 +154,7 @@ Reason: Copy roles to a "project", not "organization" as per question. The link 
 
 
 
-**Q11.(Plan related)**
+**Q11.(#Plan)**
 
 You need a dynamic way of provisioning VMs on Compute Engine. The exact specifications will be in a dedicated configuration file. You want to follow Google's recommended practices. Which method should you use?
 
@@ -169,7 +169,7 @@ Reason: Deployment manager can create, update and delete resources inside GCP by
 
 
 
-**Q12.(Plan related)**
+**Q12.(#Plan)**
 
 You have a Dockerfile that you need to deploy on Kubernetes Engine. What should you do?
 
@@ -184,7 +184,197 @@ Reason: kubectl can't deploy "DockerFile", so A and B are App Engine which doesn
 
 
 
-**Q13...........**
+**Q13.(#Plan #FewestSteps #Deploy)**
+
+Your development team needs a new Jenkins server for their project. You need to deploy the server using the fewest steps possible. What should you do?
+
+- A. Download and deploy the Jenkins Java WAR to App Engine Standard.
+- B. Create a new Compute Engine instance and install Jenkins through the command line interface.
+- C. Create a Kubernetes cluster on Compute Engine and create a deployment with the Jenkins Docker image.
+- D. Use GCP Marketplace to launch the Jenkins solution
+
+***My choice is D.***
+
+Reason: Marketplace is a faster way to use Jenkins.
+
+
+
+**Q14.(#Plan)**
+
+You need to update a deployment in Deployment Manager without any resource downtime in the deployment. Which command should you use?
+
+- A. gcloud deployment-manager deployments create --config <deployment-config-path>
+- B. gcloud deployment-manager deployments update --config <deployment-config-path>
+- C. gcloud deployment-manager resources create --config <deployment-config-path>
+- D. gcloud deployment-manager resources update --config <deployment-config-path>
+
+***My choice is B.***
+
+Reason: See this site: https://cloud.google.com/sdk/gcloud/reference/deployment-manager/deployments/update.
+
+
+
+**Q15.(#Plan #BigQuery)**
+
+You need to run an important query in BigQuery but expect it to return a lot of records. You want to find out how much it will cost to run the query. You are using on-demand pricing. What should you do?
+
+- A. Arrange to switch to Flat-Rate pricing for this query, then move back to on-demand.
+- B. Use the command line to run a dry run query to estimate the number of bytes read. Then convert that bytes estimate to dollars using the Pricing Calculator.
+- C. Use the command line to run a dry run query to estimate the number of bytes returned. Then convert that bytes estimate to dollars using the Pricing Calculator.
+- D. Run a select count (*) to get an idea of how many records your query will look through. Then convert that number of rows to dollars using the Pricing Calculator.
+
+***My choice is B.***
+
+Reason: see this https://cloud.google.com/bigquery/docs/estimate-costs
+
+
+
+**Q16.(#Plan #Efficient)**
+
+You have a single binary application that you want to run on Google Cloud Platform. You decided to automatically scale the application based on underlying infrastructure CPU usage. Your organizational policies require you to use virtual machines directly. You need to ensure that the application scaling is operationally efficient and completed as quickly as possible. What should you do?
+
+- A. Create a Google Kubernetes Engine cluster, and use horizontal pod autoscaling to scale the application.
+- B. Create an instance template, and use the template in a managed instance group with autoscaling configured.
+- C. Create an instance template, and use the template in a managed instance group that scales up and down based on the time of day.
+- D. Use a set of third-party tools to build automation around scaling the application up and down, based on Stackdriver CPU usage monitoring.
+
+**My choice is B **
+
+Reason: You have to use VM instances directly .
+
+
+
+**Q17.(#Plan #BigQuery)**
+
+You are analyzing Google Cloud Platform service costs from three separate projects. You want to use this information to create service cost estimates by service type, daily and monthly, for the next six months using standard query syntax. What should you do?
+
+- A. Export your bill to a Cloud Storage bucket, and then import into Cloud Bigtable for analysis.
+- B. Export your bill to a Cloud Storage bucket, and then import into Google Sheets for analysis.
+- C. Export your transactions to a local file, and perform analysis with a desktop tool.
+- D. Export your bill to a BigQuery dataset, and then write time window-based SQL queries for analysis.
+
+***My choice is D.***
+
+Reason: BigQuery is for Analytical Purpose. Export your bill to a BigQuery dataset, and then write time window-based SQL queries for analysis.
+
+A. is Not feasible, mainly because cloud BigTable is not good for Structured Data (or Relational Data on which we can run SQL queries as per the question's requirements). BigTable is better suited for Semi Structured data and NoSQL data. 
+
+B. also is Not Feasible because there is no use of SQL in this option, which is one of the requirements. 
+
+C. Local file, external tools... this is automatically eliminated because the operation we need is simple, and there has to be a GCP native solution for this. We shouldn't need to rely on going out of the cloud for such a simple thing. 
+
+check this site for more info: https://cloud.google.com/billing/docs/how-to/export-data-bigquery  and this site as well: https://medium.com/google-cloud/analyzing-google-cloud-billing-data-with-big-query-30bae1c2aae4.
+
+
+
+**Q18.(#Plan #Policy)**
+
+You need to set up a policy so that videos stored in a specific Cloud Storage Regional bucket are moved to Coldline after 90 days, and then deleted after one year from their creation. How should you set up the policy?
+
+- A. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 275 days (365 ג€" 90)
+- B. Use Cloud Storage Object Lifecycle Management using Age conditions with SetStorageClass and Delete actions. Set the SetStorageClass action to 90 days and the Delete action to 365 days.
+- C. Use gsutil rewrite and set the Delete action to 275 days (365-90).
+- D. Use gsutil rewrite and set the Delete action to 365 days.
+
+***My choice is B.***
+
+Reason: From GCP : "The Age condition is satisfied when an object reaches the specified age (in days). Age is measured from the object's creation time. For example, if an object's creation time is 2019/01/10 10:00 UTC and the Age condition is 10 days, then the condition is satisfied for the object on and after 2019/01/20 10:00 UTC. This is true even if the object becomes noncurrent through Object Versioning sometime after its creation." See this site: https://cloud.google.com/storage/docs/lifecycle.
+
+
+
+**Q19.(#Plan #ServiceAccount #CloudSQL #VM)**
+
+You have a Linux VM that must connect to Cloud SQL. You created a service account with the appropriate access rights. You want to make sure that the VM uses this service account instead of the default Compute Engine service account. What should you do?
+
+- A. When creating the VM via the web console, specify the service account under the ג€˜Identity and API Accessג€™ section.
+- B. Download a JSON Private Key for the service account. On the Project Metadata, add that JSON as the value for the key compute-engine-service- account.
+- C. Download a JSON Private Key for the service account. On the Custom Metadata of the VM, add that JSON as the value for the key compute-engine- service-account.
+- D. Download a JSON Private Key for the service account. After creating the VM, ssh into the VM and save the JSON under ~/.gcloud/compute-engine-service- account.json.
+
+***My choice is A.***
+
+Reason: "To change an instance's service account and access scopes, the instance must be temporarily stopped ... After changing the service account or access scopes, remember to restart the instance." So we can stop the instance, change the service account, then start it up again. See this:https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#changeserviceaccountandscopes. 
+
+
+
+**Q20.(#Plan #FewestSteps)**
+
+You created an instance of SQL Server 2017 on Compute Engine to test features in the new version. You want to connect to this instance using the fewest number of steps. What should you do?
+
+- A. Install a RDP client on your desktop. Verify that a firewall rule for port 3389 exists.
+- B. Install a RDP client in your desktop. Set a Windows username and password in the GCP Console. Use the credentials to log in to the instance.
+- C. Set a Windows password in the GCP Console. Verify that a firewall rule for port 22 exists. Click the RDP button in the GCP Console and supply the credentials to log in.
+- D. Set a Windows username and password in the GCP Console. Verify that a firewall rule for port 3389 exists. Click the RDP button in the GCP Console, and supply the credentials to log in.
+
+***My choice is B.***
+
+Reason: The default network is pre-populated with firewall rules that allow incoming connections to instances. These rules can be deleted or modified as necessary: default-allow-rdp Allows ingress connections on TCP port 3389 from any source to any instance in the network. This rule has a priority of 65534, and it enables connections to instances running the Microsoft Remote Desktop Protocol (RDP).  For testing we can assume Firewall rules are left to defaults. See this:  https://cloud.google.com/vpc/docs/firewalls. And this: https://medium.com/falafel-software/sql-server-in-the-google-cloud-a17e8a1f11ce.  
+
+
+
+**Q21.(#Plan)**
+
+You have one GCP account running in your default region and zone and another account running in a non-default region and zone. You want to start a new
+Compute Engine instance in these two Google Cloud Platform accounts using the command line interface. What should you do?
+
+- A. Create two configurations using gcloud config configurations create [NAME]. Run gcloud config configurations activate [NAME] to switch between accounts when running the commands to start the Compute Engine instances.
+- B. Create two configurations using gcloud config configurations create [NAME]. Run gcloud configurations list to start the Compute Engine instances.
+- C. Activate two configurations using gcloud configurations activate [NAME]. Run gcloud config list to start the Compute Engine instances.
+- D. Activate two configurations using gcloud configurations activate [NAME]. Run gcloud configurations list to start the Compute Engine instances.
+
+***My choice is A.***
+
+Reason: See this:https://cloud.google.com/sdk/docs/configurations#activating_a_configuration
+
+
+
+**Q22.(#Plan)**
+
+You significantly changed a complex Deployment Manager template and want to confirm that the dependencies of all defined resources are properly met before committing it to the project. You want the most rapid feedback on your changes. What should you do?
+
+- A. Use granular logging statements within a Deployment Manager template authored in Python.
+- B. Monitor activity of the Deployment Manager execution on the Stackdriver Logging page of the GCP Console.
+- C. Execute the Deployment Manager template against a separate project with the same configuration, and monitor for failures.
+- D. Execute the Deployment Manager template using the ג€"-preview option in the same project, and observe the state of interdependent resources.
+
+***My choice is D.***
+
+Reason: https://cloud.google.com/deployment-manager/docs/deployments/updating-deployments. 
+
+
+
+**Q23.(#Plan #CloudPub/Sub #CloudDataflow #CloudBigtable #BigQuery)**
+
+[insert a image]
+
+***My choice is D.***
+
+Reason: https://cloud.google.com/solutions/correlating-time-series-dataflow.
+
+
+
+**Q24.(#Plan)**
+
+You have a project for your App Engine application that serves a development environment. The required testing has succeeded and you want to create a new project to serve as your production environment. What should you do?
+
+- A. Use gcloud to create the new project, and then deploy your application to the new project.
+- B. Use gcloud to create the new project and to copy the deployed application to the new project.
+- C. Create a Deployment Manager configuration file that copies the current App Engine deployment into a new project.
+- D. Deploy your application again using gcloud and specify the project parameter with the new project name to create the new project.
+
+***My choice is A.***
+
+Reason: Just need to create the new project and in console make sure set the config to new project. cloud projects create <new-project-name> gcloud deployment-manager deployments create <deployment-name>.
+
+
+
+Q25.......
+
+
+
+
+
+
 
 
 
