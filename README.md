@@ -23,7 +23,6 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 实验二：Getting Started with Cloud Shell and gcloud
 
 
-
 **11/11 update:**
 
 刷题整理至[Q12](https://github.com/javamore/ACE-the-ACE/blob/main/Real%20Questions.md)
@@ -31,3 +30,9 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 开启了ACE官方学习路径：Associate Cloud Engineer
 
 开启 module 1：Google Cloud Platform Fundamentals - Core Infrastructure的学习
+
+
+**11/12 update:**
+刷题整理至Q24.
+重新规划gcp课程学习路线，略过太细节化的内容，重点抓关键词和整体，加快学习进度。
+
