@@ -25,7 +25,7 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 
 **11/11 update:**
 
-刷题整理至[Q12](https://github.com/javamore/ACE-the-ACE/blob/main/Real%20Questions.md)
+刷题整理至Q12。
 
 开启了ACE官方学习路径：Associate Cloud Engineer
 
@@ -34,5 +34,5 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 
 **11/12 update:**
 刷题整理至Q24.
-重新规划gcp课程学习路线，略过太细节化的内容，重点抓关键词和整体，加快学习进度。
+重新规划gcp学习路线，略过太细节的内容，重点抓关键词和整体，加快学习进度。
 
