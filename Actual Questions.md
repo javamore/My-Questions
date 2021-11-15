@@ -345,7 +345,7 @@ Reason: https://cloud.google.com/deployment-manager/docs/deployments/updating-de
 
 **Q23.(#Plan #CloudPub/Sub #CloudDataflow #CloudBigtable #BigQuery)**
 
-[insert a image]
+![Q23](https://github.com/javamore/ACE-the-ACE/blob/main/images/Q23.png)
 
 ***My choice is D.***
 
