@@ -368,7 +368,82 @@ Reason: Just need to create the new project and in console make sure set the con
 
 
 
-Q25.......
+**Q25.(#Plan #IAM #BigQuery)**
+
+You need to configure IAM access audit logging in BigQuery for external auditors. You want to follow Google-recommended practices. What should you do?
+
+- A. Add the auditors group to the ג€˜logging.viewerג€™ and ג€˜bigQuery.dataViewerג€™ predefined IAM roles.
+- B. Add the auditors group to two new custom IAM roles.
+- C. Add the auditor user accounts to the ג€˜logging.viewerג€™ and ג€˜bigQuery.dataViewerג€™ predefined IAM roles.
+- D. Add the auditor user accounts to two new custom IAM roles.
+
+***My choice is A.***
+
+Reason: Google always recommends adding users to a group and then giving the group access. Additionally, Google recommends to use predefined roles since they have been well thought out when created, and are there to save companies the hassle of having to know what granular access every single person needs.
+
+
+
+**Q26.(#Plan #IAM #CloudStorage)**
+
+You need to set up permissions for a set of Compute Engine instances to enable them to write data into a particular Cloud Storage bucket. You want to follow
+Google-recommended practices. What should you do?
+
+- A. Create a service account with an access scope. Use the access scope ג€˜https://www.googleapis.com/auth/devstorage.write_onlyג€™.
+- B. Create a service account with an access scope. Use the access scope ג€˜https://www.googleapis.com/auth/cloud-platformג€™.
+- C. Create a service account and add it to the IAM role ג€˜storage.objectCreatorג€™ for that bucket.
+- D. Create a service account and add it to the IAM role ג€˜storage.objectAdminג€™ for that bucket.
+
+***My choice is C.***
+
+Reason: According to Best Practices in this Google Doc (https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#best_practices) you grant the instance the scope and the permissions are determined by the IAM roles of the service account. In this case, you would grant the instance the scope and the role (storage.objectCreator) to the service account.
+
+
+
+**Q27.(#Plan #FewestSteps #CloudStorage)**
+
+You have sensitive data stored in three Cloud Storage buckets and have enabled data access logging. You want to verify activities for a particular user for these buckets, using the fewest possible steps. You need to verify the addition of metadata labels and which files have been viewed from those buckets. What should you do?
+
+- A. Using the GCP Console, filter the Activity log to view the information.
+- B. Using the GCP Console, filter the Stackdriver log to view the information.
+- C. View the bucket in the Storage section of the GCP Console.
+- D. Create a trace in Stackdriver to view the information.
+
+***My choice is A.***
+
+Reason: From documentation---Admin Activity audit logs contain log entries for API calls or other actions that modify the configuration or metadata of resources. For example, these logs record when users create VM instances or change Identity and Access Management permissions.
+
+
+
+**Q28.(#IAM #CloudStorage)**
+
+You are the project owner of a GCP project and want to delegate control to colleagues to manage buckets and files in Cloud Storage. You want to follow Google- recommended practices. Which IAM roles should you grant your colleagues?
+
+- A. Project Editor
+- B. Storage Admin
+- C. Storage Object Admin
+- D. Storage Object Creator
+
+***My choice is B.***
+
+Reason: Storage Admin (roles/storage.admin) Grants full control of buckets and objects. When applied to an individual bucket, control applies only to the specified bucket and objects within the bucket. 
+
+
+
+Q29.(#Plan #CloudStorage)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
