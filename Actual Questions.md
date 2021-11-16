@@ -429,9 +429,188 @@ Reason: Storage Admin (roles/storage.admin) Grants full control of buckets and o
 
 
 
-Q29.(#Plan #CloudStorage)
+**Q29.(#Plan #CloudStorage)**
+
+You have an object in a Cloud Storage bucket that you want to share with an external company. The object contains sensitive data. You want access to the content to be removed after four hours. The external company does not have a Google account to which you can grant specific user-based access privileges. You want to use the most secure method that requires the fewest steps. What should you do?
+
+- A. Create a signed URL with a four-hour expiration and share the URL with the company.
+- B. Set object access to ג€˜publicג€™ and use object lifecycle management to remove the object after four hours.
+- C. Configure the storage bucket as a static website and furnish the objectג€™s URL to the company. Delete the object from the storage bucket after four hours.
+- D. Create a new Cloud Storage bucket specifically for the external company to access. Copy the object to that bucket. Delete the bucket after four hours have passed.
+
+***My Choice is A.***
+
+Reason: Signed URLs are used to give time-limited resource access to anyone in possession of the URL, regardless of whether they have a Google account. See this: https://cloud.google.com/storage/docs/access-control/signed-urls
 
 
+
+**Q30.(#GKE #Plan)**
+
+You are creating a Google Kubernetes Engine (GKE) cluster with a cluster autoscaler feature enabled. You need to make sure that each node of the cluster will run a monitoring pod that sends container metrics to a third-party monitoring solution. What should you do?
+
+- A. Deploy the monitoring pod in a StatefulSet object.
+- B. Deploy the monitoring pod in a DaemonSet object.
+- C. Reference the monitoring pod in a Deployment object.
+- D. Reference the monitoring pod in a cluster initializer at the GKE cluster creation time.
+
+***My choice is B.***
+
+Reason: B is right https://cloud.google.com/kubernetes-engine/docs/concepts/daemonset, and this:https://cloud.google.com/kubernetes-engine/docs/concepts/daemonset#usage_patterns. 
+
+
+
+**Q31.(#CloudPub/Sub #Plan)**
+
+You want to send and consume Cloud Pub/Sub messages from your App Engine application. The Cloud Pub/Sub API is currently disabled. You will use a service account to authenticate your application to the API. You want to make sure your application can use Cloud Pub/Sub. What should you do?
+
+- A. Enable the Cloud Pub/Sub API in the API Library on the GCP Console.
+- B. Rely on the automatic enablement of the Cloud Pub/Sub API when the Service Account accesses it.
+- C. Use Deployment Manager to deploy your application. Rely on the automatic enablement of all APIs used by the application being deployed.
+- D. Grant the App Engine Default service account the role of Cloud Pub/Sub Admin. Have your application enable the API on the first connection to Cloud Pub/ Sub.
+
+***My choice is A.***
+
+Reason: https://cloud.google.com/pubsub/docs/quickstart-console.
+
+
+
+**Q32.(#Plan #Stackdriver)**
+
+You need to monitor resources that are distributed over different projects in Google Cloud Platform. You want to consolidate reporting under the same Stackdriver
+Monitoring dashboard. What should you do?
+
+- A. Use Shared VPC to connect all projects, and link Stackdriver to one of the projects.
+- B. For each project, create a Stackdriver account. In each project, create a service account for that project and grant it the role of Stackdriver Account Editor in all other projects.
+- C. Configure a single Stackdriver account, and link all projects to the same account.
+- D. Configure a single Stackdriver account for one of the projects. In Stackdriver, create a Group and add the other project names as criteria for that Group.
+
+***My choice is C.***
+
+Reason: It doesn't make sense to create one account for one project when you need to monitor all of them, just create one account and link them all.
+
+
+
+**Q33.(#Plan #VM #ComputeEngine)**
+
+You are deploying an application to a Compute Engine VM in a managed instance group. The application must be running at all times, but only a single instance of the VM should run per GCP project. How should you configure the instance group?
+
+- A. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 1.
+- B. Set autoscaling to Off, set the minimum number of instances to 1, and then set the maximum number of instances to 1.
+- C. Set autoscaling to On, set the minimum number of instances to 1, and then set the maximum number of instances to 2.
+- D. Set autoscaling to Off, set the minimum number of instances to 1, and then set the maximum number of instances to 2.
+
+***My choice is A or B.***
+
+Reason: This question is considering "Managed Instance Groups" and to quote the documentation "If a VM in the group stops, crashes, or is deleted by an action other than an instance group management command (for example, an intentional scale in), the MIG automatically recreates that VM in accordance with the original instance's specification (same VM name, same template) so that the VM can resume its work." This is independent of autoscaling! source: https://cloud.google.com/compute/docs/instance-groups Autoscaling is about reacting to load or traffic and being able to horizontally scale. We only have 1 VM so there is no horizontal scaling. source: https://cloud.google.com/compute/docs/autoscaler
+
+
+
+**Q34.(#IAM #Plan)**
+
+You want to verify the IAM users and roles assigned within a GCP project named my-project. What should you do?
+
+- A. Run gcloud iam roles list. Review the output section.
+- B. Run gcloud iam service-accounts list. Review the output section.
+- C. Navigate to the project and then to the IAM section in the GCP Console. Review the members and roles.
+- D. Navigate to the project and then to the Roles section in the GCP Console. Review the roles and status.
+
+***My choice is C.***
+
+Reason: Question talks about members and roles both. IAM section provides the list of both Members and Roles.Option A is wrong as it would provide information about the roles only.Option B is wrong as it would provide only the service accounts.Option D is wrong as it would provide information about the roles only.
+
+
+
+**Q35.(#Plan)**
+
+You need to create a new billing account and then link it with an existing Google Cloud Platform project. What should you do?
+
+- A. Verify that you are Project Billing Manager for the GCP project. Update the existing project to link it to the existing billing account.
+- B. Verify that you are Project Billing Manager for the GCP project. Create a new billing account and link the new billing account to the existing project.
+- C. Verify that you are Billing Administrator for the billing account. Create a new project and link the new project to the existing billing account.
+- D. Verify that you are Billing Administrator for the billing account. Update the existing project to link it to the existing billing account.
+
+***My choice is B.***
+
+Reason: For option A, The billing account has to be new (you need to CREATE it), you can't link the project to an EXISTING billing account C. The project already exists, you don't want to CREATE a new project D. Even if you are a Billing Administrator for the billing account you can't update a project billing account without having access to it + the billing account has to be new so you don't want to link the project to an existing billing account B. Project Billing Manager is required to manage the GCP project billing settings. We assume you can create a new billing account because you are an organization billing admin or because you are not part of an organization.
+
+
+
+**Q36.(#Plan #ServiceAccount)**
+
+You have one project called proj-sa where you manage all your service accounts. You want to be able to use a service account from this project to take snapshots of VMs running in another project called proj-vm. What should you do?
+
+- A. Download the private key from the service account, and add it to each VMs custom metadata.
+- B. Download the private key from the service account, and add the private key to each VMג€™s SSH keys.
+- C. Grant the service account the IAM Role of Compute Storage Admin in the project called proj-vm.
+- D. When creating the VMs, set the service accountג€™s API scope for Compute Engine to read/write.
+
+***My choice is C.***
+
+Reason: https://cloud.google.com/compute/docs/access/iam#compute.storageAdmin
+
+
+
+**Q37.(#Plan #AppEngine)**
+
+You created a Google Cloud Platform project with an App Engine application inside the project. You initially configured the application to be served from the us- central region. Now you want the application to be served from the asia-northeast1 region. What should you do?
+
+- A. Change the default region property setting in the existing GCP project to asia-northeast1.
+- B. Change the region property setting in the existing App Engine application from us-central to asia-northeast1.
+- C. Create a second App Engine application in the existing GCP project and specify asia-northeast1 as the region to serve your application.
+- D. Create a new GCP project and create an App Engine application inside this new project. Specify asia-northeast1 as the region to serve your application.
+
+***My choice is D.***
+
+Reason: Each Cloud project can contain only a single App Engine application, and once created you cannot change the location of your App Engine application. https://cloud.google.com/appengine/docs/flexible/nodejs/managing-projects-apps-billing#create.
+
+
+
+**Q38.(#Plan #IAM)**
+
+You need to grant access for three users so that they can view and edit table data on a Cloud Spanner instance. What should you do?
+
+- A. Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to the role.
+- B. Run gcloud iam roles describe roles/spanner.databaseUser. Add the users to a new group. Add the group to the role.
+- C. Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to the role.
+- D. Run gcloud iam roles describe roles/spanner.viewer - -project my-project. Add the users to a new group. Add the group to the role.
+
+***My choice is B.***
+
+Reason: We need to apply common roles for each user, so creating a group and assigning role to that group is the best practice.
+
+
+
+**Q39.(#Plan #GKE)**
+
+You create a new Google Kubernetes Engine (GKE) cluster and want to make sure that it always runs a supported and stable version of Kubernetes. What should you do?
+
+- A. Enable the Node Auto-Repair feature for your GKE cluster.
+- B. Enable the Node Auto-Upgrades feature for your GKE cluster.
+- C. Select the latest available cluster version for your GKE cluster.
+- D. Select ג€Container-Optimized OS (cos)ג€ as a node image for your GKE cluster.
+
+***My choice is B.***
+
+Reason: https://cloud.google.com/kubernetes-engine/versioning-and-upgrades.
+
+
+
+**Q40.(#Plan)**
+
+You have an instance group that you want to load balance. You want the load balancer to terminate the client SSL session. The instance group is used to serve a public web application over HTTPS. You want to follow Google-recommended practices. What should you do?
+
+- A. Configure an HTTP(S) load balancer.
+- B. Configure an internal TCP load balancer.
+- C. Configure an external SSL proxy load balancer.
+- D. Configure an external TCP proxy load balancer.
+
+***My choice is A.***
+
+Reason:  https://cloud.google.com/load-balancing/docs/choosing-load-balancer
+
+
+
+Q41().........
 
 
 
