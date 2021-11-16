@@ -17,7 +17,7 @@ Reason: The bandwidth is good and its a single file, gsutil parallel composite u
 
 You've deployed a microservice called myapp1 to a Google Kubernetes Engine cluster using the YAML file specified below:
 
-![Q42](GITHUBDDD......)
+![Q42](https://github.com/javamore/ACE-the-ACE/blob/main/images/Q42.png)
 
 You need to refactor this configuration so that the database password is not stored in plain text. You want to follow Google-recommended practices. What should you do?
 
@@ -193,7 +193,7 @@ When applied to a dataset, this role provides permissions to: Read the dataset's
 
 Your company has a 3-tier solution running on Compute Engine. The configuration of the current infrastructure is shown below.
 
-![Q53](balabalaaaa)
+![Q53](https://github.com/javamore/ACE-the-ACE/blob/main/images/Q53.png)
 
 Each tier has a service account that is associated with all instances within it. You need to enable communication on TCP port 8080 between tiers as follows:
 \* Instances in tier #1 must communicate with tier #2.
