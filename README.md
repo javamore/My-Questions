@@ -41,3 +41,7 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 **11/15 update**
 
 刷题整理至Q40.
+
+**11/16 update：**
+
+刷题整理至Q56.
