@@ -38,10 +38,14 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 
 重新规划gcp学习路线，略过太细节的内容，重点抓关键词和整体，加快学习进度。
 
-**11/15 update**
+**11/15 update:**
 
 刷题整理至Q40.
 
 **11/16 update：**
 
 刷题整理至Q56.
+
+**11/17 update:**
+
+刷题整理至Q70.
