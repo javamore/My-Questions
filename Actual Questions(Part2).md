@@ -252,41 +252,229 @@ You have a website hosted on App Engine standard environment. You want 1% of you
 
 ***My choice is B .***
 
-Reason: Only one app engine can exist in one project. And in app engine we cannot create "new application", we have to create a new Project to do that, an app engine projet has 1 application (which can have multiple versions and services). Check this: https://cloud.google.com/appengine/docs/standard/python3/splitting-traffic#splitting_traffic_across_multiple_versions and this:https://cloud.google.com/appengine/docs/standard/python/splitting-traffic#gcloud
+Reason: Only one app engine can exist in one project. And in app engine we cannot create "new application", we have to create a new Project to do that, an app engine projet has 1 application (which can have multiple versions and services). Check this: https://cloud.google.com/appengine/docs/standard/python3/splitting-traffic#splitting_traffic_across_multiple_versions and this:https://cloud.google.com/appengine/docs/standard/python/splitting-traffic#gcloud。
+
+
+
+**Q57.**
+
+You have a web application deployed as a managed instance group. You have a new version of the application to gradually deploy. Your web application is currently receiving live web traffic. You want to ensure that the available capacity does not decrease during the deployment. What should you do?
+
+- A. Perform a rolling-action start-update with maxSurge set to 0 and maxUnavailable set to 1.
+- B. Perform a rolling-action start-update with maxSurge set to 1 and maxUnavailable set to 0.
+- C. Create a new managed instance group with an updated instance template. Add the group to the backend service for the load balancer. When all instances in the new managed instance group are healthy, delete the old managed instance group.
+- D. Create a new instance template with the new application version. Update the existing managed instance group with the new instance template. Delete the instances in the managed instance group to allow the managed instance group to recreate the instance using the new instance template.
+
+***My choice is B.***
+
+Reason:  If you do not want any unavailable machines during an update, set the maxUnavailable value to 0 and the maxSurge value to greater than 0.With these settings, Compute Engine removes each old machine only after its replacement new machine is created and running. Ref: https://cloud.google.com/compute/docs/instance-groups/rolling-out-updates-to-managed-instance-groups and also here: https://cloud.google.com/compute/docs/instance-groups/rolling-out-updates-to-managed-instance-groups#max_unavailable.
+
+
+
+**Q58.(#StorageSolution)**
+
+You are building an application that stores relational data from users. Users across the globe will use this application. Your CTO is concerned about the scaling requirements because the size of the user base is unknown. You need to implement a database solution that can scale with your user growth with minimum configuration changes. Which storage solution should you use?
+
+- A. Cloud SQL
+- B. Cloud Spanner
+- C. Cloud Firestore
+- D. Cloud Datastore
+
+***My choice is B.***
+
+Reason: For globalization and relational data...Cloud spanner is correct. Cloud SQL for small relational data, scaled manually Cloud Spanner for relational data, scaled automatically Cloud Firestore for app-based data(?) Cloud Datastore for non-relational data.
+
+
+
+**Q59.(#Plan #Scenario)**
+
+You are the organization and billing administrator for your company. The engineering team has the Project Creator role on the organization. You do not want the engineering team to be able to link projects to the billing account. Only the finance team should be able to link a project to a billing account, but they should not be able to make any other changes to projects. What should you do?
+
+- A. Assign the finance team only the Billing Account User role on the billing account.
+- B. Assign the engineering team only the Billing Account User role on the billing account.
+- C. Assign the finance team the Billing Account User role on the billing account and the Project Billing Manager role on the organization.
+- D. Assign the engineering team the Billing Account User role on the billing account and the Project Billing Manager role on the organization.
+
+***My choice is A.***
+
+Reason: The question says that the finance team should (ONLY) be able to link a project to a billing account, but not be able to make any other changes to projects. The purpose of the Billing Account User role is to link projects to billing accounts. Also, from its description: "This role has very restricted permissions, so you can grant it broadly, typically in combination with Project Creator. These two roles allow a user to create new projects linked to the billing account on which the role is granted." Reference: https://cloud.google.com/billing/docs/how-to/billing-access#overview-of-cloud-billing-roles-in-cloud-iam.
+
+
+
+**Q60.(#GKE)**
+
+You have an application running in Google Kubernetes Engine (GKE) with cluster autoscaling enabled. The application exposes a TCP endpoint. There are several replicas of this application. You have a Compute Engine instance in the same region, but in another Virtual Private Cloud (VPC), called gce-network, that has no overlapping IP ranges with the first VPC. This instance needs to connect to the application on GKE. You want to minimize effort. What should you do?
+
+- A. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Set the service's externalTrafficPolicy to Cluster. 3. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+- B. 1. In GKE, create a Service of type NodePort that uses the application's Pods as backend. 2. Create a Compute Engine instance called proxy with 2 network interfaces, one in each VPC. 3. Use iptables on this instance to forward traffic from gce-network to the GKE nodes. 4. Configure the Compute Engine instance to use the address of proxy in gce-network as endpoint.
+- C. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Add an annotation to this service: cloud.google.com/load-balancer-type: Internal 3. Peer the two VPCs together. 4. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+- D. 1. In GKE, create a Service of type LoadBalancer that uses the application's Pods as backend. 2. Add a Cloud Armor Security Policy to the load balancer that whitelists the internal IPs of the MIG's instances. 3. Configure the Compute Engine instance to use the address of the load balancer that has been created.
+
+***My choice is C.***
+
+Reason: C is better solution, the solution A pass trafic trought public internet, also C by internal network and the "no overlap ips" in the statament suggest that.
+
+
+
+**Q61.(#Plan)**
+
+Your organization is a financial company that needs to store audit log files for 3 years. Your organization has hundreds of Google Cloud projects. You need to implement a cost-effective approach for log file retention. What should you do?
+
+- A. Create an export to the sink that saves logs from Cloud Audit to BigQuery.
+- B. Create an export to the sink that saves logs from Cloud Audit to a Coldline Storage bucket.
+- C. Write a custom script that uses logging API to copy the logs from Stackdriver logs to BigQuery.
+- D. Export these logs to Cloud Pub/Sub and write a Cloud Dataflow pipeline to store logs to Cloud SQL.
+
+***My choice is B.***
+
+Reason:  In the only talked about storing at cheap-cost, so coldline has low storage cost. See this: https://cloud.google.com/bigquery/docs/best-practices-storage
+
+
+
+**Q62.(#Plan)**
+
+You want to run a single caching HTTP reverse proxy on GCP for a latency-sensitive website. This specific reverse proxy consumes almost no CPU. You want to have a 30-GB in-memory cache, and need an additional 2 GB of memory for the rest of the processes. You want to minimize cost. How should you run this reverse proxy?
+
+- A. Create a Cloud Memorystore for Redis instance with 32-GB capacity.
+- B. Run it on Compute Engine, and choose a custom instance type with 6 vCPUs and 32 GB of memory.
+- C. Package it in a container image, and run it on Kubernetes Engine, using n1-standard-32 instances as nodes.
+- D. Run it on Compute Engine, choose the instance type n1-standard-1, and add an SSD persistent disk of 32 GB.
+
+***My choice is A.***
+
+Reason:The key word is "for a latency-sensitive website." https://cloud.google.com/memorystore/docs/redis/redis-overview#what_its_good_for .Memorystore for Redis provides a fast, in-memory store for use cases that require fast, real-time processing of data. From simple caching use cases to real time analytics, Memorystore for Redis provides the performance you need. Caching: Cache is an integral part of modern application architectures. Memorystore for Redis provides low latency access and high throughput for heavily accessed data, compared to accessing the data from a disk based backend store. Session management, frequently accessed queries, scripts, and pages are common examples of caching.
+
+
+
+**Q63.(#CloudStorage #Plan)**
+
+You are hosting an application on bare-metal servers in your own data center. The application needs access to Cloud Storage. However, security policies prevent the servers hosting the application from having public IP addresses or access to the internet. You want to follow Google-recommended practices to provide the application with access to Cloud Storage. What should you do?
+
+- A. 1. Use nslookup to get the IP address for storage.googleapis.com. 2. Negotiate with the security team to be able to give a public IP address to the servers. 3. Only allow egress traffic from those servers to the IP addresses for storage.googleapis.com.
+- B. 1. Using Cloud VPN, create a VPN tunnel to a Virtual Private Cloud (VPC) in Google Cloud. 2. In this VPC, create a Compute Engine instance and install the Squid proxy server on this instance. 3. Configure your servers to use that instance as a proxy to access Cloud Storage.
+- C. 1. Use Migrate for Compute Engine (formerly known as Velostrata) to migrate those servers to Compute Engine. 2. Create an internal load balancer (ILB) that uses storage.googleapis.com as backend. 3. Configure your new instances to use this ILB as proxy.
+- D. 1. Using Cloud VPN or Interconnect, create a tunnel to a VPC in Google Cloud. 2. Use Cloud Router to create a custom route advertisement for 199.36.153.4/30. Announce that network to your on-premises network through the VPN tunnel. 3. In your on-premises network, configure your DNS server to resolve *.googleapis.com as a CNAME to restricted.googleapis.com.
+
+***My choice is D.***
+
+Reason:Ref: https://cloud.google.com/vpc/docs/configure-private-google-access-hybrid.
+
+
+
+**Q64.(#CloudPub/Sub)**
+
+You want to deploy an application on Cloud Run that processes messages from a Cloud Pub/Sub topic. You want to follow Google-recommended practices. What should you do?
+
+- A. 1. Create a Cloud Function that uses a Cloud Pub/Sub trigger on that topic. 2. Call your application on Cloud Run from the Cloud Function for every message.
+- B. 1. Grant the Pub/Sub Subscriber role to the service account used by Cloud Run. 2. Create a Cloud Pub/Sub subscription for that topic. 3. Make your application pull messages from that subscription.
+- C. 1. Create a service account. 2. Give the Cloud Run Invoker role to that service account for your Cloud Run application. 3. Create a Cloud Pub/Sub subscription that uses that service account and uses your Cloud Run application as the push endpoint.
+- D. 1. Deploy your application on Cloud Run on GKE with the connectivity set to Internal. 2. Create a Cloud Pub/Sub subscription for that topic. 3. In the same Google Kubernetes Engine cluster as your application, deploy a container that takes the messages and sends them to your application.
+
+***My choice is C.***
+
+Reason: See this: https://cloud.google.com/run/docs/tutorials/pubsub.
+
+
+
+**Q65.(#Deploy #CloudRun)**
+
+You need to deploy an application, which is packaged in a container image, in a new project. The application exposes an HTTP endpoint and receives very few requests per day. You want to minimize costs. What should you do?
+
+- A. Deploy the container on Cloud Run.
+- B. Deploy the container on Cloud Run on GKE.
+- C. Deploy the container on App Engine Flexible.
+- D. Deploy the container on GKE with cluster autoscaling and horizontal pod autoscaling enabled.
+
+***My choice is A.***
+
+Reason: Cloud Run is a fully managed compute platform that automatically scales your stateless containers. Cloud Run is serverless. Cloud Run abstracts away all infrastructure management. It automatically scales up and down from zero depending on traffic almost instantaneously. Cloud Run only charges you for the exact resources you use. Ref: https://cloud.google.com/run.
+
+
+
+**Q66.(#Billing)**
+
+Your company has an existing GCP organization with hundreds of projects and a billing account. Your company recently acquired another company that also has hundreds of projects and its own billing account. You would like to consolidate all GCP costs of both GCP organizations onto a single invoice. You would like to consolidate all costs as of tomorrow. What should you do?
+
+- A. Link the acquired companyג€™s projects to your company's billing account.
+- B. Configure the acquired company's billing account and your company's billing account to export the billing data into the same BigQuery dataset.
+- C. Migrate the acquired companyג€™s projects into your companyג€™s GCP organization. Link the migrated projects to your company's billing account.
+- D. Create a new GCP organization and a new billing account. Migrate the acquired company's projects and your company's projects into the new GCP organization and link the projects to the new billing account.
+
+***My choice is A.***
+
+Reason: https://cloud.google.com/billing/docs/concepts#relationships-between-resources. Please note: Payment linkage of a project linked to a Cloud Billing account is not limited by organization ownership. It is possible for a Cloud Billing account to pay for projects that belong to an organization that is different than the organization that owns the Cloud Billing account. And this: https://medium.com/google-cloud/google-cloud-platform-cross-org-billing-41c5db8fefa6. 
+
+Please read the article how you can get invoice https://cloud.google.com/billing/docs/how-to/get-invoice If you export your data into your local BigQuery dataset it does not change anything! you only export logs! your old projects are still linked to the only billing account. And Google will create invoice based on their information. Google will NOT rely on the data that is stored in your local BigQuery table.
+
+
+
+**Q67.(#Plan #CloudSpanner)**
+
+You built an application on Google Cloud that uses Cloud Spanner. Your support team needs to monitor the environment but should not have access to table data.
+You need a streamlined solution to grant the correct permissions to your support team, and you want to follow Google-recommended practices. What should you do?
+
+- A. Add the support team group to the roles/monitoring.viewer role
+- B. Add the support team group to the roles/spanner.databaseUser role.
+- C. Add the support team group to the roles/spanner.databaseReader role.
+- D. Add the support team group to the roles/stackdriver.accounts.viewer role.
+
+***My choice is A.***
+
+Reason: A is enough, B and C are incorrect since they allow users to read data. D is incorrect, it is not for monitoring.
+
+
+
+**Q68.(#ComputeEngine #BigQuery)**
+
+For analysis purposes, you need to send all the logs from all of your Compute Engine instances to a BigQuery dataset called platform-logs. You have already installed the Cloud Logging agent on all the instances. You want to minimize cost. What should you do?
+
+- A. 1. Give the BigQuery Data Editor role on the platform-logs dataset to the service accounts used by your instances. 2. Update your instancesג€™ metadata to add the following value: logs-destination: bq://platform-logs.
+- B. 1. In Cloud Logging, create a logs export with a Cloud Pub/Sub topic called logs as a sink. 2. Create a Cloud Function that is triggered by messages in the logs topic. 3. Configure that Cloud Function to drop logs that are not from Compute Engine and to insert Compute Engine logs in the platform-logs dataset.
+- C. 1. In Cloud Logging, create a filter to view only Compute Engine logs. 2. Click Create Export. 3. Choose BigQuery as Sink Service, and the platform-logs dataset as Sink Destination.
+- D. 1. Create a Cloud Function that has the BigQuery User role on the platform-logs dataset. 2. Configure this Cloud Function to create a BigQuery Job that executes this query: INSERT INTO dataset.platform-logs (timestamp, log) SELECT timestamp, log FROM compute.logs WHERE timestamp > DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY) 3. Use Cloud Scheduler to trigger this Cloud Function once a day.
+
+***My choice is C.***
+
+Reason: https://cloud.google.com/logging/docs/export/configure_export_v2
+
+
+
+**Q69.(#DeployManager #GKE)**
+
+You are using Deployment Manager to create a Google Kubernetes Engine cluster. Using the same Deployment Manager deployment, you also want to create a
+DaemonSet in the kube-system namespace of the cluster. You want a solution that uses the fewest possible services. What should you do?
+
+- A. Add the clusterג€™s API as a new Type Provider in Deployment Manager, and use the new type to create the DaemonSet.
+- B. Use the Deployment Manager Runtime Configurator to create a new Config resource that contains the DaemonSet definition.
+- C. With Deployment Manager, create a Compute Engine instance with a startup script that uses kubectl to create the DaemonSet.
+- D. In the clusterג€™s definition in Deployment Manager, add a metadata that has kube-system as key and the DaemonSet manifest as value.
+
+***My choice is A.***
+
+Reason: Adding an API as a type provider This page describes how to add an API to Google Cloud Deployment Manager as a type provider. To learn more about types and type providers, read the Types overview documentation. A type provider exposes all of the resources of a third-party API to Deployment Manager as base types that you can use in your configurations. These types must be directly served by a RESTful API that supports Create, Read, Update, and Delete (CRUD). If you want to use an API that is not automatically provided by Google with Deployment Manager, you must add the API as a type provider. https://cloud.google.com/deployment-manager/docs/configuration/type-providers/creating-type-provider
+
+
+
+**Q70.(#ServiceAccount)**
+
+You are building an application that will run in your data center. The application will use Google Cloud Platform (GCP) services like AutoML. You created a service account that has appropriate access to AutoML. You need to enable authentication to the APIs from your on-premises environment. What should you do?
+
+- A. Use service account credentials in your on-premises application.
+- B. Use gcloud to create a key file for the service account that has appropriate permissions.
+- C. Set up direct interconnect between your data center and Google Cloud Platform to enable authentication for your on-premises applications.
+- D. Go to the IAM & admin console, grant a user account permissions similar to the service account permissions, and use this user account for authentication from your data center.
+
+***My choice is B.***
+
+Reason: 1st step...the key file is to be referenced in the env variable GOOGLE_APPLICATION_CREDENTIALS which would then provide access to on-prem application using ADC library. 
+
+To use a service account outside of Google Cloud, such as on other platforms or on-premises, you must first establish the identity of the service account. Public/private key pairs provide a secure way of accomplishing this goal. https://cloud.google.com/iam/docs/creating-managing-service-account-keys.
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Q71........
 
 
 
