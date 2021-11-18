@@ -472,9 +472,138 @@ To use a service account outside of Google Cloud, such as on other platforms or 
 
 
 
+**Q71.(#GKE)**
+
+You are using Container Registry to centrally store your company's container images in a separate project. In another project, you want to create a Google
+Kubernetes Engine (GKE) cluster. You want to ensure that Kubernetes can download images from Container Registry. What should you do?
+
+- A. In the project where the images are stored, grant the Storage Object Viewer IAM role to the service account used by the Kubernetes nodes.
+- B. When you create the GKE cluster, choose the Allow full access to all Cloud APIs option under ג€˜Access scopesג€™.
+- C. Create a service account, and give it access to Cloud Storage. Create a P12 key for this service account and use it as an imagePullSecrets in Kubernetes.
+- D. Configure the ACLs on each image in Cloud Storage to give read-only access to the default Compute Engine service account.
+
+***My choice is A.***
+
+Reason: Container Registry uses Cloud Storage buckets as the underlying storage for container images. You control access to your images by granting appropriate Cloud Storage permissions to a user, group, service account, or other identity. If the service account needs to access Container Registry in another project, you must grant the required permissions in the project with Container Registry. Reference: https://cloud.google.com/container-registry/docs/access-control#permissions.
 
 
-Q71........
+
+**Q72.(#GKE)**
+
+You deployed a new application inside your Google Kubernetes Engine cluster using the YAML file specified below.
+
+
+
+insert image Q72(1)
+
+
+
+You deployed a new application inside your Google Kubernetes Engine cluster using the YAML file specified below.
+
+
+
+insert image Q72(2)
+
+
+
+You want to find out why the pod is stuck in pending status. What should you do?
+
+- A. Review details of the myapp-service Service object and check for error messages.
+- B. Review details of the myapp-deployment Deployment object and check for error messages.
+- C. Review details of myapp-deployment-58ddbbb995-lp86m Pod and check for warning messages.
+- D. View logs of the container in myapp-deployment-58ddbbb995-lp86m pod and check for warning messages.
+
+**My choice is C.**
+
+Reason: https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application/#debugging-pods.
+
+
+
+**Q73.(#ComputeEngine)**
+
+You are setting up a Windows VM on Compute Engine and want to make sure you can log in to the VM via RDP. What should you do?
+
+- A. After the VM has been created, use your Google Account credentials to log in into the VM.
+- B. After the VM has been created, use gcloud compute reset-windows-password to retrieve the login credentials for the VM.
+- C. When creating the VM, add metadata to the instance using ג€˜windows-passwordג€™ as the key and a password as the value.
+- D. After the VM has been created, download the JSON private key for the default Compute Engine service account. Use the credentials in the JSON file to log in to the VM.
+
+***My choice is B.***
+
+Reason: Windows Server instances use password authentication instead of SSH authentication. To prevent unauthorized access to new Windows instances, Compute Engine requires that you generate a new Windows password for that instance before you connect to it.  https://cloud.google.com/compute/docs/instances/windows/generating-credentials#gcloud. and this: https://cloud.google.com/compute/docs/instances/windows/creating-passwords-for-windows-instances.
+
+
+
+**Q74.(#ComputeEngine)**
+
+You want to configure an SSH connection to a single Compute Engine instance for users in the dev1 group. This instance is the only resource in this particular
+Google Cloud Platform project that the dev1 users should be able to connect to. What should you do?
+
+- A. Set metadata to enable-oslogin=true for the instance. Grant the dev1 group the compute.osLogin role. Direct them to use the Cloud Shell to ssh to that instance.
+- B. Set metadata to enable-oslogin=true for the instance. Set the service account to no service account for that instance. Direct them to use the Cloud Shell to ssh to that instance.
+- C. Enable block project wide keys for the instance. Generate an SSH key for each user in the dev1 group. Distribute the keys to dev1 users and direct them to use their third-party tools to connect.
+- D. Enable block project wide keys for the instance. Generate an SSH key and associate the key with that instance. Distribute the key to dev1 users and direct them to use their third-party tools to connect.
+
+**My choice is A.**
+
+Reason: NEVER EVER DISTRIBUTE private keys or generate SSH KEYS for others. This automatically excludes two answers (C + D), it has to be A because B talks about service accounts which has nothing to do with dev group needing to SSH to the instance. https://cloud.google.com/compute/docs/instances/managing-instance-access.
+
+--------------------------------------------------------------------------------
+
+**Q75.(#CloudShell)**
+
+You need to produce a list of the enabled Google Cloud Platform APIs for a GCP project using the gcloud command line in the Cloud Shell. The project name is my-project. What should you do?
+
+- A. Run gcloud projects list to get the project ID, and then run gcloud services list --project <project ID>.
+- B. Run gcloud init to set the current project to my-project, and then run gcloud services list --available.
+- C. Run gcloud info to view the account value, and then run gcloud services list --account <Account>.
+- D. Run gcloud projects describe <project ID> to verify the project value, and then run gcloud services list --available.
+
+***My choice is A.***
+
+Reason: For those, who have doubts: `gcloud services list --available` returns not only the enabled services in the project but also services that CAN be enabled. Therefore, option B is incorrect. https://cloud.google.com/sdk/gcloud/reference/services/list#--available
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+**Q76.(#AppEngine)**
+
+You are building a new version of an application hosted in an App Engine environment. You want to test the new version with 1% of users before you completely switch your application over to the new version. What should you do?
+
+- A. Deploy a new version of your application in Google Kubernetes Engine instead of App Engine and then use GCP Console to split traffic.
+- B. Deploy a new version of your application in a Compute Engine instance instead of App Engine and then use GCP Console to split traffic.
+- C. Deploy a new version as a separate app in App Engine. Then configure App Engine using GCP Console to split traffic between the two apps.
+- D. Deploy a new version of your application in App Engine. Then go to App Engine settings in GCP Console and split traffic between the current version and newly deployed versions accordingly.
+
+***My choice is D.***
+
+Reason: The question is about App Engine. In the App Engine splitting the traffic will do the job.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+**Q77.(#GKE #Plan)**
+
+You need to provide a cost estimate for a Kubernetes cluster using the GCP pricing calculator for Kubernetes. Your workload requires high IOPs, and you will also be using disk snapshots. You start by entering the number of nodes, average hours, and average days. What should you do next?
+
+- A. Fill in local SSD. Fill in persistent disk storage and snapshot storage.
+- B. Fill in local SSD. Add estimated cost for cluster management.
+- C. Select Add GPUs. Fill in persistent disk storage and snapshot storage.
+- D. Select Add GPUs. Add estimated cost for cluster management.
+
+***My choice is A.***
+
+Reason: try below steps to understand why- 1) Click - https://cloud.google.com/products/calculator/. 2) Select GKE Standard 3) Check the help '?' icon for "Local SSD" field- "Local solid state disks, providing very high IOPS and very low latency block storage."
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
