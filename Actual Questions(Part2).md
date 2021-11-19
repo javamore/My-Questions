@@ -593,6 +593,237 @@ You need to provide a cost estimate for a Kubernetes cluster using the GCP prici
 
 Reason: try below steps to understand why- 1) Click - https://cloud.google.com/products/calculator/. 2) Select GKE Standard 3) Check the help '?' icon for "Local SSD" field- "Local solid state disks, providing very high IOPS and very low latency block storage."
 
+----------------------------------
+
+**Q78.(#GKE #AutoScaling)**
+
+You are using Google Kubernetes Engine with autoscaling enabled to host a new application. You want to expose this new application to the public, using HTTPS on a public IP address. What should you do?
+
+- A. Create a Kubernetes Service of type NodePort for your application, and a Kubernetes Ingress to expose this Service via a Cloud Load Balancer.
+- B. Create a Kubernetes Service of type ClusterIP for your application. Configure the public DNS name of your application using the IP of this Service.
+- C. Create a Kubernetes Service of type NodePort to expose the application on port 443 of each node of the Kubernetes cluster. Configure the public DNS name of your application with the IP of every node of the cluster to achieve load-balancing.
+- D. Create a HAProxy pod in the cluster to load-balance the traffic to all the pods of the application. Forward the public traffic to HAProxy with an iptable rule. Configure the DNS name of your application using the public IP of the node HAProxy is running on.
+
+***My choice is A.***
+
+Reason: For external access you need NodePort service and NodePort is a SVC so A is correct. 
+
+HAProxy is HTTP only, doesnt support HTTPS, so you can reject option D. https://www.haproxy.org/#desc  
+
+Cluster IP - is an internal IP, you cannot expose public externally. reject option B.
+
+Option C, port 443 is https but public DNS is not going to give you a load balancing.
+
+A is the right choice, kubernets ingress exposes HTTPS,  https://kubernetes.io/docs/concepts/services-networking/ingress/ . and cloud load balancer is the right choice which will help to expose the app to public.
+
+--------------------------------------------------------------------------------------------------------------
+
+**Q79.(#traffic #ComputeEngine)**
+
+You need to enable traffic between multiple groups of Compute Engine instances that are currently running two different GCP projects. Each group of Compute
+Engine instances is running in its own VPC. What should you do?
+
+- A. Verify that both projects are in a GCP Organization. Create a new VPC and add all instances.
+- B. Verify that both projects are in a GCP Organization. Share the VPC from one project and request that the Compute Engine instances in the other project use this shared VPC.
+- C. Verify that you are the Project Administrator of both projects. Create two new VPCs and add all instances.
+- D. Verify that you are the Project Administrator of both projects. Create a new VPC and add all instances.
+
+***My choice is B.***
+
+Reason: see this    https://cloud.google.com/vpc/docs/shared-vpc
+
+----------------------
+
+**Q80.(#Auditor)**
+
+You want to add a new auditor to a Google Cloud Platform project. The auditor should be allowed to read, but not modify, all project items.
+How should you configure the auditor's permissions?
+
+- A. Create a custom role with view-only project permissions. Add the user's account to the custom role.
+- B. Create a custom role with view-only service permissions. Add the user's account to the custom role.
+- C. Select the built-in IAM project Viewer role. Add the user's account to this role.
+- D. Select the built-in IAM service Viewer role. Add the user's account to this role.
+
+***My choice is C.***
+
+Reason: Basic roles include thousands of permissions across all Google Cloud services. In production environments, do not grant basic roles unless there is no alternative. Instead, grant the most limited predefined roles or custom roles that meet your needs.
+
+-----------------------
+
+**Q81.(#GKE)**
+
+You are operating a Google Kubernetes Engine (GKE) cluster for your company where different teams can run non-production workloads. Your Machine Learning
+(ML) team needs access to Nvidia Tesla P100 GPUs to train their models. You want to minimize effort and cost. What should you do?
+
+- A. Ask your ML team to add the ג€accelerator: gpuג€ annotation to their pod specification.
+- B. Recreate all the nodes of the GKE cluster to enable GPUs on all of them.
+- C. Create your own Kubernetes cluster on top of Compute Engine with nodes that have GPUs. Dedicate this cluster to your ML team.
+- D. Add a new, GPU-enabled, node pool to the GKE cluster. Ask your ML team to add the cloud.google.com/gke -accelerator: nvidia-tesla-p100 nodeSelector to their pod specification.
+
+***My choice is D.***
+
+Reason: Nodepools are way to logically separate your workloads and machinetypes based on your organization team/project structure and requirements.
+
+------------------------
+
+**Q82.(#VM)**
+
+Your VMs are running in a subnet that has a subnet mask of 255.255.255.240. The current subnet has no more free IP addresses and you require an additional
+10 IP addresses for new VMs. The existing and new VMs should all be able to reach each other without additional routes. What should you do?
+
+- A. Use gcloud to expand the IP range of the current subnet.
+- B. Delete the subnet, and recreate it using a wider range of IP addresses.
+- C. Create a new project. Use Shared VPC to share the current network with the new project.
+- D. Create a new subnet with the same starting IP but a wider range to overwrite the current subnet.
+
+***My choice is A.***
+
+Reason: https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/expand-ip-range.
+
+---
+
+**Q83.(#Plan)**
+
+Your organization uses G Suite for communication and collaboration. All users in your organization have a G Suite account. You want to grant some G Suite users access to your Cloud Platform project. What should you do?
+
+- A. Enable Cloud Identity in the GCP Console for your domain.
+- B. Grant them the required IAM roles using their G Suite email address.
+- C. Create a CSV sheet with all usersג€™ email addresses. Use the gcloud command line tool to convert them into Google Cloud Platform accounts.
+- D. In the G Suite console, add the users to a special group called cloud-console-users@yourdomain.com. Rely on the default behavior of the Cloud Platform to grant users access if they are members of this group.
+
+**My choice is B.**
+
+Reason: To actively adopt the Organization resource, the G Suite or Cloud Identity super admins need to assign the Organization Administrator Cloud IAM role to a user or group.
+
+------
+
+**Q84.(#Plan)**
+
+You have a Google Cloud Platform account with access to both production and development projects. You need to create an automated process to list all compute instances in development and production projects on a daily basis. What should you do?
+
+- A. Create two configurations using gcloud config. Write a script that sets configurations as active, individually. For each configuration, use gcloud compute instances list to get a list of compute resources.
+- B. Create two configurations using gsutil config. Write a script that sets configurations as active, individually. For each configuration, use gsutil compute instances list to get a list of compute resources.
+- C. Go to Cloud Shell and export this information to Cloud Storage on a daily basis.
+- D. Go to GCP Console and export this information to Cloud SQL on a daily basis.
+
+***My choice is A.***
+
+Reason: https://cloud.google.com/sdk/gcloud/reference/compute/instances/list.
+
+-----
+
+**Q85.(#CloudStorage)**
+
+You have a large 5-TB AVRO file stored in a Cloud Storage bucket. Your analysts are proficient only in SQL and need access to the data stored in this file. You want to find a cost-effective way to complete their request as soon as possible. What should you do?
+
+- A. Load data in Cloud Datastore and run a SQL query against it.
+- B. Create a BigQuery table and load data in BigQuery. Run a SQL query on this table and drop this table after you complete your request.
+- C. Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request.
+- D. Create a Hadoop cluster and copy the AVRO file to NDFS by compressing it. Load the file in a hive table and provide access to your analysts so that they can run SQL queries.
+
+***My choice is C.***
+
+Reason: 
+
+A. ....Load data in Cloud Datastore... (Not Correct because Cloud Datastore is not a good option to run SQL Queries) 
+
+B. ...Load data in BigQuery.... (Not Cost Effective because loading the data which is already present in the bucket into BigQuery again is expensive) 
+
+C. Create external tables in BigQuery that point to Cloud Storage buckets and run a SQL query on these external tables to complete your request. (This is the right answer as it meets all the requirements from the question) 
+
+D. Create a Hadoop cluster and copy the AVRO file to NDFS by compressing it. Load the file in a hive table and provide access to your analysts so that they can run SQL queries. (Too roundabout and indirect. Not the right option)
+
+and this:https://cloud.google.com/bigquery/external-data-sources.
+
+-----
+
+**Q86.(#Verify)**
+
+You need to verify that a Google Cloud Platform service account was created at a particular time. What should you do?
+
+- A. Filter the Activity log to view the Configuration category. Filter the Resource type to Service Account.
+- B. Filter the Activity log to view the Configuration category. Filter the Resource type to Google Project.
+- C. Filter the Activity log to view the Data Access category. Filter the Resource type to Service Account.
+- D. Filter the Activity log to view the Data Access category. Filter the Resource type to Google Project.
+
+***My choice is A.***
+
+Reason: Data access category will only have the details of the service accounts which and when access the data, so option should be A.
+
+------
+
+**Q87.(#ComputeEngine)**
+
+You deployed an LDAP server on Compute Engine that is reachable via TLS through port 636 using UDP. You want to make sure it is reachable by clients over that port. What should you do?
+
+- A. Add the network tag allow-udp-636 to the VM instance running the LDAP server.
+- B. Create a route called allow-udp-636 and set the next hop to be the VM instance running the LDAP server.
+- C. Add a network tag of your choice to the instance. Create a firewall rule to allow ingress on UDP port 636 for that network tag.
+- D. Add a network tag of your choice to the instance running the LDAP server. Create a firewall rule to allow egress on UDP port 636 for that network tag.
+
+***My choice is C.***
+
+Reason: A tag is simply a character string added to a tags field in a resource, such as Compute Engine virtual machine (VM) instances or instance templates. A tag is not a separate resource, so you cannot create it separately. All resources with that string are considered to have that tag. Tags enable you to make firewall rules and routes applicable to specific VM instances.
+
+-----
+
+**Q88.(#Billing)**
+
+You need to set a budget alert for use of Compute Engineer services on one of the three Google Cloud Platform projects that you manage. All three projects are linked to a single billing account. What should you do?
+
+- A. Verify that you are the project billing administrator. Select the associated billing account and create a budget and alert for the appropriate project.
+- B. Verify that you are the project billing administrator. Select the associated billing account and create a budget and a custom alert.
+- C. Verify that you are the project administrator. Select the associated billing account and create a budget for the appropriate project.
+- D. Verify that you are project administrator. Select the associated billing account and create a budget and a custom alert.
+
+***My choice is A.***
+
+Reason: If you just go into the Google Cloud console, you can easily see that there's no custom alert. For Alerts, you first set the project, then the service, you have the option to select All Services if you want.
+
+-------
+
+**Q89.(#Plan)**
+
+You are migrating a production-critical on-premises application that requires 96 vCPUs to perform its task. You want to make sure the application runs in a similar environment on GCP. What should you do?
+
+- A. When creating the VM, use machine type n1-standard-96.
+- B. When creating the VM, use Intel Skylake as the CPU platform.
+- C. Create the VM using Compute Engine default settings. Use gcloud to modify the running instance to have 96 vCPUs.
+- D. Start the VM using Compute Engine default settings, and adjust as you go based on Rightsizing Recommendations.
+
+***My choice is A.***
+
+Reason: https://cloud.google.com/compute/docs/machine-types.
+
+-------
+
+**Q90.(#CloudStorage)**
+
+You want to configure a solution for archiving data in a Cloud Storage bucket. The solution must be cost-effective. Data with multiple versions should be archived after 30 days. Previous versions are accessed once a month for reporting. This archive data is also occasionally updated at month-end. What should you do?
+
+- A. Add a bucket lifecycle rule that archives data with newer versions after 30 days to Coldline Storage.
+- B. Add a bucket lifecycle rule that archives data with newer versions after 30 days to Nearline Storage.
+- C. Add a bucket lifecycle rule that archives data from regional storage after 30 days to Coldline Storage.
+- D. Add a bucket lifecycle rule that archives data from regional storage after 30 days to Nearline Storage.
+
+***My choice is B.***
+
+Reason: https://cloud.google.com/storage/docs/storage-classes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
