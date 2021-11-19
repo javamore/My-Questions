@@ -494,7 +494,7 @@ You deployed a new application inside your Google Kubernetes Engine cluster usin
 
 
 
-insert image Q72(1)
+![Q72(1)](https://github.com/javamore/ACE-the-ACE/blob/main/images/Q72(1).png)
 
 
 
@@ -502,7 +502,7 @@ You deployed a new application inside your Google Kubernetes Engine cluster usin
 
 
 
-insert image Q72(2)
+![Q72(2)](https://github.com/javamore/ACE-the-ACE/blob/main/images/Q72(2).png)
 
 
 
