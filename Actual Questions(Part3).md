@@ -48,7 +48,7 @@ Reason:  https://cloud.google.com/data-catalog/docs/how-to/search#how_to_search_
 
 You create a Deployment with 2 replicas in a Google Kubernetes Engine cluster that has a single preemptible node pool. After a few minutes, you use kubectl to examine the status of your Pod and observe that one of them is still in Pending status:
 
-![Q94](balabalaaaa)
+![Q94](https://github.com/javamore/ACE-the-ACE/blob/main/images/Q94.png)
 
 What is the most likely cause?
 
@@ -113,7 +113,7 @@ Reason: see this:  https://cloud.google.com/kubernetes-engine/sandbox.
 
 Your customer has implemented a solution that uses Cloud Spanner and notices some read latency-related performance issues on one table. This table is accessed only by their users using a primary key. The table schema is shown below.
 
-![Q98](balabla....)
+![Q98](https://github.com/javamore/ACE-the-ACE/blob/main/images/Q98.png)
 
 You want to resolve the issue. What should you do?
 
