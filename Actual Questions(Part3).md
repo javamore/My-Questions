@@ -220,33 +220,250 @@ You have a developer laptop with the Cloud SDK installed on Ubuntu. The Cloud SD
 
 Reason: https://cloud.google.com/sdk/docs/downloads-apt-get.
 
+-----
 
+**Q104.(#Plan)**
 
+Your company set up a complex organizational structure on Google Cloud. The structure includes hundreds of folders and projects. Only a few team members should be able to view the hierarchical structure. You need to assign minimum permissions to these team members, and you want to follow Google-recommended practices. What should you do?
 
+- A. Add the users to roles/browser role.
+- B. Add the users to roles/iam.roleViewer role.
+- C. Add the users to a group, and add this group to roles/browser.
+- D. Add the users to a group, and add this group to roles/iam.roleViewer role.
 
+***My choice is C.***
 
+Reason: We need to apply the GCP Best practices. roles/browser Browser Read access to browse the hierarchy for a project, including the folder, organization, and IAM policy. This role doesn't include permission to view resources in the project. https://cloud.google.com/iam/docs/understanding-roles.
 
+----
 
+**Q105.(#CloudIdentity)**
 
+Your company has a single sign-on (SSO) identity provider that supports Security Assertion Markup Language (SAML) integration with service providers. Your company has users in Cloud Identity. You would like users to authenticate using your company's SSO provider. What should you do?
 
+- A. In Cloud Identity, set up SSO with Google as an identity provider to access custom SAML apps.
+- B. In Cloud Identity, set up SSO with a third-party identity provider with Google as a service provider.
+- C. Obtain OAuth 2.0 credentials, configure the user consent screen, and set up OAuth 2.0 for Mobile & Desktop Apps.
+- D. Obtain OAuth 2.0 credentials, configure the user consent screen, and set up OAuth 2.0 for Web Server Applications.
 
+***My choice is B.***
 
+Reason: https://support.google.com/a/answer/6349809. When you use SSO for Cloud Identity or Google Workspace, your external IdP is the SAML IdP and Google is the SAML service provider.
 
+-----
 
+**Q106.(#Role)**
 
+Your organization has a dedicated person who creates and manages all service accounts for Google Cloud projects. You need to assign this person the minimum role for projects. What should you do?
 
+- A. Add the user to roles/iam.roleAdmin role.
+- B. Add the user to roles/iam.securityAdmin role.
+- C. Add the user to roles/iam.serviceAccountUser role.
+- D. Add the user to roles/iam.serviceAccountAdmin role.
 
+***My choice is D.***
 
+Reason: Service Account Admin (roles/iam.serviceAccountAdmin): Includes permissions to list service accounts and get details about a service account. Also includes permissions to create, update, and delete service accounts, and to view or change the IAM policy on a service account.
 
+-----
 
+**Q107.(#CloudStorage)**
 
+You are building an archival solution for your data warehouse and have selected Cloud Storage to archive your data. Your users need to be able to access this archived data once a quarter for some regulatory requirements. You want to select a cost-efficient option. Which storage option should you use?
 
+- A. Coldline Storage
+- B. Nearline Storage
+- C. Regional Storage
+- D. Multi-Regional Storage
 
+***My choice is B***
 
+Reason: coldline provides access once a year.
 
+-----
 
+**Q108.(#GKE)**
 
+A team of data scientists infrequently needs to use a Google Kubernetes Engine (GKE) cluster that you manage. They require GPUs for some long-running, non- restartable jobs. You want to minimize cost. What should you do?
 
+- A. Enable node auto-provisioning on the GKE cluster.
+- B. Create a VerticalPodAutscaler for those workloads.
+- C. Create a node pool with preemptible VMs and GPUs attached to those VMs.
+- D. Create a node pool of instances with GPUs, and enable autoscaling on this node pool with a minimum size of 1.
+
+***My choice is D.***
+
+Reason: for long-running, non- restartable jobs you dont use preemptible VMs.
+
+-----
+
+**Q109.(#Plan)**
+
+Your organization has user identities in Active Directory. Your organization wants to use Active Directory as their source of truth for identities. Your organization wants to have full control over the Google accounts used by employees for all Google services, including your Google Cloud Platform (GCP) organization. What should you do?
+
+- A. Use Google Cloud Directory Sync (GCDS) to synchronize users into Cloud Identity.
+- B. Use the cloud Identity APIs and write a script to synchronize users to Cloud Identity.
+- C. Export users from Active Directory as a CSV and import them to Cloud Identity via the Admin Console.
+- D. Ask each employee to create a Google account using self signup. Require that each employee use their company email address and password.
+
+***My choice is A***
+
+Reason: See reference:https://cloud.google.com/solutions/federating-gcp-with-active-directory-introduction.
+
+----
+
+**Q110.(#CloudSQL)**
+
+You have successfully created a development environment in a project for an application. This application uses Compute Engine and Cloud SQL. Now you need to create a production environment for this application. The security team has forbidden the existence of network routes between these 2 environments and has asked you to follow Google-recommended practices. What should you do?
+
+- A. Create a new project, enable the Compute Engine and Cloud SQL APIs in that project, and replicate the setup you have created in the development environment.
+- B. Create a new production subnet in the existing VPC and a new production Cloud SQL instance in your existing project, and deploy your application using those resources.
+- C. Create a new project, modify your existing VPC to be a Shared VPC, share that VPC with your new project, and replicate the setup you have in the development environment in that new project in the Shared VPC.
+- D. Ask the security team to grant you the Project Editor role in an existing production project used by another division of your company. Once they grant you that role, replicate the setup you have in the development environment in that project.
+
+***My choice is A.***
+
+Reason: it's a best practice "to have one project per application per environment." check this site: https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations#project-structure.
+
+-----
+
+**Q111.(#Plan)**
+
+Your management has asked an external auditor to review all the resources in a specific project. The security team has enabled the Organization Policy called
+Domain Restricted Sharing on the organization node by specifying only your Cloud Identity domain. You want the auditor to only be able to view, but not modify, the resources in that project. What should you do?
+
+- A. Ask the auditor for their Google account, and give them the Viewer role on the project.
+- B. Ask the auditor for their Google account, and give them the Security Reviewer role on the project.
+- C. Create a temporary account for the auditor in Cloud Identity, and give that account the Viewer role on the project.
+- D. Create a temporary account for the auditor in Cloud Identity, and give that account the Security Reviewer role on the project.
+
+***My choice is C.***
+
+Reason: https://cloud.google.com/iam/docs/roles-audit-logging#scenario_external_auditors.
+
+----
+
+**Q112.**
+
+You have a workload running on Compute Engine that is critical to your business. You want to ensure that the data on the boot disk of this workload is backed up regularly. You need to be able to restore a backup as quickly as possible in case of disaster. You also want older backups to be cleaned automatically to save on cost. You want to follow Google-recommended practices. What should you do?
+
+- A. Create a Cloud Function to create an instance template.
+- B. Create a snapshot schedule for the disk using the desired interval.
+- C. Create a cron job to create a new disk from the disk using gcloud.
+- D. Create a Cloud Task to create an image and export it to Cloud Storage.
+
+***My choice is B.***
+
+Reason: https://cloud.google.com/compute/docs/disks/snapshot-best-practices.
+
+------
+
+**Q113.(#IAM)**
+
+You need to assign a Cloud Identity and Access Management (Cloud IAM) role to an external auditor. The auditor needs to have permissions to review your
+Google Cloud Platform (GCP) Audit Logs and also to review your Data Access logs. What should you do?
+
+- A. Assign the auditor the IAM role roles/logging.privateLogViewer. Perform the export of logs to Cloud Storage.
+- B. Assign the auditor the IAM role roles/logging.privateLogViewer. Direct the auditor to also review the logs for changes to Cloud IAM policy.
+- C. Assign the auditorג€™s IAM user to a custom role that has logging.privateLogEntries.list permission. Perform the export of logs to Cloud Storage.
+- D. Assign the auditorג€™s IAM user to a custom role that has logging.privateLogEntries.list permission. Direct the auditor to also review the logs for changes to Cloud IAM policy.
+
+***My choice is B.***
+
+Reason: roles/logging.privateLogViewer (Private Logs Viewer) includes roles/logging.viewer, plus the ability to read Access Transparency logs and Data Access audit logs. This role applies only to the _Required and _Default buckets.
+
+------
+
+**Q114.**
+
+You are managing several Google Cloud Platform (GCP) projects and need access to all logs for the past 60 days. You want to be able to explore and quickly analyze the log contents. You want to follow Google-recommended practices to obtain the combined logs for all projects. What should you do?
+
+- A. Navigate to Stackdriver Logging and select resource.labels.project_id="*"
+- B. Create a Stackdriver Logging Export with a Sink destination to a BigQuery dataset. Configure the table expiration to 60 days.
+- C. Create a Stackdriver Logging Export with a Sink destination to Cloud Storage. Create a lifecycle rule to delete objects after 60 days.
+- D. Configure a Cloud Scheduler job to read from Stackdriver and store the logs in BigQuery. Configure the table expiration to 60 days.
+
+***My choice is B.*** 
+
+Reason: https://cloud.google.com/blog/products/gcp/best-practices-for-working-with-google-cloud-audit-logging. 
+
+---
+
+**Q115.**
+
+You need to reduce GCP service costs for a division of your company using the fewest possible steps. You need to turn off all configured services in an existing
+GCP project. What should you do?
+
+- A. 1. Verify that you are assigned the Project Owners IAM role for this project. 2. Locate the project in the GCP console, click Shut down and then enter the project ID.
+- B. 1. Verify that you are assigned the Project Owners IAM role for this project. 2. Switch to the project in the GCP console, locate the resources and delete them.
+- C. 1. Verify that you are assigned the Organizational Administrator IAM role for this project. 2. Locate the project in the GCP console, enter the project ID and then click Shut down.
+- D. 1. Verify that you are assigned the Organizational Administrators IAM role for this project. 2. Switch to the project in the GCP console, locate the resources and delete them.
+
+***My choice is A.***
+
+Reason: Ref: https://cloud.google.com/resource-manager/docs/organization-resource-management#delete-projects.
+
+-----
+
+**Q116.(#VM)**
+
+You are configuring service accounts for an application that spans multiple projects. Virtual machines (VMs) running in the web-applications project need access to BigQuery datasets in crm-databases-proj. You want to follow Google-recommended practices to give access to the service account in the web-applications project. What should you do?
+
+- A. Give ג€project ownerג€ for web-applications appropriate roles to crm-databases-proj.
+- B. Give ג€project ownerג€ role to crm-databases-proj and the web-applications project.
+- C. Give ג€project ownerג€ role to crm-databases-proj and bigquery.dataViewer role to web-applications.
+- D. Give bigquery.dataViewer role to crm-databases-proj and appropriate roles to web-applications.
+
+***My choice is D.***
+
+Reason: No need any Owner access permission.
+
+---
+
+Q117.
+
+An employee was terminated, but their access to Google Cloud Platform (GCP) was not removed until 2 weeks later. You need to find out this employee accessed any sensitive customer information after their termination. What should you do?
+
+- A. View System Event Logs in Stackdriver. Search for the userג€™s email as the principal.
+- B. View System Event Logs in Stackdriver. Search for the service account associated with the user.
+- C. View Data Access audit logs in Stackdriver. Search for the userג€™s email as the principal.
+- D. View the Admin Activity log in Stackdriver. Search for the service account associated with the user.
+
+***My choice is C.***
+
+Reason: https://cloud.google.com/logging/docs/audit.
+
+----
+
+**Q118.(#IAM)**
+
+You need to create a custom IAM role for use with a GCP service. All permissions in the role must be suitable for production use. You also want to clearly share with your organization the status of the custom role. This will be the first version of the custom role. What should you do?
+
+- A. Use permissions in your role that use the ג€˜supportedג€™ support level for role permissions. Set the role stage to ALPHA while testing the role permissions.
+- B. Use permissions in your role that use the ג€˜supportedג€™ support level for role permissions. Set the role stage to BETA while testing the role permissions.
+- C. Use permissions in your role that use the ג€˜testingג€™ support level for role permissions. Set the role stage to ALPHA while testing the role permissions.
+- D. Use permissions in your role that use the ג€˜testingג€™ support level for role permissions. Set the role stage to BETA while testing the role permissions.
+
+***My choice is A.***
+
+Reason: beacuse it contains SUPPORTED which we must see when creating custom roles and as it first version we must set it to ALPHA
+
+----
+
+**Q119.**
+
+Your company has a large quantity of unstructured data in different file formats. You want to perform ETL transformations on the data. You need to make the data accessible on Google Cloud so it can be processed by a Dataflow job. What should you do?
+
+- A. Upload the data to BigQuery using the bq command line tool.
+- B. Upload the data to Cloud Storage using the gsutil command line tool.
+- C. Upload the data into Cloud SQL using the import function in the console.
+- D. Upload the data into Cloud Spanner using the import function in the console.
+
+***My choice is B.***
+
+Reason: Reference:https://cloud.google.com/solutions/performing-etl-from-relational-database-into-bigquery.
+
+---
 
 
 
