@@ -163,7 +163,201 @@ The data that needs to be visualized resides in a different project managed by a
 ***My choice is B.***
 
 Reason:The Owner, Editor, and Viewer primitive roles include the BigQuery Admin (roles/bigquery.dataOwner), BigQuery Data Editor (roles/bigquery.dataEditor), and
-BigQuery Data Viewer (roles/bigquery.dataViewer) roles, respectively. This means the Owner, Editor, and Viewer primitive roles have BigQuery access as defined for the respective BigQuery roles. Reference: https://cloud.google.com/bigquery/docs/access-control
+BigQuery Data Viewer (roles/bigquery.dataViewer) roles, respectively. This means the Owner, Editor, and Viewer primitive roles have BigQuery access as defined for the respective BigQuery roles. Reference: https://cloud.google.com/bigquery/docs/access-control.
+
+---
+
+**Q131.(#VirtualMachine)**
+
+You need to create a copy of a custom Compute Engine virtual machine (VM) to facilitate an expected increase in application traffic due to a business acquisition.
+What should you do?
+
+- A. Create a Compute Engine snapshot of your base VM. Create your images from that snapshot.
+- B. Create a Compute Engine snapshot of your base VM. Create your instances from that snapshot.
+- C. Create a custom Compute Engine image from a snapshot. Create your images from that image.
+- D. Create a custom Compute Engine image from a snapshot. Create your instances from that image.
+
+***My choice is D.***
+
+Reason: A custom image belongs only to your project. To create an instance with a custom image, you must first have a custom image. Reference: https://cloud.google.com/compute/docs/instances/create-start-instance.
+
+----
+
+**Q132.(#Plan)**
+
+You have deployed an application on a single Compute Engine instance. The application writes logs to disk. Users start reporting errors with the application. You want to diagnose the problem. What should you do?
+
+- A. Navigate to Cloud Logging and view the application logs.
+- B. Connect to the instanceג€™s serial console and read the application logs.
+- C. Configure a Health Check on the instance and set a Low Healthy Threshold value.
+- D. Install and configure the Cloud Logging Agent and view the logs from Cloud Logging.
+
+***My choice is D.***
+
+Reason: https://cloud.google.com/logging/docs/agent/installation.  "The VM images for Compute Engine and Amazon Elastic Compute Cloud (EC2) don't include the Logging agent, so you must complete these steps to install it on those instances, and If your VMs are running in Google Kubernetes Engine or App Engine, the agent is already included in the VM image, so you can skip this page."
+
+---
+
+**Q133.(#VM)**
+
+An application generates daily reports in a Compute Engine virtual machine (VM). The VM is in the project corp-iot-insights. Your team operates only in the project corp-aggregate-reports and needs a copy of the daily exports in the bucket corp-aggregate-reports-storage. You want to configure access so that the daily reports from the VM are available in the bucket corp-aggregate-reports-storage and use as few steps as possible while following Google-recommended practices. What should you do?
+
+- A. Move both projects under the same folder.
+- B. Grant the VM Service Account the role Storage Object Creator on corp-aggregate-reports-storage.
+- C. Create a Shared VPC network between both projects. Grant the VM Service Account the role Storage Object Creator on corp-iot-insights.
+- D. Make corp-aggregate-reports-storage public and create a folder with a pseudo-randomized suffix name. Share the folder with the IoT team.
+
+***My choice is B.***
+
+Reason: Basically, you are giving the permissions to the VM Service Account to create a copy of the daily report on the bucket that the other team has access.
+
+Predefined roles The following table describes Identity and Access Management (IAM) roles that are associated with Cloud Storage and lists the permissions that are contained in each role. Unless otherwise noted, these roles can be applied either to entire projects or specific buckets. 
+
+Storage Object Creator (roles/storage.objectCreator) Allows users to create objects. Does not give permission to view, delete, or overwrite objects. 
+
+See this: https://cloud.google.com/storage/docs/access-control/iam-roles#standard-roles.
+
+---
+
+**Q134.(#VM)**
+
+You built an application on your development laptop that uses Google Cloud services. Your application uses Application Default Credentials for authentication and works fine on your development laptop. You want to migrate this application to a Compute Engine virtual machine (VM) and set up authentication using Google- recommended practices and minimal changes. What should you do?
+
+- A. Assign appropriate access for Google services to the service account used by the Compute Engine VM.
+- B. Create a service account with appropriate access for Google services, and configure the application to use this account.
+- C. Store credentials for service accounts with appropriate access for Google services in a config file, and deploy this config file with your application.
+- D. Store credentials for your user account with appropriate access for Google services in a config file, and deploy this config file with your application.
+
+***My choice is A, but B also seems Correct.***
+
+Reason: choosing A because you don't need to create another service account for this application; choosing B though the question does not state that is using the default service accounts and you could therefore assume one has previously been made.
+
+-----
+
+**Q135.(#ComputeEngine)**
+
+You need to create a Compute Engine instance in a new project that doesn't exist yet. What should you do?
+
+- A. Using the Cloud SDK, create a new project, enable the Compute Engine API in that project, and then create the instance specifying your new project.
+- B. Enable the Compute Engine API in the Cloud Console, use the Cloud SDK to create the instance, and then use the --project flag to specify a new project.
+- C. Using the Cloud SDK, create the new instance, and use the --project flag to specify the new project. Answer yes when prompted by Cloud SDK to enable the Compute Engine API.
+- D. Enable the Compute Engine API in the Cloud Console. Go to the Compute Engine section of the Console to create a new instance, and look for the Create In A New Project option in the creation form.
+
+***My choice is A.***
+
+Reason: Creating a New Instance Using the Command Line Before you begin 1. In the Cloud Console, on the project selector page, select or create a Cloud project. 2. Make sure that billing is enabled for your Google Cloud project. Learn how to confirm billing is enabled for your project. 
+
+To use the gcloud command-line tool for this quickstart, you must first install and initialize the Cloud SDK: 1. Download and install the Cloud SDK using the instructions given on Installing Google Cloud SDK. 2. Initialize the SDK using the instructions given on Initializing Cloud SDK. To use gcloud in Cloud Shell for this quickstart, first activate Cloud Shell using the instructions given on Starting Cloud Shell. 
+
+See this site: https://cloud.google.com/ai-platform/deep-learning-vm/docs/quickstart-cli#before-you-begin. 
+
+----------
+
+**Q136.(#Plan)**
+
+Your company runs one batch process in an on-premises server that takes around 30 hours to complete. The task runs monthly, can be performed offline, and must be restarted if interrupted. You want to migrate this workload to the cloud while minimizing cost. What should you do?
+
+- A. Migrate the workload to a Compute Engine Preemptible VM.
+- B. Migrate the workload to a Google Kubernetes Engine cluster with Preemptible nodes.
+- C. Migrate the workload to a Compute Engine VM. Start and stop the instance as needed.
+- D. Create an Instance Template with Preemptible VMs On. Create a Managed Instance Group from the template and adjust Target CPU Utilization. Migrate the workload.
+
+***My choice is C.***
+
+Reason: Preemptible VM cannot run more than 24 hours and its mentioned that it takes 30 hours to complete a job so the answer is C.
+
+---
+
+**Q137.**
+
+You are developing a new application and are looking for a Jenkins installation to build and deploy your source code. You want to automate the installation as quickly and easily as possible. What should you do?
+
+- A. Deploy Jenkins through the Google Cloud Marketplace.
+- B. Create a new Compute Engine instance. Run the Jenkins executable.
+- C. Create a new Kubernetes Engine cluster. Create a deployment for the Jenkins image.
+- D. Create an instance template with the Jenkins executable. Create a managed instance group with this template.
+
+***My choice is A.***
+
+Reason: A is the easiest method.
+
+---
+
+**Q138.**
+
+You have downloaded and installed the gcloud command line interface (CLI) and have authenticated with your Google Account. Most of your Compute Engine instances in your project run in the europe-west1-d zone. You want to avoid having to specify this zone with each CLI command when managing these instances.
+What should you do?
+
+- A. Set the europe-west1-d zone as the default zone using the gcloud config subcommand.
+- B. In the Settings page for Compute Engine under Default location, set the zone to europeג€"west1-d.
+- C. In the CLI installation directory, create a file called default.conf containing zone=europeג€"west1ג€"d.
+- D. Create a Metadata entry on the Compute Engine page with key compute/zone and value europeג€"west1ג€"d.
+
+***My choice is A.***
+
+Reason: You can change the default zone and region in your metadata server by making a request to the metadata server. 
+
+For example: gcloud compute project-info add-metadata \ --metadata google-compute-default-region=europe-west1,google-compute-default-zone=europe-west1-b 
+
+The gcloud command-line tool only picks up on new default zone and region changes after you rerun the gcloud init command. After updating your default metadata, run gcloud init to reinitialize your default configuration. See this: https://cloud.google.com/compute/docs/gcloud-compute#change_your_default_zone_and_region_in_the_metadata_server.
+
+----
+
+**Q139.**
+
+The core business of your company is to rent out construction equipment at large scale. All the equipment that is being rented out has been equipped with multiple sensors that send event information every few seconds. These signals can vary from engine status, distance traveled, fuel level, and more. Customers are billed based on the consumption monitored by these sensors. You expect high throughput `" up to thousands of events per hour per device `" and `" need to retrieve consistent data based on the time of the event `" and   `"Storing and retrieving individual signals should be atomic.`" What should you do?
+
+- A. Create a file in Cloud Storage per device and append new data to that file.
+- B. Create a file in Cloud Filestore per device and append new data to that file.
+- C. Ingest the data into Datastore. Store data in an entity group based on the device.
+- D. Ingest the data into Cloud Bigtable. Create a row key based on the event timestamp.
+
+***My choice is D.***
+
+Reason: You may find following keywords: High Throughput, consistent, Large Scale customer, export data and this is an IOT case = BigTable. 
+
+ If Data is huge, unstructured and related time,  Bigtable is best option.
+
+---
+
+**Q140.**
+
+You are asked to set up application performance monitoring on Google Cloud projects A, B, and C as a single pane of glass. You want to monitor CPU, memory, and disk. What should you do?
+
+- A. Enable API and then share charts from project A, B, and C.
+- B. Enable API and then give the metrics.reader role to projects A, B, and C.
+- C. Enable API and then use default dashboards to view all projects in sequence.
+- D. Enable API, create a workspace under project A, and then add projects B and C.
+
+***My choice is D.***
+
+Reason: Workspace is made for monitoring multiple projects. See this:https://cloud.google.com/monitoring/workspaces. 
+
+-------
+
+Q141......
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
