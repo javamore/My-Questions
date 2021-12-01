@@ -335,35 +335,161 @@ Reason: Workspace is made for monitoring multiple projects. See this:https://clo
 
 -------
 
-Q141......
+**Q141.(#CloudBilling)**
 
+You created several resources in multiple Google Cloud projects. All projects are linked to different billing accounts. To better estimate future charges, you want to have a single visual representation of all costs incurred. You want to include new cost data as soon as possible. What should you do?
 
+- A. Configure Billing Data Export to BigQuery and visualize the data in Data Studio.
+- B. Visit the Cost Table page to get a CSV export and visualize it using Data Studio.
+- C. Fill all resources in the Pricing Calculator to get an estimate of the monthly cost.
+- D. Use the Reports view in the Cloud Billing Console to view the desired cost information.
 
+***My choice is A.***
 
+Reason: https://cloud.google.com/billing/docs/how-to/visualize-data. 
 
+----
 
+**Q142.(#VPC)**
 
+Your company has workloads running on Compute Engine and on-premises. The Google Cloud Virtual Private Cloud (VPC) is connected to your WAN over a
+Virtual Private Network (VPN). You need to deploy a new Compute Engine instance and ensure that no public Internet traffic can be routed to it. What should you do?
 
+- A. Create the instance without a public IP address.
+- B. Create the instance with Private Google Access enabled.
+- C. Create a deny-all egress firewall rule on the VPC network.
+- D. Create a route on the VPC to route all traffic to the instance over the VPN tunnel.
 
+***My choice is A.***
 
+Reason: When you are creating the instance you could configure external IP to none, to avoid external Internet access.
 
+-----
 
+**Q143.(#DeploymentManger)**
 
+Your team maintains the infrastructure for your organization. The current infrastructure requires changes. You need to share your proposed changes with the rest of the team. You want to follow Google's recommended best practices. What should you do?
 
+- A. Use Deployment Manager templates to describe the proposed changes and store them in a Cloud Storage bucket.
+- B. Use Deployment Manager templates to describe the proposed changes and store them in Cloud Source Repositories.
+- C. Apply the changes in a development environment, run gcloud compute instances list, and then save the output in a shared Storage bucket.
+- D. Apply the changes in a development environment, run gcloud compute instances list, and then save the output in Cloud Source Repositories.
 
+***My choice is B.***
 
+Reason: https://cloud.google.com/source-repositories/docs/features. 
 
+---
 
+**Q144.(#Snapshot)**
 
+You have a Compute Engine instance hosting an application used between 9 AM and 6 PM on weekdays. You want to back up this instance daily for disaster recovery purposes. You want to keep the backups for 30 days. You want the Google-recommended solution with the least management overhead and the least number of services. What should you do?
 
+- A. 1. Update your instancesג€™ metadata to add the following value: snapshotג€"schedule: 0 1 * * * 2. Update your instancesג€™ metadata to add the following value: snapshotג€"retention: 30
+- B. 1. In the Cloud Console, go to the Compute Engine Disks page and select your instanceג€™s disk. 2. In the Snapshot Schedule section, select Create Schedule and configure the following parameters: - Schedule frequency: Daily - Start time: 1:00 AM ג€" 2:00 AM - Autodelete snapshots after: 30 days
+- C. 1. Create a Cloud Function that creates a snapshot of your instanceג€™s disk. 2. Create a Cloud Function that deletes snapshots that are older than 30 days. 3. Use Cloud Scheduler to trigger both Cloud Functions daily at 1:00 AM.
+- D. 1. Create a bash script in the instance that copies the content of the disk to Cloud Storage. 2. Create a bash script in the instance that deletes data older than 30 days in the backup Cloud Storage bucket. 3. Configure the instanceג€™s crontab to execute these scripts daily at 1:00 AM.
 
+***My choice is B.***
 
+Reason: Use snapshot schedules as a best practice to back up your Compute Engine workloads. After creating a snapshot schedule, you can apply it to one or more persistent disks. See this:  https://cloud.google.com/compute/docs/disks/scheduled-snapshots. 
 
+-----
 
+**Q145.(#GKE)**
 
+Your existing application running in Google Kubernetes Engine (GKE) consists of multiple pods running on four GKE n1`"standard`"2 nodes. You need to deploy additional pods requiring n2`"highmem`"16 nodes without any downtime. What should you do?
 
+- A. Use gcloud container clusters upgrade. Deploy the new services.
+- B. Create a new Node Pool and specify machine type n2ג€"highmemג€"16. Deploy the new pods.
+- C. Create a new cluster with n2ג€"highmemג€"16 nodes. Redeploy the pods and delete the old cluster.
+- D. Create a new cluster with both n1ג€"standardג€"2 and n2ג€"highmemג€"16 nodes. Redeploy the pods and delete the old cluster.
 
+***My choice is B.***
 
+Reason: When you need to change the machine profile of your Compute Engine cluster, you can create a new node pool and then migrate your workloads over to the new node pool.
+
+----
+
+**Q146.(#CloudSpanner #CloudTable)**
+
+You have an application that uses Cloud Spanner as a database backend to keep current state information about users. Cloud Bigtable logs all events triggered by users. You export Cloud Spanner data to Cloud Storage during daily backups. One of your analysts asks you to join data from Cloud Spanner and Cloud
+Bigtable for specific users. You want to complete this ad hoc request as efficiently as possible. What should you do?
+
+- A. Create a dataflow job that copies data from Cloud Bigtable and Cloud Storage for specific users.
+- B. Create a dataflow job that copies data from Cloud Bigtable and Cloud Spanner for specific users.
+- C. Create a Cloud Dataproc cluster that runs a Spark job to extract data from Cloud Bigtable and Cloud Storage for specific users.
+- D. Create two separate BigQuery external tables on Cloud Storage and Cloud Bigtable. Use the BigQuery console to join these tables through user fields, and apply appropriate filters.
+
+**My choice is D.**
+
+Reason: BigQuery supports: Cloud Bigtable, Cloud Storage, Google Drive, Cloud SQL. See this:https://cloud.google.com/bigquery/external-data-sources. 
+
+----
+
+**Q147.(#VM)**
+
+You are hosting an application from Compute Engine virtual machines (VMs) in us`"central1`"a. You want to adjust your design to support the failure of a single
+Compute Engine zone, eliminate downtime, and minimize cost. What should you do?
+
+- A. ג€" Create Compute Engine resources in usג€"central1ג€"b. ג€" Balance the load across both usג€"central1ג€"a and usג€"central1ג€"b.
+- B. ג€" Create a Managed Instance Group and specify usג€"central1ג€"a as the zone. ג€" Configure the Health Check with a short Health Interval.
+- C. ג€" Create an HTTP(S) Load Balancer. ג€" Create one or more global forwarding rules to direct traffic to your VMs.
+- D. ג€" Perform regular backups of your application. ג€" Create a Cloud Monitoring Alert and be notified if your application becomes unavailable. ג€" Restore from backups when notified.
+
+***My choice is A.***
+
+Reason: in order to remediate to the problem of single point of failure, we have to replicate VMs within multiple zones. Only A choice consider this concern.
+
+------
+
+**Q148.(#SecurityCheck)**
+
+A colleague handed over a Google Cloud Platform project for you to maintain. As part of a security checkup, you want to review who has been granted the Project
+Owner role. What should you do?
+
+- A. In the console, validate which SSH keys have been stored as project-wide keys.
+- B. Navigate to Identity-Aware Proxy and check the permissions for these resources.
+- C. Enable Audit Logs on the IAM & admin page for all resources, and validate the results.
+- D. Use the command gcloud projects getג€"iamג€"policy to view the current role assignments.
+
+***My choice is D.***
+
+Reason: gcloud projects get-iam-policy.
+
+-----
+
+**Q149.(#VPC #GKE)**
+
+You are running multiple VPC-native Google Kubernetes Engine clusters in the same subnet. The IPs available for the nodes are exhausted, and you want to ensure that the clusters can grow in nodes when needed. What should you do?
+
+- A. Create a new subnet in the same region as the subnet being used.
+- B. Add an alias IP range to the subnet used by the GKE clusters.
+- C. Create a new VPC, and set up VPC peering with the existing VPC.
+- D. Expand the CIDR range of the relevant subnet for the cluster.
+
+***My choice is D.***
+
+Reason: https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/expand-ip-range.
+
+----
+
+**Q150.(#VM)**
+
+You have a batch workload that runs every night and uses a large number of virtual machines (VMs). It is fault-tolerant and can tolerate some of the VMs being terminated. The current cost of VMs is too high. What should you do?
+
+- A. Run a test using simulated maintenance events. If the test is successful, use preemptible N1 Standard VMs when running future jobs.
+- B. Run a test using simulated maintenance events. If the test is successful, use N1 Standard VMs when running future jobs.
+- C. Run a test using a managed instance group. If the test is successful, use N1 Standard VMs in the managed instance group when running future jobs.
+- D. Run a test using N1 standard VMs instead of N2. If the test is successful, use N1 Standard VMs when running future jobs.
+
+***My choice is A.***
+
+Reason: https://cloud.google.com/compute/docs/instances/create-start-preemptible-instance. 
+
+--------------
+
+Q151.()
 
 
 
