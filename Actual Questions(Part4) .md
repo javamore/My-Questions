@@ -487,9 +487,7 @@ You have a batch workload that runs every night and uses a large number of virtu
 
 Reason: https://cloud.google.com/compute/docs/instances/create-start-preemptible-instance. 
 
---------------
 
-Q151.()
 
 
 
