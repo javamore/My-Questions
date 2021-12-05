@@ -103,7 +103,7 @@ You are building a product on top of Google Kubernetes Engine (GKE). You have a 
 - C. Create a GKE node pool with a sandbox type configured to gvisor. Add the parameter runtimeClassName: gvisor to the specification of your customersג€™ Pods.
 - D. Use the cos_containerd image for your GKE nodes. Add a nodeSelector with the value cloud.google.com/gke-os-distribution: cos_containerd to the specification of your customersג€™ Pods.
 
-My choice is C.
+***My choice is C.***
 
 Reason: see this:  https://cloud.google.com/kubernetes-engine/sandbox.
 

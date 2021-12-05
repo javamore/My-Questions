@@ -228,7 +228,219 @@ You have experimented with Google Cloud using your own credit card and expensed 
 
 Reason: See this: https://cloud.google.com/billing/docs/how-to/modify-project#change_the_billing_account_for_a_project. 
 
+-----
+
+**Q165.(#BigQuery)**
+
+You are running a data warehouse on BigQuery. A partner company is offering a recommendation engine based on the data in your data warehouse. The partner company is also running their application on Google Cloud. They manage the resources in their own project, but they need access to the BigQuery dataset in your project. You want to provide the partner company with access to the dataset. What should you do?
+
+- A. Create a Service Account in your own project, and grant this Service Account access to BigQuery in your project.
+- B. Create a Service Account in your own project, and ask the partner to grant this Service Account access to BigQuery in their project.
+- C. Ask the partner to create a Service Account in their project, and have them give the Service Account access to BigQuery in their project.
+- D. Ask the partner to create a Service Account in their project, and grant their Service Account access to the BigQuery dataset in your project.
+
+***My choice is D.***
+
+-----
+
+**Q166.(#CloudRun)**
+
+Your web application has been running successfully on Cloud Run for Anthos. You want to evaluate an updated version of the application with a specific percentage of your production users (canary deployment). What should you do?
+
+- A. Create a new service with the new version of the application. Split traffic between this version and the version that is currently running.
+- B. Create a new revision with the new version of the application. Split traffic between this version and the version that is currently running.
+- C. Create a new service with the new version of the application. Add HTTP Load Balancer in front of both services.
+- D. Create a new revision with the new version of the application. Add HTTP Load Balancer in front of both revisions.
+
+***My choice is B.***
+
+Reason: See this:  https://cloud.google.com/run/docs/managing/revisions. 
+
+------
+
+**Q167.**
+
+Your company developed a mobile game that is deployed on Google Cloud. Gamers are connecting to the game with their personal phones over the Internet. The game sends UDP packets to update the servers about the gamers' actions while they are playing in multiplayer mode. Your game backend can scale over multiple virtual machines (VMs), and you want to expose the VMs over a single IP address. What should you do?
+
+- A. Configure an SSL Proxy load balancer in front of the application servers.
+- B. Configure an Internal UDP load balancer in front of the application servers.
+- C. Configure an External HTTP(s) load balancer in front of the application servers.
+- D. Configure an External Network load balancer in front of the application servers.
+
+***My choice is D.***
+
+Reason: https://cloud.google.com/load-balancing/docs/choosing-load-balancer.
+
+------
+
+**Q168.**
+
+You are working for a hospital that stores its medical images in an on-premises data room. The hospital wants to use Cloud Storage for archival storage of these images. The hospital wants an automated process to upload any new medical images to Cloud Storage. You need to design and implement a solution. What should you do?
+
+- A. Create a Pub/Sub topic, and enable a Cloud Storage trigger for the Pub/Sub topic. Create an application that sends all medical images to the Pub/Sub topic.
+- B. Deploy a Dataflow job from the batch template, ג€Datastore to Cloud Storage.ג€ Schedule the batch job on the desired interval.
+- C. Create a script that uses the gsutil command line interface to synchronize the on-premises storage with Cloud Storage. Schedule the script as a cron job.
+- D. In the Cloud Console, go to Cloud Storage. Upload the relevant images to the appropriate bucket.
+
+***My choice is C.***
+
+------
+
+**Q169.**
+
+Your auditor wants to view your organization's use of data in Google Cloud. The auditor is most interested in auditing who accessed data in Cloud Storage buckets. You need to help the auditor access the data they need. What should you do?
+
+- A. Turn on Data Access Logs for the buckets they want to audit, and then build a query in the log viewer that filters on Cloud Storage.
+- B. Assign the appropriate permissions, and then create a Data Studio report on Admin Activity Audit Logs.
+- C. Assign the appropriate permissions, and the use Cloud Monitoring to review metrics.
+- D. Use the export logs API to provide the Admin Activity Audit Logs in the format they want.
+
+***My choice is A.***
+
+----------
+
+**Q170.**
+
+You received a JSON file that contained a private key of a Service Account in order to get access to several resources in a Google Cloud project. You downloaded and installed the Cloud SDK and want to use this private key for authentication and authorization when performing gcloud commands. What should you do?
+
+- A. Use the command gcloud auth login and point it to the private key.
+- B. Use the command gcloud auth activate-service-account and point it to the private key.
+- C. Place the private key file in the installation directory of the Cloud SDK and rename it to ג€credentials.jsonג€.
+- D. Place the private key file in your home directory and rename it to ג€GOOGLE_APPLICATION_CREDENTIALSג€.
+
+***My choice is B,***
+
+Reason: See this: https://cloud.google.com/sdk/docs/authorizing#authorizing_with_a_service_account. 
+
+------
+
+**Q171.(#CloudSql)**
+
+You are working with a Cloud SQL MySQL database at your company. You need to retain a month-end copy of the database for three years for audit purposes.
+What should you do?
+
+- A. Set up an export job for the first of the month. Write the export file to an Archive class Cloud Storage bucket.
+- B. Save the automatic first-of-the-month backup for three years. Store the backup file in an Archive class Cloud Storage bucket.
+- C. Set up an on-demand backup for the first of the month. Write the backup to an Archive class Cloud Storage bucket.
+- D. Convert the automatic first-of-the-month backup to an export file. Write the export file to a Coldline class Cloud Storage bucket.
+
+***My choice is A.***
+
+Reason: See this: https://cloud.google.com/sql/docs/mysql/backup-recovery/backups.
+
+----
+
+**Q172.(#ServiceAccount)**
+
+You are monitoring an application and receive user feedback that a specific error is spiking. You notice that the error is caused by a Service Account having insufficient permissions. You are able to solve the problem but want to be notified if the problem recurs. What should you do?
+
+- A. In the Log Viewer, filter the logs on severity ג€˜Errorג€™ and the name of the Service Account.
+- B. Create a sink to BigQuery to export all the logs. Create a Data Studio dashboard on the exported logs.
+- C. Create a custom log-based metric for the specific error to be used in an Alerting Policy.
+- D. Grant Project Owner access to the Service Account.
+
+***My choice is C.***
+
+Reason: See this: https://cloud.google.com/logging/docs/logs-based-metrics/charts-and-alerts. 
+
+-----
+
+**Q173.**
+
+You are developing a financial trading application that will be used globally. Data is stored and queried using a relational structure, and clients from all over the world should get the exact identical state of the data. The application will be deployed in multiple regions to provide the lowest latency to end users. You need to select a storage option for the application data while minimizing latency. What should you do?
+
+- A. Use Cloud Bigtable for data storage.
+- B. Use Cloud SQL for data storage.
+- C. Use Cloud Spanner for data storage.
+- D. Use Firestore for data storage.
+
+***My choice is C.***
+
+Reason: See this: https://cloud.google.com/solutions/best-practices-compute-engine-region-selection. 
+
+----
+
+**Q174.**
+
+You are about to deploy a new Enterprise Resource Planning (ERP) system on Google Cloud. The application holds the full database in-memory for fast data access, and you need to configure the most appropriate resources on Google Cloud for this application. What should you do?
+
+- A. Provision preemptible Compute Engine instances.
+- B. Provision Compute Engine instances with GPUs attached.
+- C. Provision Compute Engine instances with local SSDs attached.
+- D. Provision Compute Engine instances with M1 machine type.
+
+***My choice is D.***
+
+Reason: See this: https://cloud.google.com/compute/docs/machine-types.
+
+-----
+
+**Q175.**
+
+You have developed an application that consists of multiple microservices, with each microservice packaged in its own Docker container image. You want to deploy the entire application on Google Kubernetes Engine so that each microservice can be scaled individually. What should you do?
+
+- A. Create and deploy a Custom Resource Definition per microservice.
+- B. Create and deploy a Docker Compose File.
+- C. Create and deploy a Job per microservice.
+- D. Create and deploy a Deployment per microservice.
+
+***My choice is D.***
+
+-----
+
+**Q176.(CloudAPIS)**
+
+You will have several applications running on different Compute Engine instances in the same project. You want to specify at a more granular level the service account each instance uses when calling Google Cloud APIs. What should you do?
+
+- A. When creating the instances, specify a Service Account for each instance.
+- B. When creating the instances, assign the name of each Service Account as instance metadata.
+- C. After starting the instances, use gcloud compute instances update to specify a Service Account for each instance.
+- D. After starting the instances, use gcloud compute instances update to assign the name of the relevant Service Account as instance metadata.
+
+***My choice is A.***
+
+-----
+
+**Q177.**
+
+You are creating an application that will run on Google Kubernetes Engine. You have identified MongoDB as the most suitable database system for your application and want to deploy a managed MongoDB environment that provides a support SLA. What should you do?
+
+- A. Create a Cloud Bigtable cluster, and use the HBase API.
+- B. Deploy MongoDB Atlas from the Google Cloud Marketplace.
+- C. Download a MongoDB installation package, and run it on Compute Engine instances.
+- D. Download a MongoDB installation package, and run it on a Managed Instance Group.
+
+My choice is B.
+
+-----
+
+**Q178.**
+
+You are managing a project for the Business Intelligence (BI) department in your company. A data pipeline ingests data into BigQuery via streaming. You want the users in the BI department to be able to run the custom SQL queries against the latest data in BigQuery. What should you do?
+
+- A. Create a Data Studio dashboard that uses the related BigQuery tables as a source and give the BI team view access to the Data Studio dashboard.
+- B. Create a Service Account for the BI team and distribute a new private key to each member of the BI team.
+- C. Use Cloud Scheduler to schedule a batch Dataflow job to copy the data from BigQuery to the BI teamג€™s internal data warehouse.
+- D. Assign the IAM role of BigQuery User to a Google Group that contains the members of the BI team.
+
+***My choice is D.***
+
+---------
+
+**Q179.**
+
+Your company is moving its entire workload to Compute Engine. Some servers should be accessible through the Internet, and other servers should only be accessible over the internal network. All servers need to be able to talk to each other over specific ports and protocols. The current on-premises network relies on a demilitarized zone (DMZ) for the public servers and a Local Area Network (LAN) for the private servers. You need to design the networking infrastructure on
+Google Cloud to match these requirements. What should you do?
+
+- A. 1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.
+- B. 1. Create a single VPC with a subnet for the DMZ and a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public egress traffic for the DMZ.
+- C. 1. Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public ingress traffic for the DMZ.
+- D. 1. Create a VPC with a subnet for the DMZ and another VPC with a subnet for the LAN. 2. Set up firewall rules to open up relevant traffic between the DMZ and the LAN subnets, and another firewall rule to allow public egress traffic for the DMZ.
+
+***My choice is A.***
+
+--------
 
 
 
-
+***THE END***
