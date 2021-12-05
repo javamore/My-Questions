@@ -63,3 +63,9 @@ ACE的Google官方学习路径：（source：https://googlecourses.qwiklabs.com/
 刷题整理至Q140.
 
 ACE课程
+
+**12/06 update:**
+
+刷题第一遍结束，开始二刷.
+
+继续完成课程剩下的LAB实验.
