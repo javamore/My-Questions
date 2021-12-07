@@ -30,7 +30,7 @@ Reason: The private network range is defined by IETF (Ref: https://tools.ietf.or
 2. 20-bit block 172.16.0.0/12 (1048576 IP Addresses)
 3. 16-bit block 192.168.0.0/16 (65536 IP Addresses)
    10.0.0.0/8 gives you the most extensive range - 16777216 IP Addresses.
-
+-----
 
 
 **Q3. (#SQL)**
@@ -46,7 +46,7 @@ You want to select and configure a cost-effective solution for relational data o
 
 Reason: You must enable binary logging to use point-in-time recovery. Enabling binary logging causes a slight reduction in write performance. See details here: https://cloud.google.com/sql/docs/mysql/backup-recovery/backups
 
-
+-----
 
 **Q4.(#Plan #FewestSteps)**
 
@@ -62,7 +62,7 @@ You need to configure re-creation of VMs if they are unresponsive after 3 attemp
 
 Reason: Using a health-check with a lb (option A) would only probe if the backend instances are receiving traffic, but won't recreate unhealthy instances which is a specific ask in the question. Reference here: https://cloud.google.com/compute/docs/tutorials/high-availability-autohealing. 
 
-
+-----
 
 **Q5.(#Plan #FewestSteps)**
 
@@ -77,7 +77,7 @@ You are using multiple configurations for gcloud. You want to review the configu
 
 Reason: https://medium.com/google-cloud/kubernetes-engine-kubectl-config-b6270d2b656c. 
 
-
+-----
 
 **Q6.(#Plan)**
 
@@ -92,7 +92,7 @@ Your company uses Cloud Storage to store application backup files for disaster r
 
 Reason: Unless a withdraw frequency is mentioned, the recommended practice by google is to use "Archive Storage". However as this is not an available option, then "Coldline Storage" is the next best solution. Reference: https://cloud.google.com/storage/docs/storage-classes#nearline.
 
-
+----
 
 **Q7. (#Billing)**
 
