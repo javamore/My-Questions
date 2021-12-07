@@ -11,7 +11,7 @@ Every employee of your company has a Google account. Your operational team needs
 
 Reason: Some would choose D, but D is hard to "determine who accessed a given instance", and sending private keys to users is not safe, more details see this website: https://cloud.google.com/compute/docs/instances/managing-instance-access.
 
-
+------
 
 **Q2.(#IP)**
 
