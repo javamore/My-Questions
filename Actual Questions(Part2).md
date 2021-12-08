@@ -11,7 +11,7 @@ You have 32 GB of data in a single file that you need to upload to a Nearline St
 
 Reason: The bandwidth is good and its a single file, gsutil parallel composite uploads can be used to split the large file and upload in parallel. See this:https://cloud.google.com/storage/docs/uploads-downloads#parallel-composite-uploads.
 
-
+----
 
 **Q42.(#Plan #GKE)**
 
@@ -30,7 +30,7 @@ You need to refactor this configuration so that the database password is not sto
 
 Reason: https://cloud.google.com/kubernetes-engine/docs/concepts/secret. 
 
-
+-----
 
 **Q43.(#AutoScaling)**
 
@@ -46,7 +46,7 @@ The virtual machine instances take around three minutes to become available for 
 
 Reason: When you do health check, you want the VM to be working. Do the first check after initial setup time of 3 mins = 180 s < 200 s is reasonable.
 
-
+----
 
 **Q44.(#Plan)**
 
@@ -61,7 +61,7 @@ You need to select and configure compute resources for a set of batch processing
 
 Reason: For cost-saving & not immediate fault-tolerant workloads like batch jobs use Preemptible VM instances.
 
-
+----
 
 **Q45.(#AppEngine #Plan)**
 
@@ -76,7 +76,7 @@ You recently deployed a new version of an application to App Engine and then dis
 
 Reason: Option A is wrong as gcloud app restore was used for backup and restore and has been deprecated.Option B is wrong as there is no application revert functionality available.Option D is wrong as App Engine maintains version and need not be redeployed.
 
-
+----
 
 **Q46.(#AppEngine #Plan)**
 
@@ -91,7 +91,7 @@ You deployed an App Engine application using gcloud app deploy, but it did not d
 
 Reason: In app.yaml we would just provide the runtime and not the project configurations. In configuration you can see which is the active configuration/ project set in the configuration.
 
-
+-----
 
 **Q47.(#Plan #ComputeEngine)**
 
@@ -106,7 +106,7 @@ You want to configure 10 Compute Engine instances for availability when maintena
 
 Reason: https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options#autorestart and this:https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options .
 
-
+-----
 
 **Q48.(#Plan #CloudStorage)**
 
@@ -121,7 +121,7 @@ You host a static website on Cloud Storage. Recently, you began to include links
 
 Reason: https://cloud.google.com/storage/docs/metadata#content-type.
 
-
+-------
 
 **Q49.(#Plan)**
 
@@ -136,7 +136,7 @@ You have a virtual machine that is currently configured with 2 vCPUs and 4 GB of
 
 Reason: https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type.
 
-
+----
 
 **Q50.(#Plan #ComputeEngine)**
 
@@ -152,7 +152,7 @@ VMs must be able to reach each other over Internal IP without creating additiona
 
 Reason: VPC is global in nature. Subnets are regional but are connected globally. So creating 1 VPC and different CIDR for different subnets should suffice the purpose.
 
-
+----
 
 **Q51.(#Plan #AutoScaling)**
 
@@ -167,7 +167,7 @@ You need to create an autoscaling managed instance group for an HTTPS web applic
 
 Reason:  adding a label will not recreate the VM.
 
-
+----
 
 **Q52.(#Plan #IAM #BigQuery)**
 
@@ -187,7 +187,7 @@ BigQuery Data Viewer: When applied to a table or view, this role provides permis
 
 When applied to a dataset, this role provides permissions to: Read the dataset's metadata and list tables in the dataset. Read data and metadata from the dataset's tables. BigQuery Job User: Provides permissions to run jobs, including queries, within the project. reference: https://cloud.google.com/bigquery/docs/access-control
 
-
+----
 
 **Q53.(#Plan)**
 
@@ -209,7 +209,7 @@ What should you do?
 
 Reason: if you see closely, port 8080 and service account is required so B is the answer without reading all answers.
 
-
+------------
 
 **Q54.(#VPC #ComputeEngine)**
 
@@ -224,7 +224,7 @@ You are given a project with a single Virtual Private Cloud (VPC) and a single s
 
 Reason: Subnets are global.
 
-
+----
 
 **Q55.(#GKE)**
 
@@ -239,7 +239,7 @@ Your projects incurred more costs than you expected last month. Your research re
 
 Reason: https://cloud.google.com/logging/docs/api/v2/resource-list. GKE Containers have more log than GKE Cluster Operations.
 
-
+----
 
 **Q56.(#AppEngine)**
 
@@ -254,7 +254,7 @@ You have a website hosted on App Engine standard environment. You want 1% of you
 
 Reason: Only one app engine can exist in one project. And in app engine we cannot create "new application", we have to create a new Project to do that, an app engine projet has 1 application (which can have multiple versions and services). Check this: https://cloud.google.com/appengine/docs/standard/python3/splitting-traffic#splitting_traffic_across_multiple_versions and this:https://cloud.google.com/appengine/docs/standard/python/splitting-traffic#gcloud。
 
-
+----
 
 **Q57.**
 
@@ -269,7 +269,7 @@ You have a web application deployed as a managed instance group. You have a new 
 
 Reason:  If you do not want any unavailable machines during an update, set the maxUnavailable value to 0 and the maxSurge value to greater than 0.With these settings, Compute Engine removes each old machine only after its replacement new machine is created and running. Ref: https://cloud.google.com/compute/docs/instance-groups/rolling-out-updates-to-managed-instance-groups and also here: https://cloud.google.com/compute/docs/instance-groups/rolling-out-updates-to-managed-instance-groups#max_unavailable.
 
-
+----
 
 **Q58.(#StorageSolution)**
 
@@ -284,7 +284,7 @@ You are building an application that stores relational data from users. Users ac
 
 Reason: For globalization and relational data...Cloud spanner is correct. Cloud SQL for small relational data, scaled manually Cloud Spanner for relational data, scaled automatically Cloud Firestore for app-based data(?) Cloud Datastore for non-relational data.
 
-
+----
 
 **Q59.(#Plan #Scenario)**
 
@@ -299,7 +299,7 @@ You are the organization and billing administrator for your company. The enginee
 
 Reason: The question says that the finance team should (ONLY) be able to link a project to a billing account, but not be able to make any other changes to projects. The purpose of the Billing Account User role is to link projects to billing accounts. Also, from its description: "This role has very restricted permissions, so you can grant it broadly, typically in combination with Project Creator. These two roles allow a user to create new projects linked to the billing account on which the role is granted." Reference: https://cloud.google.com/billing/docs/how-to/billing-access#overview-of-cloud-billing-roles-in-cloud-iam.
 
-
+----
 
 **Q60.(#GKE)**
 
@@ -314,7 +314,7 @@ You have an application running in Google Kubernetes Engine (GKE) with cluster a
 
 Reason: C is better solution, the solution A pass trafic trought public internet, also C by internal network and the "no overlap ips" in the statament suggest that.
 
-
+----
 
 **Q61.(#Plan)**
 
@@ -329,7 +329,7 @@ Your organization is a financial company that needs to store audit log files for
 
 Reason:  In the only talked about storing at cheap-cost, so coldline has low storage cost. See this: https://cloud.google.com/bigquery/docs/best-practices-storage
 
-
+----
 
 **Q62.(#Plan)**
 
@@ -344,7 +344,7 @@ You want to run a single caching HTTP reverse proxy on GCP for a latency-sensiti
 
 Reason:The key word is "for a latency-sensitive website." https://cloud.google.com/memorystore/docs/redis/redis-overview#what_its_good_for .Memorystore for Redis provides a fast, in-memory store for use cases that require fast, real-time processing of data. From simple caching use cases to real time analytics, Memorystore for Redis provides the performance you need. Caching: Cache is an integral part of modern application architectures. Memorystore for Redis provides low latency access and high throughput for heavily accessed data, compared to accessing the data from a disk based backend store. Session management, frequently accessed queries, scripts, and pages are common examples of caching.
 
-
+----
 
 **Q63.(#CloudStorage #Plan)**
 
@@ -359,7 +359,7 @@ You are hosting an application on bare-metal servers in your own data center. Th
 
 Reason:Ref: https://cloud.google.com/vpc/docs/configure-private-google-access-hybrid.
 
-
+----
 
 **Q64.(#CloudPub/Sub)**
 
@@ -374,7 +374,7 @@ You want to deploy an application on Cloud Run that processes messages from a Cl
 
 Reason: See this: https://cloud.google.com/run/docs/tutorials/pubsub.
 
-
+----
 
 **Q65.(#Deploy #CloudRun)**
 
@@ -389,7 +389,7 @@ You need to deploy an application, which is packaged in a container image, in a 
 
 Reason: Cloud Run is a fully managed compute platform that automatically scales your stateless containers. Cloud Run is serverless. Cloud Run abstracts away all infrastructure management. It automatically scales up and down from zero depending on traffic almost instantaneously. Cloud Run only charges you for the exact resources you use. Ref: https://cloud.google.com/run.
 
-
+----
 
 **Q66.(#Billing)**
 
@@ -406,7 +406,7 @@ Reason: https://cloud.google.com/billing/docs/concepts#relationships-between-res
 
 Please read the article how you can get invoice https://cloud.google.com/billing/docs/how-to/get-invoice If you export your data into your local BigQuery dataset it does not change anything! you only export logs! your old projects are still linked to the only billing account. And Google will create invoice based on their information. Google will NOT rely on the data that is stored in your local BigQuery table.
 
-
+----
 
 **Q67.(#Plan #CloudSpanner)**
 
@@ -422,7 +422,7 @@ You need a streamlined solution to grant the correct permissions to your support
 
 Reason: A is enough, B and C are incorrect since they allow users to read data. D is incorrect, it is not for monitoring.
 
-
+----
 
 **Q68.(#ComputeEngine #BigQuery)**
 
@@ -437,7 +437,7 @@ For analysis purposes, you need to send all the logs from all of your Compute En
 
 Reason: https://cloud.google.com/logging/docs/export/configure_export_v2
 
-
+----
 
 **Q69.(#DeployManager #GKE)**
 
@@ -453,7 +453,7 @@ DaemonSet in the kube-system namespace of the cluster. You want a solution that 
 
 Reason: Adding an API as a type provider This page describes how to add an API to Google Cloud Deployment Manager as a type provider. To learn more about types and type providers, read the Types overview documentation. A type provider exposes all of the resources of a third-party API to Deployment Manager as base types that you can use in your configurations. These types must be directly served by a RESTful API that supports Create, Read, Update, and Delete (CRUD). If you want to use an API that is not automatically provided by Google with Deployment Manager, you must add the API as a type provider. https://cloud.google.com/deployment-manager/docs/configuration/type-providers/creating-type-provider
 
-
+--------
 
 **Q70.(#ServiceAccount)**
 
@@ -470,7 +470,7 @@ Reason: 1st step...the key file is to be referenced in the env variable GOOGLE_A
 
 To use a service account outside of Google Cloud, such as on other platforms or on-premises, you must first establish the identity of the service account. Public/private key pairs provide a secure way of accomplishing this goal. https://cloud.google.com/iam/docs/creating-managing-service-account-keys.
 
-
+-----
 
 **Q71.(#GKE)**
 
@@ -486,7 +486,7 @@ Kubernetes Engine (GKE) cluster. You want to ensure that Kubernetes can download
 
 Reason: Container Registry uses Cloud Storage buckets as the underlying storage for container images. You control access to your images by granting appropriate Cloud Storage permissions to a user, group, service account, or other identity. If the service account needs to access Container Registry in another project, you must grant the required permissions in the project with Container Registry. Reference: https://cloud.google.com/container-registry/docs/access-control#permissions.
 
-
+-----
 
 **Q72.(#GKE)**
 
@@ -517,7 +517,7 @@ You want to find out why the pod is stuck in pending status. What should you do?
 
 Reason: https://kubernetes.io/docs/tasks/debug-application-cluster/debug-application/#debugging-pods.
 
-
+-----
 
 **Q73.(#ComputeEngine)**
 
@@ -532,7 +532,7 @@ You are setting up a Windows VM on Compute Engine and want to make sure you can 
 
 Reason: Windows Server instances use password authentication instead of SSH authentication. To prevent unauthorized access to new Windows instances, Compute Engine requires that you generate a new Windows password for that instance before you connect to it.  https://cloud.google.com/compute/docs/instances/windows/generating-credentials#gcloud. and this: https://cloud.google.com/compute/docs/instances/windows/creating-passwords-for-windows-instances.
 
-
+-----
 
 **Q74.(#ComputeEngine)**
 
