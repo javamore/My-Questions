@@ -57,7 +57,7 @@ What is the most likely cause?
 - C. The node pool is configured with a service account that does not have permission to pull the container image used by the pending Pod.
 - D. The pending Pod was originally scheduled on a node that has been preempted between the creation of the Deployment and your verification of the Podsג€™ status. It is currently being rescheduled on a new node.
 
-My choice is B.
+***My choice is B.***
 
 Reason: https://cloud.google.com/kubernetes-engine/docs/troubleshooting#node_allocatable.
 
@@ -276,9 +276,9 @@ You are building an archival solution for your data warehouse and have selected 
 - C. Regional Storage
 - D. Multi-Regional Storage
 
-***My choice is B***
+***My choice is A***
 
-Reason: coldline provides access once a year.
+Reason: coldline provides access once a QUARTER.
 
 -----
 
