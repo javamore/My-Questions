@@ -308,7 +308,7 @@ You received a JSON file that contained a private key of a Service Account in or
 - C. Place the private key file in the installation directory of the Cloud SDK and rename it to ג€credentials.jsonג€.
 - D. Place the private key file in your home directory and rename it to ג€GOOGLE_APPLICATION_CREDENTIALSג€.
 
-***My choice is B,***
+***My choice is B***
 
 Reason: See this: https://cloud.google.com/sdk/docs/authorizing#authorizing_with_a_service_account. 
 
@@ -410,7 +410,7 @@ You are creating an application that will run on Google Kubernetes Engine. You h
 - C. Download a MongoDB installation package, and run it on Compute Engine instances.
 - D. Download a MongoDB installation package, and run it on a Managed Instance Group.
 
-My choice is B.
+***My choice is B.***
 
 -----
 
