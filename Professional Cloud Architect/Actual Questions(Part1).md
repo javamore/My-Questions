@@ -1,4 +1,4 @@
-**Q1. **
+**Q1.**
 
 Your company has decided to make a major revision of their API in order to create better experiences for their developers. They need to keep the old version of the API available and deployable, while allowing new customers and testers to try out the new API. They want to keep the same SSL and DNS records in place to serve both APIs.
 What should they do?
@@ -30,7 +30,7 @@ Reason: B isn't correct because Cloud SQL does not scale to that volume. Cloud S
 
 -----
 
-**Q3. **
+**Q3.**
 
 The operations manager asks you for a list of recommended practices that she should consider when migrating a J2EE application to the cloud.
 Which three practices should you recommend? (Choose three.)
@@ -104,7 +104,7 @@ C) In software, a canary process is usually the first instance that receives liv
 
 ----
 
-**Q7. **
+**Q7.**
 
 To reduce costs, the Director of Engineering has required all developers to move their development infrastructure resources from on-premises virtual machines
 (VMs) to Google Cloud Platform. These resources go through multiple start/stop events during the day and require state to persist. You have been asked to design the process of running a development environment in Google Cloud while providing cost visibility to the finance department.
