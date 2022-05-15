@@ -121,7 +121,7 @@ Which two steps should you take? (Choose two.)
 
 Reason:  https://cloud.google.com/sdk/gcloud/reference/compute/instances/set-disk-auto-delete#--auto-delete ; https://cloud.google.com/billing/docs/how-to/export-data-bigquery
 
-
+----
 
 **Q8.**
 
@@ -142,19 +142,150 @@ Incorrect Answers:
 D: The Blobstore API allows your application to serve data objects, called blobs, that are much larger than the size allowed for objects in the Datastore service.
 Blobs are useful for serving large files, such as video or image files, and for allowing users to upload large data files.
 
+---
 
+**Q9.**
 
+You set up an autoscaling instance group to serve web traffic for an upcoming launch. After configuring the instance group as a backend service to an HTTP(S) load balancer, you notice that virtual machine (VM) instances are being terminated and re-launched every minute. The instances do not have a public IP address.
+You have verified the appropriate web response is coming from each instance using the curl command. You want to ensure the backend is configured correctly.
+What should you do?
 
+- A. Ensure that a firewall rules exists to allow source traffic on HTTP/HTTPS to reach the load balancer.
+- B. Assign a public IP to each instance and configure a firewall rule to allow the load balancer to reach the instance public IP.
+- C. Ensure that a firewall rule exists to allow load balancer health checks to reach the instances in the instance group.
+- D. Create a tag on each instance with the name of the load balancer. Configure a firewall rule with the name of the load balancer as the source and the instance tag as the destination.
 
+***My choice is C.***
 
+Reason: C would lead to VM on and off, others wouldn't.
 
+The best practice when configuration a health check is to check health and serve traffic on the same port. However, it is possible to perform health checks on one port, but serve traffic on another. If you do use two different ports, ensure that firewall rules and services running on instances are configured appropriately. If you run health checks and serve traffic on the same port, but decide to switch ports at some point, be sure to update both the backend service and the health check.
+Backend services that do not have a valid global forwarding rule referencing it will not be health checked and will have no health status.
+Reference:
+https://cloud.google.com/compute/docs/load-balancing/http/backend-service
 
+---
 
+**Q10.**
 
+You write a Python script to connect to Google BigQuery from a Google Compute Engine virtual machine. The script is printing errors that it cannot connect to
+BigQuery.
+What should you do to fix the script?
 
+- A. Install the latest BigQuery API client library for Python
+- B. Run your script on a new virtual machine with the BigQuery access scope enabled
+- C. Create a new service account with BigQuery access and execute your script with that user
+- D. Install the bq component for gcloud with the command gcloud components install bq.
 
+***My choice is C.***
 
+Reason: https://cloud.google.com/iam/docs/best-practices-for-securing-service-accounts#access-scopes
 
+-------
+
+**Q11.**
+
+Your customer is moving an existing corporate application to Google Cloud Platform from an on-premises data center. The business owners require minimal user disruption. There are strict security team requirements for storing passwords.
+What authentication strategy should they use?
+
+- A. Use G Suite Password Sync to replicate passwords into Google
+- B. Federate authentication via SAML 2.0 to the existing Identity Provider
+- C. Provision users in Google using the Google Cloud Directory Sync tool
+- D. Ask users to set their Google password to match their corporate password
+
+***My choice is C.***
+
+Reason: 
+
+"A" will syncronise passwords between on pre-mise and the GCP, this duplicates the existing strategy plus Google's "built-in" encryption of all the data. 
+
+"B" does not support the moving to GCP.
+
+"D" disrupts the users, so this is not correct.
+
+(https://cloud.google.com/solutions/migrating-consumer-accounts-to-cloud-identity-or-g-suite-best-practices-federation.
+
+----
+
+**Q12.**
+
+Your company has successfully migrated to the cloud and wants to analyze their data stream to optimize operations. They do not have any existing code for this analysis, so they are exploring all their options. These options include a mix of batch and stream processing, as they are running some hourly jobs and live- processing some data as it comes in.
+Which technology should they use for this?
+
+- A. Google Cloud Dataproc
+- B. Google Cloud Dataflow
+- C. Google Container Engine with Bigtable
+- D. Google Compute Engine with Google BigQuery
+
+***My choice is B.***
+
+Reason: Cloud Dataflow is a fully-managed service for transforming and enriching data in stream (real time) and batch (historical) modes with equal reliability and expressiveness -- no more complex workarounds or compromises needed.
+Reference: https://cloud.google.com/dataflow/.
+
+----
+
+**Q13.**
+
+Your customer is receiving reports that their recently updated Google App Engine application is taking approximately 30 seconds to load for some of their users.
+This behavior was not reported before the update.
+What strategy should you take?
+
+- A. Work with your ISP to diagnose the problem
+- B. Open a support ticket to ask for network capture and flow data to diagnose the problem, then roll back your application
+- C. Roll back to an earlier known good release initially, then use Stackdriver Trace and Logging to diagnose the problem in a development/test/staging environment
+- D. Roll back to an earlier known good release, then push the release again at a quieter period to investigate. Then use Stackdriver Trace and Logging to diagnose the problem
+
+***My choice is C.***
+
+Reason: 
+
+A - Not Correct as it was working before with same ISP. 
+
+B - New code update caused an issue- why to open support ticket. 
+
+C - I agree with C. 
+
+D - This requires downtime and live prod affected too.
+
+----
+
+**Q14.**
+
+A production database virtual machine on Google Compute Engine has an ext4-formatted persistent disk for data files. The database is about to run out of storage space.
+How can you remediate the problem with the least amount of downtime?
+
+- A. In the Cloud Platform Console, increase the size of the persistent disk and use the resize2fs command in Linux.
+- B. Shut down the virtual machine, use the Cloud Platform Console to increase the persistent disk size, then restart the virtual machine
+- C. In the Cloud Platform Console, increase the size of the persistent disk and verify the new space is ready to use with the fdisk command in Linux
+- D. In the Cloud Platform Console, create a new persistent disk attached to the virtual machine, format and mount it, and configure the database service to move the files to the new disk
+- E. In the Cloud Platform Console, create a snapshot of the persistent disk restore the snapshot to a new larger disk, unmount the old disk, mount the new disk and restart the database service
+
+***My choice is A.***
+
+Reason: with minimum downtime. 
+
+https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_partitions.
+
+----
+
+**Q15.**
+
+Your application needs to process credit card transactions. You want the smallest scope of Payment Card Industry (PCI) compliance without compromising the ability to analyze transactional data and trends relating to which payment methods are used.
+How should you design your architecture?
+
+- A. Create a tokenizer service and store only tokenized data
+- B. Create separate projects that only process credit card data
+- C. Create separate subnetworks and isolate the components that process credit card data
+- D. Streamline the audit discovery phase by labeling all of the virtual machines (VMs) that process PCI data
+- E. Enable Logging export to Google BigQuery and use ACLs and views to scope the data shared with the auditor
+
+***My choice is A.***
+
+Reason: see this : https://cloud.google.com/architecture/tokenizing-sensitive-cardholder-data-for-pci-dss.
+
+---
+
+**Q16.**
 
 
 
