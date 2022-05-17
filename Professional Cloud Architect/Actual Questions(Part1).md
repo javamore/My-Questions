@@ -287,7 +287,112 @@ Reason: see this : https://cloud.google.com/architecture/tokenizing-sensitive-ca
 
 **Q16.**
 
-888
+You have been asked to select the storage system for the click-data of your company's large portfolio of websites. This data is streamed in from a custom website analytics package at a typical rate of 6,000 clicks per minute. With bursts of up to 8,500 clicks per second. It must have been stored for future analysis by your data science and user experience teams.
+Which storage infrastructure should you choose?
+
+- A. Google Cloud SQL
+- B. Google Cloud Bigtable
+- C. Google Cloud Storage
+- D. Google Cloud Datastore
+
+***My choice is B.***
+
+Reason: steram -> BIgtable.
+
+-----
+
+**Q17.**
+
+You are creating a solution to remove backup files older than 90 days from your backup Cloud Storage bucket. You want to optimize ongoing Cloud Storage spend.
+What should you do?
+
+- A. Write a lifecycle management rule in XML and push it to the bucket with gsutil
+- B. Write a lifecycle management rule in JSON and push it to the bucket with gsutil
+- C. Schedule a cron script using gsutil ls ג€"lr gs://backups/** to find and remove items older than 90 days
+- D. Schedule a cron script using gsutil ls ג€"l gs://backups/** to find and remove items older than 90 days and schedule it with cron
+
+***My choice is B.***
+
+Reason: Policy = JSON format. No matter if its AWS or GCP.
+
+---
+
+**Q18.**
+
+Your company is forecasting a sharp increase in the number and size of Apache Spark and Hadoop jobs being run on your local datacenter. You want to utilize the cloud to help you scale this upcoming demand with the least amount of operations work and code change.
+Which product should you use?
+
+- A. Google Cloud Dataflow
+- B. Google Cloud Dataproc
+- C. Google Compute Engine
+- D. Google Kubernetes Engine
+
+***My choice is B.***
+
+Reason: Google Cloud Dataproc is a fast, easy-to-use, low-cost and fully managed service that lets you run the Apache Spark and Apache Hadoop ecosystem on Google
+Cloud Platform. Cloud Dataproc provisions big or small clusters rapidly, supports many popular job types, and is integrated with other Google Cloud Platform services, such as Google Cloud Storage and Stackdriver Logging, thus helping you reduce TCO.
+Reference:
+https://cloud.google.com/dataproc/docs/resources/faq.
+
+----
+
+**Q19.**
+
+The database administration team has asked you to help them improve the performance of their new database server running on Google Compute Engine. The database is for importing and normalizing their performance statistics and is built with MySQL running on Debian Linux. They have an n1-standard-8 virtual machine with 80 GB of SSD persistent disk.
+What should they change to get better performance from this system?
+
+- A. Increase the virtual machine's memory to 64 GB
+- B. Create a new virtual machine running PostgreSQL
+- C. Dynamically resize the SSD persistent disk to 500 GB
+- D. Migrate their performance metrics warehouse to BigQuery
+- E. Modify all of their batch jobs to use bulk inserts into the database
+
+***My choice is C.***
+
+Reason: persistent disk performance is based on the total persistent disk capacity attached to an instance and the number of vCPUs that the instance has. Incrementing the persistent disk capacity will increment its throughput and IOPS, which in turn improve the performance of MySQL.
+
+----
+
+**Q20.**
+
+You want to optimize the performance of an accurate, real-time, weather-charting application. The data comes from 50,000 sensors sending 10 readings a second, in the format of a timestamp and sensor reading.
+Where should you store the data?
+
+- A. Google BigQuery
+- B. Google Cloud SQL
+- C. Google Cloud Bigtable
+- D. Google Cloud Storage
+
+***My choice is C.***
+
+Reason: Google Cloud Bigtable is a scalable, fully-managed NoSQL wide-column database that is suitable for both real-time access and analytics workloads. 
+
+Good for:
+✑ Low-latency read/write access
+✑ High-throughput analytics
+✑ Native time series support
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

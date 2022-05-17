@@ -73,3 +73,9 @@ ACE课程
 **12/23 update:**
 
 已通过考试.
+
+---
+
+**05/09/2022:**
+
+Start to practice questions of Professional Cloud Architect(PCA) exam.
