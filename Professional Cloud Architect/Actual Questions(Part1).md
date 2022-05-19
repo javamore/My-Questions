@@ -374,29 +374,103 @@ Good for:
 
 ---
 
+**Q21.**
 
+Your company's user-feedback portal comprises a standard LAMP stack replicated across two zones. It is deployed in the us-central1 region and uses autoscaled managed instance groups on all layers, except the database. Currently, only a small group of select customers have access to the portal. The portal meets a
+99,99% availability SLA under these conditions. However next quarter, your company will be making the portal available to all users, including unauthenticated users. You need to develop a resiliency testing strategy to ensure the system maintains the SLA once they introduce additional user load.
+What should you do?
 
+- A. Capture existing users input, and replay captured user load until autoscale is triggered on all layers. At the same time, terminate all resources in one of the zones
+- B. Create synthetic random user input, replay synthetic load until autoscale logic is triggered on at least one layer, and introduce ג€chaosג€ to the system by terminating random resources on both zones
+- C. Expose the new system to a larger group of users, and increase group size each day until autoscale logic is triggered on all layers. At the same time, terminate random resources on both zones
+- D. Capture existing users input, and replay captured user load until resource utilization crosses 80%. Also, derive estimated number of users based on existing user's usage of the app, and deploy enough resources to handle 200% of expected load
 
+***My choice is B.***
 
+Reason: see this: https://cloud.google.com/architecture/scalable-and-resilient-apps#test_your_resilience.
 
+----
 
+**Q22.**
 
+One of the developers on your team deployed their application in Google Container Engine with the Dockerfile below. They report that their application deployments are taking too long.
 
+From Ubuntu:16.04
 
+COPY ./src
 
+RUN apt-get update && apt-get install -y python python-pip
 
+RUN pip install -r requirements.txt
 
+You want to optimize this Dockerfile for faster deployment times without adversely affecting the app's functionality.
+Which two actions should you take? (Choose two.)
 
+- A. Remove Python after running pip
+- B. Remove dependencies from requirements.txt
+- C. Use a slimmed-down base image like Alpine Linux
+- D. Use larger machine types for your Google Container Engine node pools
+- E. Copy the source after he package dependencies (Python and pip) are installed
 
+***My choice is C, E.***
 
+Reason:  The speed of deployment can be changed by limiting the size of the uploaded app, limiting the complexity of the build necessary in the Dockerfile, if present, and by ensuring a fast and reliable internet connection.
+Note: Alpine Linux is built around musl libc and busybox. This makes it smaller and more resource efficient than traditional GNU/Linux distributions. A container requires no more than 8 MB and a minimal installation to disk requires around 130 MB of storage. Not only do you get a fully-fledged Linux environment but a large selection of packages from the repository.
+Reference:
+https://groups.google.com/forum/#!topic/google-appengine/hZMEkmmObDU https://www.alpinelinux.org/about/.
 
+---
 
+**Q23.**
 
+Your solution is producing performance bugs in production that you did not see in staging and test environments. You want to adjust your test and deployment procedures to avoid this problem in the future.
+What should you do?
 
+- A. Deploy fewer changes to production
+- B. Deploy smaller changes to production
+- C. Increase the load on your test and staging environments
+- D. Deploy changes to a small subset of users before rolling out to production
 
+***My choice is C.***
 
+Reason: it is the only one talking about doing changes in the test environment.
 
+----
 
+**Q24.**
+
+A small number of API requests to your microservices-based application take a very long time. You know that each request to the API can traverse many services.
+You want to know which service takes the longest in those cases.
+What should you do?
+
+- A. Set timeouts on your application so that you can fail requests faster
+- B. Send custom metrics for each of your requests to Stackdriver Monitoring
+- C. Use Stackdriver Monitoring to look for insights that show when your API latencies are high
+- D. Instrument your application with Stackdriver Trace in order to break down the request latencies at each microservice
+
+***My choice is D.***
+
+Reason: Stackdriver Trace is what we need to understand the latency of our app. So D is the correct.
+
+---
+
+**Q25.**
+
+During a high traffic portion of the day, one of your relational databases crashes, but the replica is never promoted to a master. You want to avoid this in the future.
+What should you do?
+
+- A. Use a different database
+- B. Choose larger instances for your database
+- C. Create snapshots of your database more regularly
+- D. Implement routinely scheduled failovers of your databases
+
+***My choice is B.***
+
+Reason: The problem is stated that DB crashes because it receives too much traffic. The question is how to AVOID the crashes, not to solve them . The avoid mechanism is to scale UP the DB so it won't crash anymore.
+
+---
+
+**Q26.**
 
 
 
