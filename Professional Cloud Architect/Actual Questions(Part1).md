@@ -472,6 +472,191 @@ Reason: The problem is stated that DB crashes because it receives too much traff
 
 **Q26.**
 
+Your organization requires that metrics from all applications be retained for 5 years for future analysis in possible legal proceedings.
+Which approach should you use?
+
+- A. Grant the security team access to the logs in each Project
+- B. Configure Stackdriver Monitoring for all Projects, and export to BigQuery
+- C. Configure Stackdriver Monitoring for all Projects with the default retention policies
+- D. Configure Stackdriver Monitoring for all Projects, and export to Google Cloud Storage
+
+***My choice is D.***
+
+Reason: D is correct and best practice for long term log storage.
+
+---
+
+**Q27.**
+
+Your company has decided to build a backup replica of their on-premises user authentication PostgreSQL database on Google Cloud Platform. The database is 4
+TB, and large updates are frequent. Replication requires private address space communication.
+Which networking approach should you use?
+
+- A. Google Cloud Dedicated Interconnect
+- B. Google Cloud VPN connected to the data center network
+- C. A NAT and TLS translation gateway installed on-premises
+- D. A Google Compute Engine instance with a VPN server installed connected to the data center network
+
+***My choice is A.***
+
+Reason: A, direct connect is private. VPN not enough for 4 TB with huge frequent changes.
+
+----
+
+**Q28.**
+
+Auditors visit your teams every 12 months and ask to review all the Google Cloud Identity and Access Management (Cloud IAM) policy changes in the previous 12 months. You want to streamline and expedite the analysis and audit process.
+What should you do?
+
+- A. Create custom Google Stackdriver alerts and send them to the auditor
+- B. Enable Logging export to Google BigQuery and use ACLs and views to scope the data shared with the auditor
+- C. Use cloud functions to transfer log entries to Google Cloud SQL and use ACLs and views to limit an auditor's view
+- D. Enable Google Cloud Storage (GCS) log export to audit logs into a GCS bucket and delegate access to the bucket
+
+***My choice is B.***
+
+Reason: https://cloud.google.com/iam/docs/roles-audit-logging#scenario_external_auditors。
+
+-----
+
+**Q29.**
+
+You are designing a large distributed application with 30 microservices. Each of your distributed microservices needs to connect to a database back-end. You want to store the credentials securely.
+Where should you store the credentials?
+
+- A. In the source code
+- B. In an environment variable
+- C. In a secret management system
+- D. In a config file that has restricted access through ACLs
+
+***My choice is C.***
+
+Reason: https://cloud.google.com/kms/docs/secret-management.
+
+---
+
+**Q30.**
+
+A lead engineer wrote a custom tool that deploys virtual machines in the legacy data center. He wants to migrate the custom tool to the new cloud environment.
+You want to advocate for the adoption of Google Cloud Deployment Manager.
+What are two business risks of migrating to Cloud Deployment Manager? **(Choose two.)**
+
+- A. Cloud Deployment Manager uses Python
+- B. Cloud Deployment Manager APIs could be deprecated in the future
+- C. Cloud Deployment Manager is unfamiliar to the company's engineers
+- D. Cloud Deployment Manager requires a Google APIs service account to run
+- E. Cloud Deployment Manager can be used to permanently delete cloud resources
+- F. Cloud Deployment Manager only supports automation of Google Cloud resources
+
+***My choice is C, F.***
+
+Reason:**A**. Nothing to see;  **B**. Any functionality of any tool can be deprecated (Terraform, Chef ...) ;**C**. It's true ; **D**. Any tool needs some kind of credential to run **E**. Any tool or script have the same problem **F**. It's true.
+
+---
+
+**Q31.**
+
+A development manager is building a new application. He asks you to review his requirements and identify what cloud technologies he can use to meet them. The application must:
+
+\1. Be based on open-source technology for cloud portability
+\2. Dynamically scale compute capacity based on demand
+\3. Support continuous software delivery
+\4. Run multiple segregated copies of the same application stack
+\5. Deploy application bundles using dynamic templates
+\6. Route network traffic to specific services based on URL
+Which combination of technologies will meet all of his requirements?
+
+- A. Google Kubernetes Engine, Jenkins, and Helm
+- B. Google Kubernetes Engine and Cloud Load Balancing
+- C. Google Kubernetes Engine and Cloud Deployment Manager
+- D. Google Kubernetes Engine, Jenkins, and Cloud Load Balancing
+
+***My choice is A .***
+
+Reason: helm is needed for "Deploy application bundles using dynamic templates" Load Balancing should be part of GKE Already. see this:https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer. 
+
+---
+
+**Q32.**
+
+You have created several pre-emptible Linux virtual machine instances using Google Compute Engine. You want to properly shut down your application before the virtual machines are preempted.
+What should you do?
+
+- A. Create a shutdown script named k99.shutdown in the /etc/rc.6.d/ directory
+- B. Create a shutdown script registered as a xinetd service in Linux and configure a Stackdriver endpoint check to call the service
+- C. Create a shutdown script and use it as the value for a new metadata entry with the key shutdown-script in the Cloud Platform Console when you create the new virtual machine instance
+- D. Create a shutdown script, registered as a xinetd service in Linux, and use the gcloud compute instances add-metadata command to specify the service URL as the value for a new metadata entry with the key shutdown-script-url
+
+***My choice is C .***
+
+Reason: A startup script, or a shutdown script, is specified through the metadata server, using startup script metadata keys.
+Reference:https://cloud.google.com/compute/docs/startupscript.
+
+----
+
+**Q33.**
+
+Your organization has a 3-tier web application deployed in the same network on Google Cloud Platform. Each tier (web, API, and database) scales independently of the others. Network traffic should flow through the web to the API tier and then on to the database tier. Traffic should not flow between the web and the database tier.
+How should you configure the network?
+
+- A. Add each tier to a different subnetwork
+- B. Set up software based firewalls on individual VMs
+- C. Add tags to each tier and set up routes to allow the desired traffic flow
+- D. Add tags to each tier and set up firewall rules to allow the desired traffic flow
+
+***My choice is D .***
+
+Reason: Google Cloud Platform(GCP) enforces firewall rules through rules and tags. GCP rules and tags can be defined once and used across all regions. 
+
+refer to target filtering. https://cloud.google.com/solutions/best-practices-vpc-design
+
+----
+
+**Q34.**
+
+Your development team has installed a new Linux kernel module on the batch servers in Google Compute Engine (GCE) virtual machines (VMs) to speed up the nightly batch process. Two days after the installation, 50% of the batch servers failed the nightly batch run. You want to collect details on the failure to pass back to the development team.
+Which three actions should you take? **(Choose three.)**
+
+- A. Use Stackdriver Logging to search for the module log entries
+- B. Read the debug GCE Activity log using the API or Cloud Console
+- C. Use gcloud or Cloud Console to connect to the serial console and observe the logs
+- D. Identify whether a live migration event of the failed server occurred, using in the activity log
+- E. Adjust the Google Stackdriver timeline to match the failure time, and observe the batch server metrics
+- F. Export a debug VM into an image, and run the image on a local server where kernel log messages will be displayed on the native screen
+
+***My choice is A,C,E .***
+
+Reason: **A.** Use Stackdriver Logging to search for the module log entries = Check logs **C.** Use gcloud or Cloud Console to connect to the serial console and observe the logs = Check grub messages, remember new kernel module was installed. **E.** Adjust the Google Stackdriver timeline to match the failure time, and observe the batch server metrics = Zoom into the time window when problem happened.
+
+----
+
+**Q35.**
+
+Your company wants to try out the cloud with low risk. They want to archive approximately 100 TB of their log data to the cloud and test the analytics features available to them there, while also retaining that data as a long-term disaster recovery backup.
+Which two steps should you take? **(Choose two.)**
+
+- A. Load logs into Google BigQuery
+- B. Load logs into Google Cloud SQL
+- C. Import logs into Google Stackdriver
+- D. Insert logs into Google Cloud Bigtable
+- E. Upload log files into Google Cloud Storage
+
+***My choice is A,E .***
+
+Reason: **A** is correct because BigQuery is the fully managed cloud data warehouse for analytics and supports the analytics requirement. **E** is correct because Cloud Storage provides the Coldline storage class to support long-term storage with infrequent access, which would support the long-term disaster recovery backup.
+
+-----
+
+**Q36.**
+
+aaaaa
+
+
+
+
+
+
+
 
 
 
