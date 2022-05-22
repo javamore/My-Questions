@@ -645,11 +645,169 @@ Which two steps should you take? **(Choose two.)**
 
 Reason: **A** is correct because BigQuery is the fully managed cloud data warehouse for analytics and supports the analytics requirement. **E** is correct because Cloud Storage provides the Coldline storage class to support long-term storage with infrequent access, which would support the long-term disaster recovery backup.
 
------
+--------
 
 **Q36.**
 
-aaaaa
+You created a pipeline that can deploy your source code changes to your infrastructure in instance groups for self-healing. One of the changes negatively affects your key performance indicator. You are not sure how to fix it, and investigation could take up to a week. What should you do?
+
+A. Log in to a server, and iterate on the fox locally
+B. Revert the source code change, and rerun the deployment pipeline
+C. Log into the servers with the bad code change, and swap in the previous code
+D. Change the instance group template to the previous one, and delete all instances
+
+***My choice is D .***
+
+Reason: MIG templates support versioning, they were created to solve this exact problem. You simply select the previous template version, set that as the new deployment, and it will roll back the KPI depriving deployment and roll out the previous working deployment.
+
+----
+
+**Q37.**
+
+Your organization wants to control IAM policies for different departments independently, but centrally.
+Which approach should you take?
+
+- A. Multiple Organizations with multiple Folders
+- B. Multiple Organizations, one for each department
+- C. A single Organization with Folders for each department
+- D. A single Organization with multiple projects, each with a central owner
+
+***My choice is C .***
+
+Reason: https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations
+
+---
+
+**Q38.**
+
+You deploy your custom Java application to Google App Engine. It fails to deploy and gives you the following stack trace. What should you do?
+
+see pic-q38.jpg
+
+- A. Upload missing JAR files and redeploy your application.
+- B. Digitally sign all of your JAR files and redeploy your application
+- C. Recompile the CLoakedServlet class using and MD5 hash instead of SHA1
+
+***My choice is B .***
+
+Reason: it is a security issue and neither A or C is trying to fix the problem.
+
+-----
+
+**Q39.**
+
+You are designing a mobile chat application. You want to ensure people cannot spoof chat messages, by providing a message were sent by a specific user. What should you do?
+
+- A. Tag messages client side with the originating user identifier and the destination user.
+- B. Encrypt the message client side using block-based encryption with a shared key.
+- C. Use public key infrastructure (PKI) to encrypt the message client side using the originating user's private key.
+- D. Use a trusted certificate authority to enable SSL connectivity between the client application and the server.
+
+***My choice is C .***
+
+Reason: **C** is correct because PKI requires that both the server and the client have signed certificates, validating both the client and the server. **D** is not correct because SSL only requires the server to have a signed certificate and does not require validating the client.
+
+----
+
+**Q40.**
+
+As part of implementing their disaster recovery plan, your company is trying to replicate their production MySQL database from their private data center to their GCP project using a Google Cloud VPN connection. They are experiencing latency issues and a small amount of packet loss that is disrupting the replication.
+What should they do?
+
+- A. Configure their replication to use UDP.
+- B. Configure a Google Cloud Dedicated Interconnect.
+- C. Restore their database daily using Google Cloud SQL.
+- D. Add additional VPN connections and load balance them.
+- E. Send the replicated transaction to Google Cloud Pub/Sub.
+
+***My choice is B .***
+
+Reason: Interconnect is more reliable. 
+
+-----
+
+**Q41.**
+
+Your customer support tool logs all email and chat conversations to Cloud Bigtable for retention and analysis. What is the recommended approach for sanitizing this data of personally identifiable information or payment card information before initial storage?
+
+- A. Hash all data using SHA256
+- B. Encrypt all data using elliptic curve cryptography
+- C. De-identify the data with the Cloud Data Loss Prevention API
+- D. Use regular expressions to find and redact phone numbers, email addresses, and credit card numbers
+
+***My choice is C .***
+
+Reason: Reference: https://cloud.google.com/solutions/pci-dss-compliance-in-gcp#using_data_loss_prevention_api_to_sanitize_data, and this:  https://cloud.google.com/dlp.
+
+-----
+
+**Q42.**
+
+You are using Cloud Shell and need to install a custom utility for use in a few weeks. Where can you store the file so it is in the default execution path and persists across sessions?
+
+- A. ~/bin
+- B. Cloud Storage
+- C. /google/scripts
+- D. /usr/local/bin
+
+***My choice is A .***
+
+Reason:  Cloud Shell provisions 5 GB of persistent disk storage mounted as your $HOME directory on the Cloud Shell instance. All files you store in your home directory, including scripts and user configuration files like .bashrc and .vimrc, persist between sessions.
+
+---
+
+**Q43.**
+
+You want to create a private connection between your instances on Compute Engine and your on-premises data center. You require a connection of at least 20 Gbps. You want to follow Google-recommended practices. How should you set up the connection?
+
+- A. Create a VPC and connect it to your on-premises data center using Dedicated Interconnect.
+- B. Create a VPC and connect it to your on-premises data center using a single Cloud VPN.
+- C. Create a Cloud Content Delivery Network (Cloud CDN) and connect it to your on-premises data center using Dedicated Interconnect.
+- D. Create a Cloud Content Delivery Network (Cloud CDN) and connect it to your on-premises datacenter using a single Cloud VPN.
+
+***My choice is A .***
+
+Reason:  Cloud VPN supports up to **3 Gbps** where as Interconnect can support up to **100 Gbps**.
+
+https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview#network-bandwidth.
+
+---
+
+**Q44.**
+
+You are analyzing and defining business processes to support your startup's trial usage of GCP, and you don't yet know what consumer demand for your product will be. Your manager requires you to minimize GCP service costs and adhere to Google best practices. What should you do?
+
+- A. Utilize free tier and sustained use discounts. Provision a staff position for service cost management.
+- B. Utilize free tier and sustained use discounts. Provide training to the team about service cost management.
+- C. Utilize free tier and committed use discounts. Provision a staff position for service cost management.
+- D. Utilize free tier and committed use discounts. Provide training to the team about service cost management.
+
+***My choice is B .***
+
+Reason: see this:  https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations#billing_and_management. 
+
+----
+
+**Q45.**
+
+You are building a continuous deployment pipeline for a project stored in a Git source repository and want to ensure that code changes can be verified before deploying to production. What should you do?
+
+- A. Use Spinnaker to deploy builds to production using the red/black deployment strategy so that changes can easily be rolled back.
+- B. Use Spinnaker to deploy builds to production and run tests on production deployments.
+- C. Use Jenkins to build the staging branches and the master branch. Build and deploy changes to production for 10% of users before doing a complete rollout.
+- D. Use Jenkins to monitor tags in the repository. Deploy staging tags to a staging environment for testing. After testing, tag the repository for production and deploy that to the production environment.
+
+***My choice is D .***
+
+Reason: before deploying to production, better have test.
+
+----
+
+
+
+
+
+
 
 
 
