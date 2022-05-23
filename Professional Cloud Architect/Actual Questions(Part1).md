@@ -803,6 +803,142 @@ Reason: before deploying to production, better have test.
 
 ----
 
+**Q46.**
+
+You have an outage in your Compute Engine managed instance group: all instances keep restarting after 5 seconds. You have a health check configured, but autoscaling is disabled. Your colleague, who is a Linux expert, offered to look into the issue. You need to make sure that he can access the VMs. What should you do?
+
+- A. Grant your colleague the IAM role of project Viewer
+- B. Perform a rolling restart on the instance group
+- C. Disable the health check for the instance group. Add his SSH key to the project-wide SSH Keys
+- D. Disable autoscaling for the instance group. Add his SSH key to the project-wide SSH Keys
+
+***My choice is C .***
+
+Reason: keep restarting after 5 seconds because Health Check is enabled. Give IAM permission is not helpful for this problem.  
+
+----
+
+**Q47.**
+
+Your company is migrating its on-premises data center into the cloud. As part of the migration, you want to integrate Google Kubernetes Engine (GKE) for workload orchestration. Parts of your architecture must also be PCI DSS-compliant. Which of the following is most accurate?
+
+- A. App Engine is the only compute platform on GCP that is certified for PCI DSS hosting.
+- B. GKE cannot be used under PCI DSS because it is considered shared hosting.
+- C. GKE and GCP provide the tools you need to build a PCI DSS-compliant environment.
+- D. All Google Cloud services are usable because Google Cloud Platform is certified PCI-compliant.
+
+***My choice is C .***
+
+Reason: https://cloud.google.com/security/compliance/pci-dss.
+
+-----
+
+**Q48.**
+
+Your company has multiple on-premises systems that serve as sources for reporting. The data has not been maintained well and has become degraded over time.
+You want to use Google-recommended practices to detect anomalies in your company data. What should you do?
+
+- A. Upload your files into Cloud Storage. Use Cloud Datalab to explore and clean your data.
+- B. Upload your files into Cloud Storage. Use Cloud Dataprep to explore and clean your data.
+- C. Connect Cloud Datalab to your on-premises systems. Use Cloud Datalab to explore and clean your data.
+- D. Connect Cloud Dataprep to your on-premises systems. Use Cloud Dataprep to explore and clean your data.
+
+***My choice is B .***
+
+Reason: Input sources for GCP Dataprep are 1) Local computer 2) Cloud storage 3) BigQuery. see this: https://cloud.google.com/dataprep. 
+
+----
+
+**Q49.**
+
+Google Cloud Platform resources are managed hierarchically using organization, folders, and projects. When Cloud Identity and Access Management (IAM) policies exist at these different levels, what is the effective policy at a particular node of the hierarchy?
+
+- A. The effective policy is determined only by the policy set at the node
+- B. The effective policy is the policy set at the node and restricted by the policies of its ancestors
+- C. The effective policy is the union of the policy set at the node and policies inherited from its ancestors
+- D. The effective policy is the intersection of the policy set at the node and policies inherited from its ancestors
+
+***My choice is C .***
+
+Reason: https://cloud.google.com/iam/docs/resource-hierarchy-access-control. and see this:
+
+https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy.
+
+----
+
+**Q50.**
+
+You are migrating your on-premises solution to Google Cloud in several phases. You will use Cloud VPN to maintain a connection between your on-premises systems and Google Cloud until the migration is completed. You want to make sure all your on-premise systems remain reachable during this period. How should you organize your networking in Google Cloud?
+
+- A. Use the same IP range on Google Cloud as you use on-premises
+- B. Use the same IP range on Google Cloud as you use on-premises for your primary IP range and use a secondary range that does not overlap with the range you use on-premises
+- C. Use an IP range on Google Cloud that does not overlap with the range you use on-premises
+- D. Use an IP range on Google Cloud that does not overlap with the range you use on-premises for your primary IP range and use a secondary range with the same IP range as you use on-premises
+
+***My choice is C .***
+
+Reason: https://cloud.google.com/vpc/docs/using-vpc "Primary and secondary ranges can't conflict with on-premises IP ranges if you have connected your VPC network to another network with Cloud VPN, Dedicated Interconnect, or Partner Interconnect."
+
+------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
