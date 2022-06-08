@@ -892,15 +892,9 @@ You have found an error in your App Engine application caused by missing Cloud D
 
 ***My choice is A .***
 
-<<<<<<< HEAD
 Reason: https://cloud.google.com/appengine/docs/standard/python/config/indexconfig#updating_indexes.
 
 ----
-=======
-Reason:   the command is actually gcloud datastore indexes create, and see this please: https://cloud.google.com/appengine/docs/standard/python/datastore/indexes.
-
----
->>>>>>> 90b28ed5917c59b8fbf6b2608273dbe1df48cb55
 
 **Q52.**
 
@@ -913,11 +907,7 @@ You have an application that will run on Compute Engine. You need to design an a
 
 ***My choice is C .***
 
-<<<<<<< HEAD
 Reason:  Groups are better for management that non-groups so A and B are eliminated. Keeping the the instances in the same project will help maintain consistency.
-=======
-Reason: Keeping the the instances in the same project will help maintain consistency, so C is better than D.
->>>>>>> 90b28ed5917c59b8fbf6b2608273dbe1df48cb55
 
 ---
 
@@ -932,15 +922,9 @@ You are deploying an application on App Engine that needs to integrate with an o
 
 ***My choice is D .***
 
-<<<<<<< HEAD
 Reason: https://cloud.google.com/appengine/docs/the-appengine-environments. and app engine standard cant connect to on-prem DB.
 
 ----
-=======
-Reason: app engine standard cant connect to on-prem db. https://cloud.google.com/appengine/docs/the-appengine-environments.
-
----
->>>>>>> 90b28ed5917c59b8fbf6b2608273dbe1df48cb55
 
 **Q54.**
 
@@ -953,15 +937,9 @@ You are working in a highly secured environment where public Internet access fro
 
 ***My choice is A .***
 
-<<<<<<< HEAD
 Reason:  Google Cloud Storage + Private Google Access. see this: https://cloud.google.com/vpc/docs/configure-private-services-access .
 
 ---
-=======
-Reason: https://cloud.google.com/vpc/docs/configure-private-services-access Note: Even though the IP addresses for Google APIs and services are public, the traffic path from instances that are using Private Google Access to the Google APIs remains within Google's network.
-
------
->>>>>>> 90b28ed5917c59b8fbf6b2608273dbe1df48cb55
 
 **Q55.**
 
@@ -973,48 +951,26 @@ Your company is moving 75 TB of data into Google Cloud. You want to use Cloud St
 - D. Install gsutil on each server containing data. Use streaming transfers to upload the data into Cloud Storage.
 
 ***My choice is A .***
-<<<<<<< HEAD
 
 Reason:   https://cloud.google.com/transfer-appliance/docs/4.0/overview#suitability. and see this:https://cloud.google.com/blog/ja/topics/developers-practitioners/how-transfer-your-data-google-cloud.
 
 -----
-=======
->>>>>>> 90b28ed5917c59b8fbf6b2608273dbe1df48cb55
 
-Reason: "The gsutil tool is the standard tool for small- to medium-sized transfers (less than a few TB)" https://cloud.google.com/solutions/migration-to-google-cloud-transferring-your-large-datasets#transfer-options. So we can remove C&D.  and then see this:https://cloud.google.com/transfer-appliance/docs/4.0/overview#suitability.
 
----
 
-**Q56.**
 
-You have an application deployed on Google Kubernetes Engine using a Deployment named echo-deployment. The deployment is exposed using a Service called echo-service. You need to perform an update to the application with minimal downtime to the application. What should you do?
 
-- A. Use kubectl set image deployment/echo-deployment <new-image>
-- B. Use the rolling update functionality of the Instance Group behind the Kubernetes cluster
-- C. Update the deployment yaml file with the new container image. Use kubectl delete deployment/echo-deployment and kubectl create ג€"f <yaml-file>
-- D. Update the service yaml file which the new container image. Use kubectl delete service/echo-service and kubectl create ג€"f <yaml-file>
 
-***My choice is A .***
 
-Reason: check the k8s cheat-sheet: - kubectl set image deployment/frontend www=image:v2 # Rolling update "www" containers of "frontend" deployment, updating the image.
 
----
 
-**Q57.**
 
-Your company is using BigQuery as its enterprise data warehouse. Data is distributed over several Google Cloud projects. All queries on BigQuery need to be billed on a single project. You want to make sure that no query costs are incurred on the projects that contain the data. Users should be able to query the datasets, but not edit them.
-How should you configure users' access roles?
 
-- A. Add all users to a group. Grant the group the role of BigQuery user on the billing project and BigQuery dataViewer on the projects that contain the data.
-- B. Add all users to a group. Grant the group the roles of BigQuery dataViewer on the billing project and BigQuery user on the projects that contain the data.
-- C. Add all users to a group. Grant the group the roles of BigQuery jobUser on the billing project and BigQuery dataViewer on the projects that contain the data.
-- D. Add all users to a group. Grant the group the roles of BigQuery dataViewer on the billing project and BigQuery jobUser on the projects that contain the data.
 
-***My choice is C .***
 
-Reason:  **A** is wrong because bq User Permission will allow you to edit the dataset, which is something that we don't want in this scenario. **B and D** is wrong because "You want to make sure that no query costs are incurred on the projects that contain the data" so you don't want users to fire quires on the Project that contains the dataset , hence the "dataViewer" permission. see this:https://cloud.google.com/bigquery/docs/access-control.
 
----
+
+
 
 
 
