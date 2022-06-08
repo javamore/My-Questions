@@ -881,80 +881,33 @@ Reason: https://cloud.google.com/vpc/docs/using-vpc "Primary and secondary range
 
 ------
 
-**Q51.**
 
-You have found an error in your App Engine application caused by missing Cloud Datastore indexes. You have created a YAML file with the required indexes and want to deploy these new indexes to Cloud Datastore. What should you do?
 
-- A. Point gcloud datastore create-indexes to your configuration file
-- B. Upload the configuration file to App Engine's default Cloud Storage bucket, and have App Engine detect the new indexes
-- C. In the GCP Console, use Datastore Admin to delete the current indexes and upload the new configuration file
-- D. Create an HTTP request to the built-in python module to send the index configuration file to your application
 
-***My choice is A .***
 
-Reason: https://cloud.google.com/appengine/docs/standard/python/config/indexconfig#updating_indexes.
 
-----
 
-**Q52.**
 
-You have an application that will run on Compute Engine. You need to design an architecture that takes into account a disaster recovery plan that requires your application to fail over to another region in case of a regional outage. What should you do?
 
-- A. Deploy the application on two Compute Engine instances in the same project but in a different region. Use the first instance to serve traffic, and use the HTTP load balancing service to fail over to the standby instance in case of a disaster.
-- B. Deploy the application on a Compute Engine instance. Use the instance to serve traffic, and use the HTTP load balancing service to fail over to an instance on your premises in case of a disaster.
-- C. Deploy the application on two Compute Engine instance groups, each in the same project but in a different region. Use the first instance group to serve traffic, and use the HTTP load balancing service to fail over to the standby instance group in case of a disaster.
-- D. Deploy the application on two Compute Engine instance groups, each in a separate project and a different region. Use the first instance group to serve traffic, and use the HTTP load balancing service to fail over to the standby instance group in case of a disaster.
 
-***My choice is C .***
 
-Reason:  Groups are better for management that non-groups so A and B are eliminated. Keeping the the instances in the same project will help maintain consistency.
 
----
 
-**Q53.**
 
-You are deploying an application on App Engine that needs to integrate with an on-premises database. For security purposes, your on-premises database must not be accessible through the public internet. What should you do?
 
-- A. Deploy your application on App Engine standard environment and use App Engine firewall rules to limit access to the open on-premises database.
-- B. Deploy your application on App Engine standard environment and use Cloud VPN to limit access to the on-premises database.
-- C. Deploy your application on App Engine flexible environment and use App Engine firewall rules to limit access to the on-premises database.
-- D. Deploy your application on App Engine flexible environment and use Cloud VPN to limit access to the on-premises database.
 
-***My choice is D .***
 
-Reason: https://cloud.google.com/appengine/docs/the-appengine-environments. and app engine standard cant connect to on-prem DB.
 
-----
 
-**Q54.**
 
-You are working in a highly secured environment where public Internet access from the Compute Engine VMs is not allowed. You do not yet have a VPN connection to access an on-premises file server. You need to install specific software on a Compute Engine instance. How should you install the software?
 
-- A. Upload the required installation files to Cloud Storage. Configure the VM on a subnet with a Private Google Access subnet. Assign only an internal IP address to the VM. Download the installation files to the VM using gsutil.
-- B. Upload the required installation files to Cloud Storage and use firewall rules to block all traffic except the IP address range for Cloud Storage. Download the files to the VM using gsutil.
-- C. Upload the required installation files to Cloud Source Repositories. Configure the VM on a subnet with a Private Google Access subnet. Assign only an internal IP address to the VM. Download the installation files to the VM using gcloud.
-- D. Upload the required installation files to Cloud Source Repositories and use firewall rules to block all traffic except the IP address range for Cloud Source Repositories. Download the files to the VM using gsutil.
 
-***My choice is A .***
 
-Reason:  Google Cloud Storage + Private Google Access. see this: https://cloud.google.com/vpc/docs/configure-private-services-access .
 
----
 
-**Q55.**
 
-Your company is moving 75 TB of data into Google Cloud. You want to use Cloud Storage and follow Google-recommended practices. What should you do?
 
-- A. Move your data onto a Transfer Appliance. Use a Transfer Appliance Rehydrator to decrypt the data into Cloud Storage.
-- B. Move your data onto a Transfer Appliance. Use Cloud Dataprep to decrypt the data into Cloud Storage.
-- C. Install gsutil on each server that contains data. Use resumable transfers to upload the data into Cloud Storage.
-- D. Install gsutil on each server containing data. Use streaming transfers to upload the data into Cloud Storage.
 
-***My choice is A .***
-
-Reason:   https://cloud.google.com/transfer-appliance/docs/4.0/overview#suitability. and see this:https://cloud.google.com/blog/ja/topics/developers-practitioners/how-transfer-your-data-google-cloud.
-
------
 
 
 
