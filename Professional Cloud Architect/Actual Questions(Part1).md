@@ -1,4 +1,4 @@
-**Q1.**
+### **Q1.**
 
 Your company has decided to make a major revision of their API in order to create better experiences for their developers. They need to keep the old version of the API available and deployable, while allowing new customers and testers to try out the new API. They want to keep the same SSL and DNS records in place to serve both APIs.
 What should they do?
@@ -14,7 +14,7 @@ Reason: HTTP(S) load balancer can direct traffic reaching a single IP to differe
 
 ------
 
-**Q2.**
+### **Q2.**
 
 Your company plans to migrate a multi-petabyte data set to the cloud. The data set must be available 24hrs a day. Your business analysts have experience only with using a SQL interface.
 How should you store the data to optimize it for ease of analysis?
@@ -30,7 +30,7 @@ Reason: B isn't correct because Cloud SQL does not scale to that volume. Cloud S
 
 -----
 
-**Q3.**
+### **Q3.**
 
 The operations manager asks you for a list of recommended practices that she should consider when migrating a J2EE application to the cloud.
 Which three practices should you recommend? (Choose three.)
@@ -48,7 +48,7 @@ Reason: https://cloud.google.com/appengine/docs/standard/java/tools/uploadingana
 
 -----
 
-**Q4.**
+### **Q4.**
 
 A news feed web service has the following code running on Google App Engine. During peak load, users report that they can see news articles they already viewed.
 What is the most likely cause of this problem?
@@ -66,7 +66,7 @@ Reason:  There is nothing related to datastore here for answer B.
 
 -----
 
-**Q5.**
+### **Q5.**
 
 An application development team believes their current logging tool will not meet their needs for their new cloud-based product. They want a better tool to capture errors and help them analyze their historical log data. You want to help them find a solution that meets their needs.
 What should you do?
@@ -82,7 +82,7 @@ Reason:  It is not clearly mentioned if the cloud based solution is Google Cloud
 
 -----
 
-**Q6.**
+### **Q6.**
 
 You need to reduce the number of unplanned rollbacks of erroneous production deployments in your company's web hosting platform. Improvement to the QA/
 Test processes accomplished an 80% reduction.
@@ -104,7 +104,7 @@ C) In software, a canary process is usually the first instance that receives liv
 
 ----
 
-**Q7.**
+### **Q7.**
 
 To reduce costs, the Director of Engineering has required all developers to move their development infrastructure resources from on-premises virtual machines
 (VMs) to Google Cloud Platform. These resources go through multiple start/stop events during the day and require state to persist. You have been asked to design the process of running a development environment in Google Cloud while providing cost visibility to the finance department.
@@ -123,7 +123,7 @@ Reason:  https://cloud.google.com/sdk/gcloud/reference/compute/instances/set-dis
 
 ----
 
-**Q8.**
+### **Q8.**
 
 Your company wants to track whether someone is present in a meeting room reserved for a scheduled meeting. There are 1000 meeting rooms across 5 offices on 3 continents. Each room is equipped with a motion sensor that reports its status every second. The data from the motion detector includes only a sensor ID and several different discrete items of information. Analysts will use this data, together with information about account owners and office locations.
 Which database type should you use?
@@ -144,7 +144,7 @@ Blobs are useful for serving large files, such as video or image files, and for 
 
 ---
 
-**Q9.**
+### **Q9.**
 
 You set up an autoscaling instance group to serve web traffic for an upcoming launch. After configuring the instance group as a backend service to an HTTP(S) load balancer, you notice that virtual machine (VM) instances are being terminated and re-launched every minute. The instances do not have a public IP address.
 You have verified the appropriate web response is coming from each instance using the curl command. You want to ensure the backend is configured correctly.
@@ -166,7 +166,7 @@ https://cloud.google.com/compute/docs/load-balancing/http/backend-service
 
 ---
 
-**Q10.**
+### **Q10.**
 
 You write a Python script to connect to Google BigQuery from a Google Compute Engine virtual machine. The script is printing errors that it cannot connect to
 BigQuery.
@@ -183,7 +183,7 @@ Reason: https://cloud.google.com/iam/docs/best-practices-for-securing-service-ac
 
 -------
 
-**Q11.**
+### **Q11.**
 
 Your customer is moving an existing corporate application to Google Cloud Platform from an on-premises data center. The business owners require minimal user disruption. There are strict security team requirements for storing passwords.
 What authentication strategy should they use?
@@ -207,7 +207,7 @@ Reason:
 
 ----
 
-**Q12.**
+### **Q12.**
 
 Your company has successfully migrated to the cloud and wants to analyze their data stream to optimize operations. They do not have any existing code for this analysis, so they are exploring all their options. These options include a mix of batch and stream processing, as they are running some hourly jobs and live- processing some data as it comes in.
 Which technology should they use for this?
