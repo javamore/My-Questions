@@ -833,7 +833,7 @@ Reason: https://cloud.google.com/security/compliance/pci-dss.
 
 -----
 
-**Q48.**
+### **Q48.**
 
 Your company has multiple on-premises systems that serve as sources for reporting. The data has not been maintained well and has become degraded over time.
 You want to use Google-recommended practices to detect anomalies in your company data. What should you do?
@@ -849,7 +849,7 @@ Reason: Input sources for GCP Dataprep are 1) Local computer 2) Cloud storage 3)
 
 ----
 
-**Q49.**
+### **Q49.**
 
 Google Cloud Platform resources are managed hierarchically using organization, folders, and projects. When Cloud Identity and Access Management (IAM) policies exist at these different levels, what is the effective policy at a particular node of the hierarchy?
 
@@ -866,7 +866,7 @@ https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy
 
 ----
 
-**Q50.**
+### **Q50.**
 
 You are migrating your on-premises solution to Google Cloud in several phases. You will use Cloud VPN to maintain a connection between your on-premises systems and Google Cloud until the migration is completed. You want to make sure all your on-premise systems remain reachable during this period. How should you organize your networking in Google Cloud?
 
@@ -881,7 +881,7 @@ Reason: https://cloud.google.com/vpc/docs/using-vpc "Primary and secondary range
 
 ------
 
-**Q51.**
+### **Q51.**
 
 You have found an error in your App Engine application caused by missing Cloud Datastore indexes. You have created a YAML file with the required indexes and want to deploy these new indexes to Cloud Datastore. What should you do?
 
@@ -896,7 +896,7 @@ Reason:   the command is actually gcloud datastore indexes create, and see this 
 
 ---
 
-**Q52.**
+### **Q52.**
 
 You have an application that will run on Compute Engine. You need to design an architecture that takes into account a disaster recovery plan that requires your application to fail over to another region in case of a regional outage. What should you do?
 
@@ -911,7 +911,7 @@ Reason: Keeping the the instances in the same project will help maintain consist
 
 ---
 
-**Q53.**
+### **Q53.**
 
 You are deploying an application on App Engine that needs to integrate with an on-premises database. For security purposes, your on-premises database must not be accessible through the public internet. What should you do?
 
@@ -926,7 +926,7 @@ Reason: app engine standard cant connect to on-prem db. https://cloud.google.com
 
 ---
 
-**Q54.**
+### **Q54.**
 
 You are working in a highly secured environment where public Internet access from the Compute Engine VMs is not allowed. You do not yet have a VPN connection to access an on-premises file server. You need to install specific software on a Compute Engine instance. How should you install the software?
 
@@ -941,7 +941,7 @@ Reason: https://cloud.google.com/vpc/docs/configure-private-services-access Note
 
 -----
 
-**Q55.**
+### **Q55.**
 
 Your company is moving 75 TB of data into Google Cloud. You want to use Cloud Storage and follow Google-recommended practices. What should you do?
 
@@ -956,7 +956,7 @@ Reason: "The gsutil tool is the standard tool for small- to medium-sized transfe
 
 ---
 
-**Q56.**
+### **Q56.**
 
 You have an application deployed on Google Kubernetes Engine using a Deployment named echo-deployment. The deployment is exposed using a Service called echo-service. You need to perform an update to the application with minimal downtime to the application. What should you do?
 
@@ -971,7 +971,7 @@ Reason: check the k8s cheat-sheet: - kubectl set image deployment/frontend www=i
 
 ---
 
-**Q57.**
+### **Q57.**
 
 Your company is using BigQuery as its enterprise data warehouse. Data is distributed over several Google Cloud projects. All queries on BigQuery need to be billed on a single project. You want to make sure that no query costs are incurred on the projects that contain the data. Users should be able to query the datasets, but not edit them.
 How should you configure users' access roles?
@@ -987,25 +987,51 @@ Reason:  **A** is wrong because bq User Permission will allow you to edit the da
 
 ---
 
-Q11111
+### **Q58.**
 
+You have developed an application using Cloud ML Engine that recognizes famous paintings from uploaded images. You want to test the application and allow specific people to upload images for the next 24 hours. Not all users have a Google Account. How should you have users upload images?
 
+- A. Have users upload the images to Cloud Storage. Protect the bucket with a password that expires after 24 hours.
+- B. Have users upload the images to Cloud Storage using a signed URL that expires after 24 hours.
+- C. Create an App Engine web application where users can upload images. Configure App Engine to disable the application after 24 hours. Authenticate users via Cloud Identity.
+- D. Create an App Engine web application where users can upload images for the next 24 hours. Authenticate users via Cloud Identity.
 
+***My choice is B .***
 
+Reason:  "When should you use a signed URL? In some scenarios, you might not want to require your users to have a Google account in order to access Cloud Storage" "Signed URLs contain authentication information in their query string, allowing users without credentials to perform specific actions on a resource". see this:  https://cloud.google.com/storage/docs/access-control/signed-urls.
 
+----
 
+### **Q59.**
 
+Your web application must comply with the requirements of the European Union's General Data Protection Regulation (GDPR). You are responsible for the technical architecture of your web application. What should you do?
 
+- A. Ensure that your web application only uses native features and services of Google Cloud Platform, because Google already has various certifications and provides ג€pass-onג€ compliance when you use native features.
+- B. Enable the relevant GDPR compliance setting within the GCPConsole for each of the services in use within your application.
+- C. Ensure that Cloud Security Scanner is part of your test planning strategy in order to pick up any compliance gaps.
+- D. Define a design for the security of data in your web application that meets GDPR requirements.
 
+***My choice is D .***
 
+Reason:   The GDPR lays out specific requirements for businesses and organizations who are established in Europe or who serve users in Europe.  see this: https://cloud.google.com/security/gdpr.
 
+-----
 
+### **Q60.**
 
+You need to set up Microsoft SQL Server on GCP. Management requires that there's no downtime in case of a data center outage in any of the zones within a
+GCP region. What should you do?
 
+- A. Configure a Cloud SQL instance with high availability enabled.
+- B. Configure a Cloud Spanner instance with a regional instance configuration.
+- C. Set up SQL Server on Compute Engine, using Always On Availability Groups using Windows Failover Clustering. Place nodes in different subnets.
+- D. Set up SQL Server Always On Availability Groups using Windows Failover Clustering. Place nodes in different zones.
 
+***My choice is A .***
 
+Reason: Cloud SQL supports SQL Server and selecting high availability provides automatic failover within a region.
 
-
+----
 
 
 
