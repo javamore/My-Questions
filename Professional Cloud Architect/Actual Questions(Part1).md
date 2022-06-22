@@ -1033,6 +1033,109 @@ Reason: Cloud SQL supports SQL Server and selecting high availability provides a
 
 ----
 
+### **Q61.**
+
+The development team has provided you with a Kubernetes Deployment file. You have no infrastructure yet and need to deploy the application. What should you do?
+
+- A. Use gcloud to create a Kubernetes cluster. Use Deployment Manager to create the deployment.
+- B. Use gcloud to create a Kubernetes cluster. Use kubectl to create the deployment.
+- C. Use kubectl to create a Kubernetes cluster. Use Deployment Manager to create the deployment.
+- D. Use kubectl to create a Kubernetes cluster. Use kubectl to create the deployment.
+
+***My choice is B .***
+
+Reason: gcloud for creating cluster and then,  kubectl for creating deployment.
+
+------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
