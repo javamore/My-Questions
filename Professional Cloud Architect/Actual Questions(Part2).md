@@ -189,11 +189,173 @@ You have deployed an application to Google Kubernetes Engine (GKE), and are usin
 - C. In the GCP Console, navigate to Stackdriver Logging. Consult logs for (GKE) and Cloud SQL.
 - D. In the GCP Console, navigate to Cloud SQL. Restore the latest backup. Use kubectl to restart all pods.
 
+***My choice is C.***
 
+Reason: post mortem always includes log analysis.
 
+----
 
+### **Q76.**
 
+Your company pushes batches of sensitive transaction data from its application server VMs to Cloud Pub/Sub for processing and storage. What is the Google- recommended way for your application to authenticate to the required Google Cloud services?
 
+- A. Ensure that VM service accounts are granted the appropriate Cloud Pub/Sub IAM roles.
+- B. Ensure that VM service accounts do not have access to Cloud Pub/Sub, and use VM access scopes to grant the appropriate Cloud Pub/Sub IAM roles.
+- C. Generate an OAuth2 access token for accessing Cloud Pub/Sub, encrypt it, and store it in Cloud Storage for access from each VM.
+- D. Create a gateway to Cloud Pub/Sub using a Cloud Function, and grant the Cloud Function service account the appropriate Cloud Pub/Sub IAM roles.
+
+***My choice is A.***
+
+Reason: (https://cloud.google.com/pubsub/docs/authentication#service-accounts).
+
+----
+
+### **Q77.**
+
+You want to establish a Compute Engine application in a single VPC across two regions. The application must communicate over VPN to an on-premises network.
+How should you deploy the VPN?
+
+- A. Use VPC Network Peering between the VPC and the on-premises network.
+- B. Expose the VPC to the on-premises network using IAM and VPC Sharing.
+- C. Create a global Cloud VPN Gateway with VPN tunnels from each region to the on-premises peer gateway.
+- D. Deploy Cloud VPN Gateway in each region. Ensure that each region has at least one VPN tunnel to the on-premises peer gateway.
+
+***My choice is D.***
+
+Reason:(https://cloud.google.com/vpn/docs/how-to/creating-static-vpns).
+
+----
+
+### **Q78.**
+
+Your applications will be writing their logs to BigQuery for analysis. Each application should have its own table. Any logs older than 45 days should be removed.
+You want to optimize storage and follow Google-recommended practices. What should you do?
+
+- A. Configure the expiration time for your tables at 45 days
+- B. Make the tables time-partitioned, and configure the partition expiration at 45 days
+- C. Rely on BigQuery's default behavior to prune application logs older than 45 days
+- D. Create a script that uses the BigQuery command line tool (bq) to remove records older than 45 days
+
+***My choice is B.***
+
+Reason: (https://cloud.google.com/bigquery/docs/creating-partitioned-tables#sql).
+
+CREATE TABLE mydataset.newtable (transaction_id INT64, transaction_date DATE) PARTITION BY transaction_date OPTIONS( partition_expiration_days=3, require_partition_filter=true )
+
+----
+
+### **Q79.**
+
+You want your Google Kubernetes Engine cluster to automatically add or remove nodes based on CPU load.
+What should you do?
+
+- A. Configure a HorizontalPodAutoscaler with a target CPU usage. Enable the Cluster Autoscaler from the GCP Console.
+- B. Configure a HorizontalPodAutoscaler with a target CPU usage. Enable autoscaling on the managed instance group for the cluster using the gcloud command.
+- C. Create a deployment and set the maxUnavailable and maxSurge properties. Enable the Cluster Autoscaler using the gcloud command.
+- D. Create a deployment and set the maxUnavailable and maxSurge properties. Enable autoscaling on the cluster managed instance group from the GCP Console.
+
+***My choice is A.***
+
+Reason: Horizontal Pod Autoscaler changes the deployment's or replicaset's number of replicas based on the current CPU load. If the load increases, HPA will create new replicas, for which there may or may not be enough space in the cluster. If there are not enough resources, CA will try to bring up some nodes, so that the HPA-created pods have a place to run. If the load decreases, HPA will stop some of the replicas. As a result, some nodes may become underutilized or completely empty, and then CA will terminate such unneeded nodes.
+
+----
+
+### **Q80.**
+
+You need to develop procedures to verify resilience of disaster recovery for remote recovery using GCP. Your production environment is hosted on-premises. You need to establish a secure, redundant connection between your on-premises network and the GCP network.
+What should you do?
+
+- A. Verify that Dedicated Interconnect can replicate files to GCP. Verify that direct peering can establish a secure connection between your networks if Dedicated Interconnect fails.
+- B. Verify that Dedicated Interconnect can replicate files to GCP. Verify that Cloud VPN can establish a secure connection between your networks if Dedicated Interconnect fails.
+- C. Verify that the Transfer Appliance can replicate files to GCP. Verify that direct peering can establish a secure connection between your networks if the Transfer Appliance fails.
+- D. Verify that the Transfer Appliance can replicate files to GCP. Verify that Cloud VPN can establish a secure connection between your networks if the Transfer Appliance fails.
+
+***My choice is B.***
+
+Reason: Transfer appliance is a physical appliance for transferring huge bulk of data. does not fit into disaster recovery testing.
+
+----
+
+### **Q81.**
+
+Your company operates nationally and plans to use GCP for multiple batch workloads, including some that are not time-critical. You also need to use GCP services that are HIPAA-certified and manage service costs.
+How should you design to meet Google best practices?
+
+- A. Provision preemptible VMs to reduce cost. Discontinue use of all GCP services and APIs that are not HIPAA-compliant.
+- B. Provision preemptible VMs to reduce cost. Disable and then discontinue use of all GCP services and APIs that are not HIPAA-compliant.
+- C. Provision standard VMs in the same region to reduce cost. Discontinue use of all GCP services and APIs that are not HIPAA-compliant.
+- D. Provision standard VMs to the same region to reduce cost. Disable and then discontinue use of all GCP services and APIs that are not HIPAA-compliant.
+
+***My choice is B.***
+
+Reason: ( https://cloud.google.com/security/compliance/hipaa#unique_features ) .
+
+---
+
+### **Q82.**
+
+Your customer wants to do resilience testing of their authentication layer. This consists of a regional managed instance group serving a public REST API that reads from and writes to a Cloud SQL instance.
+What should you do?
+
+- A. Engage with a security company to run web scrapers that look your for users' authentication data om malicious websites and notify you if any is found.
+- B. Deploy intrusion detection software to your virtual machines to detect and log unauthorized access.
+- C. Schedule a disaster simulation exercise during which you can shut off all VMs in a zone to see how your application behaves.
+- D. Configure a read replica for your Cloud SQL instance in a different zone than the master, and then manually trigger a failover while monitoring KPIs for our REST API.
+
+***My choice is C.***
+
+Reason: (As per google documentation(https://cloud.google.com/solutions/scalable-and-resilient-apps) answer is C.)
+
+----
+
+### **Q83.**
+
+Your BigQuery project has several users. For audit purposes, you need to see how many queries each user ran in the last month. What should you do?
+
+- A. Connect Google Data Studio to BigQuery. Create a dimension for the users and a metric for the amount of queries per user.
+- B. In the BigQuery interface, execute a query on the JOBS table to get the required information.
+- C. Use 'bq show' to list all jobs. Per job, use 'bq ls' to list job information and get the required information.
+- D. Use Cloud Audit Logging to view Cloud Audit Logs, and create a filter on the query operation to get the required information.
+
+***My choice is D.***
+
+Reason: (https://cloud.google.com/bigquery/docs/reference/auditlogs#example_query_cost_breakdown_by_identity). Activity log is automatically logged.
+
+----
+
+### **Q84.**
+
+You want to automate the creation of a managed instance group. The VMs have many OS package dependencies. You want to minimize the startup time for new
+VMs in the instance group.
+What should you do?
+
+A. Use Terraform to create the managed instance group and a startup script to install the OS package dependencies.
+B. Create a custom VM image with all OS package dependencies. Use Deployment Manager to create the managed instance group with the VM image.
+C. Use Puppet to create the managed instance group and install the OS package dependencies.
+D. Use Deployment Manager to create the managed instance group and Ansible to install the OS package dependencies.
+
+***My choice is B.***
+
+Reason: Image has all the packages, so minimal start up time.
+
+----
+
+### **Q85.**
+
+Your company captures all web traffic data in Google Analytics 360 and stores it in BigQuery. Each country has its own dataset. Each dataset has multiple tables.
+You want analysts from each country to be able to see and query only the data for their respective countries.
+How should you configure the access rights?
+
+- A. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery jobUser. Share the appropriate dataset with view access with each respective analyst country-group.
+- B. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery jobUser. Share the appropriate tables with view access with each respective analyst country-group.
+- C. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery dataViewer. Share the appropriate dataset with view access with each respective analyst country- group.
+- D. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery dataViewer. Share the appropriate table with view access with each respective analyst country-group.
+
+***My choice is A.***
+
+Reason: in C, dataviewer are not able to execute jobs.
+
+----
 
 
 
