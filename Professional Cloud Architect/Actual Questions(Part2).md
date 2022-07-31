@@ -357,7 +357,83 @@ Reason: in C, dataviewer are not able to execute jobs.
 
 ----
 
+### **Q86.**
 
+You have been engaged by your client to lead the migration of their application infrastructure to GCP. One of their current problems is that the on-premises high performance SAN is requiring frequent and expensive upgrades to keep up with the variety of workloads that are identified as follows: 20 TB of log archives retained for legal reasons; 500 GB of VM boot/data volumes and templates; 500 GB of image thumbnails; 200 GB of customer session state data that allows customers to restart sessions even if off-line for several days.
+Which of the following best reflects your recommendations for a cost-effective storage allocation?
+
+- A. Local SSD for customer session state data. Lifecycle-managed Cloud Storage for log archives, thumbnails, and VM boot/data volumes.
+- B. Memcache backed by Cloud Datastore for the customer session state data. Lifecycle-managed Cloud Storage for log archives, thumbnails, and VM boot/data volumes.
+- C. Memcache backed by Cloud SQL for customer session state data. Assorted local SSD-backed instances for VM boot/data volumes. Cloud Storage for log archives and thumbnails.
+- D. Memcache backed by Persistent Disk SSD storage for customer session state data. Assorted local SSD-backed instances for VM boot/data volumes. Cloud Storage for log archives and thumbnails.
+
+***My choice is B.***
+
+Reason: Memcache backed by Cloud Datastore https://cloud.google.com/appengine/docs/standard/python/memcache.
+
+---
+
+### **Q87.**
+
+Your web application uses Google Kubernetes Engine to manage several workloads. One workload requires a consistent set of hostnames even after pod scaling and relaunches.
+Which feature of Kubernetes should you use to accomplish this?
+
+- A. StatefulSets
+- B. Role-based access control
+- C. Container environment variables
+- D. Persistent Volumes
+
+***My choice is A.***
+
+Reason: (https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/)
+
+-----
+
+### **Q88.**
+
+You are using Cloud CDN to deliver static HTTP(S) website content hosted on a Compute Engine instance group. You want to improve the cache hit ratio.
+What should you do?
+
+- A. Customize the cache keys to omit the protocol from the key.
+- B. Shorten the expiration time of the cached objects.
+- C. Make sure the HTTP(S) header ג€Cache-Regionג€ points to the closest region of your users.
+- D. Replicate the static content in a Cloud Storage bucket. Point CloudCDN toward a load balancer on that bucket.
+
+***My choice is A.***
+
+Reason:(https://cloud.google.com/cdn/docs/caching#cache-keys) and (https://cloud.google.com/cdn/docs/best-practices#using_custom_cache_keys_to_improve_cache_hit_ratio).
+
+----
+
+### **Q89.**
+
+Your architecture calls for the centralized collection of all admin activity and VM system logs within your project.
+How should you collect these logs from both VMs and services?
+
+- A. All admin and VM system logs are automatically collected by Stackdriver.
+- B. Stackdriver automatically collects admin activity logs for most services. The Stackdriver Logging agent must be installed on each instance to collect system logs.
+- C. Launch a custom syslogd compute instance and configure your GCP project and VMs to forward all logs to it.
+- D. Install the Stackdriver Logging agent on a single compute instance and let it collect all audit and access logs for your environment.
+
+**My choice is B.**
+
+Reason: Admin and event logs are configured by default. VM System logs require a logging agent to be configured. 
+
+----
+
+### **Q90.**
+
+You have an App Engine application that needs to be updated. You want to test the update with production traffic before replacing the current application version.
+What should you do?
+
+- A. Deploy the update using the Instance Group Updater to create a partial rollout, which allows for canary testing.
+- B. Deploy the update as a new version in the App Engine application, and split traffic between the new and current versions.
+- C. Deploy the update in a new VPC, and use Google's global HTTP load balancing to split traffic between the update and current applications.
+- D. Deploy the update as a new App Engine application, and use Google's global HTTP load balancing to split traffic between the new and current applications.
+
+**My choice is B.**
+
+Reason: Versioning is supported in App Engine.
 
 
 
