@@ -480,9 +480,223 @@ B. Use the Horizontal Pod Autoscaler and enable cluster autoscaling on the Kuber
 C. Enable autoscaling on the Compute Engine instance group. Use an Ingress resource to load-balance the HTTPS traffic.
 D. Enable autoscaling on the Compute Engine instance group. Use a Service resource of type LoadBalancer to load-balance the HTTPS traffic.
 
-**My choice is D.**
+**My choice is A.**
 
-Reason: 
+Reason: Ingress is a Kubernetes resource that encapsulates a collection of rules and configurations for routing external HTTP(S) traffic to internal services. On GKE, Ingress is implemented using Cloud Load Balancing. When you create an Ingress in your cluster, GKE creates an HTTP(S) load balancer and configures it to route traffic to your application."
+
+---
+
+### **Q94.**
+
+You need to design a solution for global load balancing based on the URL path being requested. You need to ensure operations reliability and end-to-end in- transit encryption based on Google best practices.
+What should you do?
+
+- A. Create a cross-region load balancer with URL Maps.
+- B. Create an HTTPS load balancer with URL Maps.
+- C. Create appropriate instance groups and instances. Configure SSL proxy load balancing.
+- D. Create a global forwarding rule. Configure SSL proxy load balancing.
+
+**My choice is B .**
+
+Reason: UrlMaps are used to route requests to a backend service based on rules that you define for the host and path of an incoming URL and see this:https://cloud.google.com/load-balancing/docs/https/url-map.
+
+---
+
+### **Q95.**
+
+You have an application that makes HTTP requests to Cloud Storage. Occasionally the requests fail with HTTP status codes of 5xx and 429.
+
+How should you handle these types of errors?
+
+- A. Use gRPC instead of HTTP for better performance.
+- B. Implement retry logic using a truncated exponential backoff strategy.
+- C. Make sure the Cloud Storage bucket is multi-regional for geo-redundancy.
+- D. Monitor https://status.cloud.google.com/feed.atom and only make requests if Cloud Storage is not reporting an incident.
+
+**My choice is B.**
+
+Reason: You should use exponential backoff to retry your requests when receiving errors with 5xx or 429(too many requests) response codes from Cloud Storage. 
+
+Exponential backoff algorithm 
+
+For requests that meet both the response and idempotency criteria, you should generally use truncated exponential backoff. 
+
+Truncated exponential backoff is a standard error handling strategy for network applications in which a client periodically retries a failed request with increasing delays between requests. 
+
+An exponential backoff algorithm retries requests exponentially, increasing the waiting time between retries up to a maximum backoff time. See the following workflow example to learn how exponential backoff works: 
+
+You make a request to Cloud Storage. 
+
+If the request fails, wait 1 + random_number_milliseconds seconds and retry the request. 
+
+If the request fails, wait 2 + random_number_milliseconds seconds and retry the request. 
+
+If the request fails, wait 4 + random_number_milliseconds seconds and retry the request. 
+
+And so on, up to a maximum_backoff time. Continue waiting and retrying up to a maximum amount of time (deadline), but do not increase the maximum_backoff wait period between retries. https://cloud.google.com/storage/docs/request-rate
+
+----
+
+### **Q96.**
+
+You need to develop procedures to test a disaster plan for a mission-critical application. You want to use Google-recommended practices and native capabilities within GCP.
+What should you do?
+
+- A. Use Deployment Manager to automate service provisioning. Use Activity Logs to monitor and debug your tests.
+- B. Use Deployment Manager to automate service provisioning. Use Stackdriver to monitor and debug your tests.
+- C. Use gcloud scripts to automate service provisioning. Use Activity Logs to monitor and debug your tests.
+- D. Use gcloud scripts to automate service provisioning. Use Stackdriver to monitor and debug your tests.
+
+**My choice is B**
+
+Reason: no reason.
+
+----
+
+### **Q97.**
+
+Your company creates rendering software which users can download from the company website. Your company has customers all over the world. You want to minimize latency for all your customers. You want to follow Google-recommended practices.
+How should you store the files?
+
+- A. Save the files in a Multi-Regional Cloud Storage bucket.
+- B. Save the files in a Regional Cloud Storage bucket, one bucket per zone of the region.
+- C. Save the files in multiple Regional Cloud Storage buckets, one bucket per zone per region.
+- D. Save the files in multiple Multi-Regional Cloud Storage buckets, one bucket per multi-region.
+
+**My choice is D**
+
+Reason: If your company has customers all over the world you will need your rendering software to be located in all multi-region designations. There are three multi-regions: Asia, EU and US. 
+
+----
+
+### **Q98.**
+
+Your company acquired a healthcare startup and must retain its customers' medical information for up to 4 more years, depending on when it was created. Your corporate policy is to securely retain this data, and then delete it as soon as regulations allow.
+Which approach should you take?
+
+- A. Store the data in Google Drive and manually delete records as they expire.
+- B. Anonymize the data using the Cloud Data Loss Prevention API and store it indefinitely.
+- C. Store the data in Cloud Storage and use lifecycle management to delete files when they expire.
+- D. Store the data in Cloud Storage and run a nightly batch script that deletes all expired data.
+
+**My choice is C.**
+
+Reason: none
+
+----
+
+### Q99.
+
+You are deploying a PHP App Engine Standard service with Cloud SQL as the backend. You want to minimize the number of queries to the database.
+What should you do?
+
+- A. Set the memcache service level to dedicated. Create a key from the hash of the query, and return database values from memcache before issuing a query to Cloud SQL.
+- B. Set the memcache service level to dedicated. Create a cron task that runs every minute to populate the cache with keys containing query results.
+- C. Set the memcache service level to shared. Create a cron task that runs every minute to save all expected queries to a key called ג€cached_queriesג€.
+- D. Set the memcache service level to shared. Create a key called ג€cached_queriesג€, and return database values from the key before using a query to Cloud SQL.
+
+**My choice is A .**
+
+reason: https://cloud.google.com/appengine/docs/standard/php/memcache/using**.** 
+
+----
+
+### **Q100.**
+
+You need to ensure reliability for your application and operations by supporting reliable task scheduling for compute on GCP. Leveraging Google best practices, what should you do?
+
+- A. Using the Cron service provided by App Engine, publish messages directly to a message-processing utility service running on Compute Engine instances.
+- B. Using the Cron service provided by App Engine, publish messages to a Cloud Pub/Sub topic. Subscribe to that topic using a message-processing utility service running on Compute Engine instances.
+- C. Using the Cron service provided by Google Kubernetes Engine (GKE), publish messages directly to a message-processing utility service running on Compute Engine instances.
+- D. Using the Cron service provided by GKE, publish messages to a Cloud Pub/Sub topic. Subscribe to that topic using a message-processing utility service running on Compute Engine instances.
+
+**My choice is B .**
+
+reason: https://cloud.google.com/solutions/reliable-task-scheduling-compute-engine.
+
+---
+
+### **Q101.**
+
+
+
+
+
+### Q98.
+
+### Q98.
+
+### Q98.
+
+### Q98.
+
+
+
+### 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
