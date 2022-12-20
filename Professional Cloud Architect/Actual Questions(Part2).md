@@ -618,6 +618,50 @@ reason: https://cloud.google.com/solutions/reliable-task-scheduling-compute-engi
 
 ### **Q101.**
 
+Your company is building a new architecture to support its data-centric business focus. You are responsible for setting up the network. Your company's mobile and web-facing applications will be deployed on-premises, and all data analysis will be conducted in GCP. The plan is to process and load 7 years of archived .csv files totaling 900 TB of data and then continue loading 10 TB of data daily. You currently have an existing 100-MB internet connection.
+What actions will meet your company's needs?
+
+- A. Compress and upload both archived files and files uploaded daily using the gsutil ג€"m option.
+- B. Lease a Transfer Appliance, upload archived files to it, and send it to Google to transfer archived data to Cloud Storage. Establish a connection with Google using a Dedicated Interconnect or Direct Peering connection and use it to upload files daily.
+- C. Lease a Transfer Appliance, upload archived files to it, and send it to Google to transfer archived data to Cloud Storage. Establish one Cloud VPN Tunnel to VPC networks over the public internet, and compress and upload files daily using the gsutil ג€"m option.
+- D. Lease a Transfer Appliance, upload archived files to it, and send it to Google to transfer archived data to Cloud Storage. Establish a Cloud VPN Tunnel to VPC networks over the public internet, and compress and upload files daily.
+
+**My choice is B .**
+
+reason: B is fast and suitable.
+
+---
+
+### Q102.
+
+You are developing a globally scaled frontend for a legacy streaming backend data API. This API expects events in strict chronological order with no repeat data for proper processing.
+Which products should you deploy to ensure guaranteed-once FIFO (first-in, first-out) delivery of data?
+
+- A. Cloud Pub/Sub alone
+- B. Cloud Pub/Sub to Cloud Dataflow
+- C. Cloud Pub/Sub to Stackdriver
+- D. Cloud Pub/Sub to Cloud SQL
+
+**My choice is B .**
+
+reason: "Pub/Sub doesn't provide guarantees about the order of message delivery. Strict message ordering can be achieved with buffering, often using Dataflow." https://cloud.google.com/solutions/data-lifecycle-cloud-platform. 
+
+---
+
+### Q103.
+
+Your company is planning to perform a lift and shift migration of their Linux RHEL 6.5+ virtual machines. The virtual machines are running in an on-premises
+VMware environment. You want to migrate them to Compute Engine following Google-recommended practices. What should you do?
+
+- A. 1. Define a migration plan based on the list of the applications and their dependencies. 2. Migrate all virtual machines into Compute Engine individually with Migrate for Compute Engine.
+- B. 1. Perform an assessment of virtual machines running in the current VMware environment. 2. Create images of all disks. Import disks on Compute Engine. 3. Create standard virtual machines where the boot disks are the ones you have imported.
+- C. 1. Perform an assessment of virtual machines running in the current VMware environment. 2. Define a migration plan, prepare a Migrate for Compute Engine migration RunBook, and execute the migration.
+- D. 1. Perform an assessment of virtual machines running in the current VMware environment. 2. Install a third-party agent on all selected virtual machines. 3. Migrate all virtual machines into Compute Engine.
+
+**My choice is B .**
+
+reason: 
+
 
 
 
@@ -625,6 +669,24 @@ reason: https://cloud.google.com/solutions/reliable-task-scheduling-compute-engi
 ### Q98.
 
 ### Q98.
+
+### Q98.
+
+### Q98.
+
+### Q98.
+
+### Q98.
+
+### Q98.
+
+### Q98.
+
+### Q98.
+
+### 
+
+
 
 ### Q98.
 
