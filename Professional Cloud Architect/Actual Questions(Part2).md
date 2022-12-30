@@ -325,8 +325,7 @@ Reason: (https://cloud.google.com/bigquery/docs/reference/auditlogs#example_quer
 
 ### **Q84.**
 
-You want to automate the creation of a managed instance group. The VMs have many OS package dependencies. You want to minimize the startup time for new
-VMs in the instance group.
+You want to automate the creation of a managed instance group. The VMs have many OS package dependencies. You want to minimize the startup time for new VMs in the instance group.
 What should you do?
 
 A. Use Terraform to create the managed instance group and a startup script to install the OS package dependencies.
@@ -351,7 +350,7 @@ How should you configure the access rights?
 - C. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery dataViewer. Share the appropriate dataset with view access with each respective analyst country- group.
 - D. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery dataViewer. Share the appropriate table with view access with each respective analyst country-group.
 
-***My choice is A.***
+***My choice is C.***
 
 Reason: in C, dataviewer are not able to execute jobs.
 
@@ -658,7 +657,98 @@ VMware environment. You want to migrate them to Compute Engine following Google-
 - C. 1. Perform an assessment of virtual machines running in the current VMware environment. 2. Define a migration plan, prepare a Migrate for Compute Engine migration RunBook, and execute the migration.
 - D. 1. Perform an assessment of virtual machines running in the current VMware environment. 2. Install a third-party agent on all selected virtual machines. 3. Migrate all virtual machines into Compute Engine.
 
-**My choice is B .**
+**My choice is C .**
+
+reason: NOPE.
+
+---
+
+### Q104.
+
+You need to deploy an application to Google Cloud. The application receives traffic via TCP and reads and writes data to the filesystem. The application does not support horizontal scaling. The application process requires full control over the data on the file system because concurrent access causes corruption. The business is willing to accept a downtime when an incident occurs, but the application must be available 24/7 to support their business operations. You need to design the architecture of this application on Google Cloud. What should you do?
+
+- A. Use a managed instance group with instances in multiple zones, use Cloud Filestore, and use an HTTP load balancer in front of the instances.
+- B. Use a managed instance group with instances in multiple zones, use Cloud Filestore, and use a network load balancer in front of the instances.
+- C. Use an unmanaged instance group with an active and standby instance in different zones, use a regional persistent disk, and use an HTTP load balancer in front of the instances.
+- D. Use an unmanaged instance group with an active and standby instance in different zones, use a regional persistent disk, and use a network load balancer in front of the instances.
+
+**My choice is D .**
+
+reason: The application receives traffic via TCP.
+
+----
+
+### Q105.
+
+Your company has an application running on multiple Compute Engine instances. You need to ensure that the application can communicate with an on-premises service that requires high throughput via internal IPs, while minimizing latency. What should you do?
+
+- A. Use OpenVPN to configure a VPN tunnel between the on-premises environment and Google Cloud.
+- B. Configure a direct peering connection between the on-premises environment and Google Cloud.
+- C. Use Cloud VPN to configure a VPN tunnel between the on-premises environment and Google Cloud.
+- D. Configure a Cloud Dedicated Interconnect connection between the on-premises environment and Google Cloud.
+
+**My choice is D .**
+
+reason: high throughput.
+
+---
+
+### Q106.
+
+You are managing an application deployed on Cloud Run for Anthos, and you need to define a strategy for deploying new versions of the application. You want to evaluate the new code with a subset of production traffic to decide whether to proceed with the rollout. What should you do?
+
+- A. Deploy a new revision to Cloud Run with the new version. Configure traffic percentage between revisions.
+- B. Deploy a new service to Cloud Run with the new version. Add a Cloud Load Balancing instance in front of both services.
+- C. In the Google Cloud Console page for Cloud Run, set up continuous deployment using Cloud Build for the development branch. As part of the Cloud Build trigger, configure the substitution variable TRAFFIC_PERCENTAGE with the percentage of traffic you want directed to a new version.
+- D. In the Google Cloud Console, configure Traffic Director with a new Service that points to the new version of the application on Cloud Run. Configure Traffic Director to send a small percentage of traffic to the new version of the application.
+
+**My choice is A .**
+
+reason: nope.
+
+----
+
+### Q107.
+
+You are monitoring Google Kubernetes Engine (GKE) clusters in a Cloud Monitoring workspace. As a Site Reliability Engineer (SRE), you need to triage incidents quickly. What should you do?
+
+- A. Navigate the predefined dashboards in the Cloud Monitoring workspace, and then add metrics and create alert policies.
+- B. Navigate the predefined dashboards in the Cloud Monitoring workspace, create custom metrics, and install alerting software on a Compute Engine instance.
+- C. Write a shell script that gathers metrics from GKE nodes, publish these metrics to a Pub/Sub topic, export the data to BigQuery, and make a Data Studio dashboard.
+- D. Create a custom dashboard in the Cloud Monitoring workspace for each incident, and then add metrics and create alert policies.
+
+**My choice is  A.**
+
+reason: D is not good.
+
+---
+
+### Q108.
+
+You are implementing a single Cloud SQL MySQL second-generation database that contains business-critical transaction data. You want to ensure that the minimum amount of data is lost in case of catastrophic failure. Which two features should you implement? (Choose two.)
+
+- A. Sharding
+- B. Read replicas
+- C. Binary logging
+- D. Automated backups
+- E. Semisynchronous replication
+
+**My choice is  C,D.**
+
+reason: Binary logging is a feature of MySQL that records all changes made to the database in a binary log file. By enabling binary logging on your Cloud SQL instance, you can use the log file to recover your database in case of catastrophic failure. Automated backups are a feature of Cloud SQL that allows you to automatically create and retain backups of your database. By enabling automated backups, you can restore your database in case of catastrophic failure or other data loss events. 
+
+---
+
+### Q109.
+
+You are working at a sports association whose members range in age from 8 to 30. The association collects a large amount of health data, such as sustained injuries. You are storing this data in BigQuery. Current legislation requires you to delete such information upon request of the subject. You want to design a solution that can accommodate such a request. What should you do?
+
+- A. Use a unique identifier for each individual. Upon a deletion request, delete all rows from BigQuery with this identifier.
+- B. When ingesting new data in BigQuery, run the data through the Data Loss Prevention (DLP) API to identify any personal information. As part of the DLP scan, save the result to Data Catalog. Upon a deletion request, query Data Catalog to find the column with personal information.
+- C. Create a BigQuery view over the table that contains all data. Upon a deletion request, exclude the rows that affect the subject's data from this view. Use this view instead of the source table for all analysis tasks.
+- D. Use a unique identifier for each individual. Upon a deletion request, overwrite the column with the unique identifier with a salted SHA256 of its value.
+
+**My choice is  A.**
 
 reason: 
 
@@ -672,19 +762,7 @@ reason:
 
 ### Q98.
 
-### Q98.
 
-### Q98.
-
-### Q98.
-
-### Q98.
-
-### Q98.
-
-### Q98.
-
-### 
 
 
 
@@ -692,9 +770,7 @@ reason:
 
 ### Q98.
 
-
-
-### 
+ 
 
 
 
