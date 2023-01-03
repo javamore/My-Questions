@@ -735,7 +735,9 @@ You are implementing a single Cloud SQL MySQL second-generation database that co
 
 **My choice is  C,D.**
 
-reason: Binary logging is a feature of MySQL that records all changes made to the database in a binary log file. By enabling binary logging on your Cloud SQL instance, you can use the log file to recover your database in case of catastrophic failure. Automated backups are a feature of Cloud SQL that allows you to automatically create and retain backups of your database. By enabling automated backups, you can restore your database in case of catastrophic failure or other data loss events. 
+reason: Binary logging is a feature of MySQL that records all changes made to the database in a binary log file. By enabling binary logging on your Cloud SQL instance, you can use the log file to recover your database in case of catastrophic failure. 
+
+Automated backups are a feature of Cloud SQL that allows you to automatically create and retain backups of your database. By enabling automated backups, you can restore your database in case of catastrophic failure or other data loss events. 
 
 ---
 
@@ -750,15 +752,39 @@ You are working at a sports association whose members range in age from 8 to 30.
 
 **My choice is  A.**
 
+reason: Primary task is "legislation requires you to delete" .. and B is not deleting. only A is deleting.
+
+---
+
+### Q110.
+
+Your company has announced that they will be outsourcing operations functions. You want to allow developers to easily stage new versions of a cloud-based application in the production environment and allow the outsourced operations team to autonomously promote staged versions to production. You want to minimize the operational overhead of the solution. Which Google Cloud product should you migrate to?
+
+- A. App Engine
+- B. GKE On-Prem
+- C. Compute Engine
+- D. Google Kubernetes Engine
+
+**My choice is  A.**
+
+reason: Answer should be A as only with App Engine we have a default service account which allows the user to deploy the changes per project. for GKE we may have to configure additional permission for both DEV and Operations team to deploy the changes.
+
+---
+
+### Q111.
+
+Your company is running its application workloads on Compute Engine. The applications have been deployed in production, acceptance, and development environments. The production environment is business-critical and is used 24/7, while the acceptance and development environments are only critical during office hours. Your CFO has asked you to optimize these environments to achieve cost savings during idle times. What should you do?
+
+- A. Create a shell script that uses the gcloud command to change the machine type of the development and acceptance instances to a smaller machine type outside of office hours. Schedule the shell script on one of the production instances to automate the task.
+- B. Use Cloud Scheduler to trigger a Cloud Function that will stop the development and acceptance environments after office hours and start them just before office hours.
+- C. Deploy the development and acceptance applications on a managed instance group and enable autoscaling.
+- D. Use regular Compute Engine instances for the production environment, and use preemptible VMs for the acceptance and development environments.
+
+**My choice is  x.**
+
 reason: 
 
 
-
-
-
-### Q98.
-
-### Q98.
 
 ### Q98.
 
@@ -771,6 +797,12 @@ reason:
 ### Q98.
 
  
+
+### Q98.
+
+### Q98.
+
+### Q98.
 
 
 
