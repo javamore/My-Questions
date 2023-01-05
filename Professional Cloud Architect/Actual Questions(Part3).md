@@ -1,107 +1,102 @@
-### **Q63.**
+### **Q121.**
 
-You are designing an application for use only during business hours. For the minimum viable product release, you'd like to use a managed product that automatically ג€scales to zeroג€ so you don't incur costs when there is no activity.
-Which primary compute resource should you choose?
+You need to deploy an application on Google Cloud that must run on a Debian Linux environment. The application requires extensive configuration in order to operate correctly. You want to ensure that you can install Debian distribution updates with minimal manual intervention whenever they become available. What should you do?
 
-- A. Cloud Functions
-- B. Compute Engine
-- C. Google Kubernetes Engine
-- D. AppEngine flexible environment
-
-***My choice is A.***
-
-Reason: Cloud Functions can scale to zero when not in use.
-
-------
-
-### **Q64.**
-
-You are creating an App Engine application that uses Cloud Datastore as its persistence layer. You need to retrieve several root entities for which you have the identifiers. You want to minimize the overhead in operations performed by Cloud Datastore. What should you do?
-
-- A. Create the Key object for each Entity and run a batch get operation
-- B. Create the Key object for each Entity and run multiple get operations, one operation for each entity
-- C. Use the identifiers to create a query filter and run a batch query operation
-- D. Use the identifiers to create a query filter and run multiple query operations, one operation for each entity
-
-***My choice is A.***
-
-Reason: https://cloud.google.com/datastore/docs/best-practices Use batch operations for your reads, writes, and deletes instead of single operations. Batch operations are more efficient because they perform multiple operations with the same overhead as a single operation.
-
----
-
-### **Q65.**
-
-You need to upload files from your on-premises environment to Cloud Storage. You want the files to be encrypted on Cloud Storage using customer-supplied encryption keys. What should you do?
-
-- A. Supply the encryption key in a .boto configuration file. Use gsutil to upload the files.
-- B. Supply the encryption key using gcloud config. Use gsutil to upload the files to that bucket.
-- C. Use gsutil to upload the files, and use the flag --encryption-key to supply the encryption key.
-- D. Use gsutil to create a bucket, and use the flag --encryption-key to supply the encryption key. Use gsutil to upload the files to that bucket.
-
-***My choice is A.***
-
-Reason: No Comment.
-
----
-
-### **Q66.**
-
-Your customer wants to capture multiple GBs of aggregate real-time key performance indicators (KPIs) from their game servers running on Google Cloud Platform and monitor the KPIs with low latency. How should they capture the KPIs?
-
-- A. Store time-series data from the game servers in Google Bigtable, and view it using Google Data Studio.
-- B. Output custom metrics to Stackdriver from the game servers, and create a Dashboard in Stackdriver Monitoring Console to view them.
-- C. Schedule BigQuery load jobs to ingest analytics files uploaded to Cloud Storage every ten minutes, and visualize the results in Google Data Studio.
-- D. Insert the KPIs into Cloud Datastore entities, and run ad hoc analysis and visualizations of them in Cloud Datalab.
+- A. Create a Compute Engine instance template using the most recent Debian image. Create an instance from this template, and install and configure the application as part of the startup script. Repeat this process whenever a new Google-managed Debian image becomes available.
+- B. Create a Debian-based Compute Engine instance, install and configure the application, and use OS patch management to install available updates.
+- C. Create an instance with the latest available Debian image. Connect to the instance via SSH, and install and configure the application on the instance. Repeat this process whenever a new Google-managed Debian image becomes available.
+- D. Create a Docker container with Debian as the base image. Install and configure the application as part of the Docker image creation process. Host the container on Google Kubernetes Engine and restart the container whenever a new update is available.
 
 ***My choice is B.***
 
-Reason: Bigtable don't support integrations with Data Studio. (https://cloud.google.com/bigtable/docs/integrations).
+Reason: https://cloud.google.com/compute/docs/os-patch-management
 
-----
+------
 
-### **Q67.**
+### **Q122.**
 
-You have a Python web application with many dependencies that requires 0.1 CPU cores and 128 MB of memory to operate in production. You want to monitor and maximize machine utilization. You also want to reliably deploy new versions of the application. Which set of steps should you take?
+You have an application that runs in Google Kubernetes Engine (GKE). Over the last 2 weeks, customers have reported that a specific part of the application returns errors very frequently. You currently have no logging or monitoring solution enabled on your GKE cluster. You want to diagnose the problem, but you have not been able to replicate the issue. You want to cause minimal disruption to the application. What should you do?
 
-- A. Perform the following: 1. Create a managed instance group with f1-micro type machines. 2. Use a startup script to clone the repository, check out the production branch, install the dependencies, and start the Python app. 3. Restart the instances to automatically deploy new production releases.
-- B. Perform the following: 1. Create a managed instance group with n1-standard-1 type machines. 2. Build a Compute Engine image from the production branch that contains all of the dependencies and automatically starts the Python app. 3. Rebuild the Compute Engine image, and update the instance template to deploy new production releases.
-- C. Perform the following: 1. Create a Google Kubernetes Engine (GKE) cluster with n1-standard-1 type machines. 2. Build a Docker image from the production branch with all of the dependencies, and tag it with the version number. 3. Create a Kubernetes Deployment with the imagePullPolicy set to 'IfNotPresent' in the staging namespace, and then promote it to the production namespace after testing.
-- D. Perform the following: 1. Create a GKE cluster with n1-standard-4 type machines. 2. Build a Docker image from the master branch with all of the dependencies, and tag it with 'latest'. 3. Create a Kubernetes Deployment in the default namespace with the imagePullPolicy set to 'Always'. Restart the pods to automatically deploy new production releases.
+- A. 1. Update your GKE cluster to use Cloud Operations for GKE. 2. Use the GKE Monitoring dashboard to investigate logs from affected Pods.
+- B. 1. Create a new GKE cluster with Cloud Operations for GKE enabled. 2. Migrate the affected Pods to the new cluster, and redirect traffic for those Pods to the new cluster. 3. Use the GKE Monitoring dashboard to investigate logs from affected Pods.
+- C. 1. Update your GKE cluster to use Cloud Operations for GKE, and deploy Prometheus. 2. Set an alert to trigger whenever the application returns an error.
+- D. 1. Create a new GKE cluster with Cloud Operations for GKE enabled, and deploy Prometheus. 2. Migrate the affected Pods to the new cluster, and redirect traffic for those Pods to the new cluster. 3. Set an alert to trigger whenever the application returns an error.
 
-***My choice is C.***
+***My choice is A.***
 
-Reason: No comment.
-
-----
-
-### **Q68.**
-
-Your company wants to start using Google Cloud resources but wants to retain their on-premises Active Directory domain controller for identity management.
-What should you do?
-
-- A. Use the Admin Directory API to authenticate against the Active Directory domain controller.
-- B. Use Google Cloud Directory Sync to synchronize Active Directory usernames with cloud identities and configure SAML SSO.
-- C. Use Cloud Identity-Aware Proxy configured to use the on-premises Active Directory domain controller as an identity provider.
-- D. Use Compute Engine to create an Active Directory (AD) domain controller that is a replica of the on-premises AD domain controller using Google Cloud Directory Sync.
-
-***My choice is B .***
-
-Reason: Definitively B, I tested this before on my own!
+Reason: https://cloud.google.com/blog/products/management-tools/using-logging-your-apps-running-kubernetes-engine
 
 ---
 
-### **Q69.**
+### **Q123.**
 
-You are running a cluster on Kubernetes Engine (GKE) to serve a web application. Users are reporting that a specific part of the application is not responding anymore. You notice that all pods of your deployment keep restarting after 2 seconds. The application writes logs to standard output. You want to inspect the logs to find the cause of the issue. Which approach can you take?
+You need to deploy a stateful workload on Google Cloud. The workload can scale horizontally, but each instance needs to read and write to the same POSIX filesystem. At high load, the stateful workload needs to support up to 100 MB/s of writes. What should you do?
 
-- A. Review the Stackdriver logs for each Compute Engine instance that is serving as a node in the cluster.
-- B. Review the Stackdriver logs for the specific GKE container that is serving the unresponsive part of the application.
-- C. Connect to the cluster using gcloud credentials and connect to a container in one of the pods to read the logs.
-- D. Review the Serial Port logs for each Compute Engine instance that is serving as a node in the cluster.
+- A. Use a persistent disk for each instance.
+- B. Use a regional persistent disk for each instance.
+- C. Create a Cloud Filestore instance and mount it in each instance.
+- D. Create a Cloud Storage bucket and mount it in each instance using gcsfuse.
 
-***My choice is B .***
+***My choice is C.***
 
-Reason: (https://cloud.google.com/monitoring/kubernetes-engine/legacy-stackdriver/logging).
+Reason: Filestore is the best for posix+concurrential access GCFuse isn't recommended by Google and you should always avoid it in any case.
+
+---
+
+### **Q124.**
+
+Your company has an application deployed on Anthos clusters (formerly Anthos GKE) that is running multiple microservices. The cluster has both Anthos Service
+Mesh and Anthos Config Management configured. End users inform you that the application is responding very slowly. You want to identify the microservice that is causing the delay. What should you do?
+
+- A. Use the Service Mesh visualization in the Cloud Console to inspect the telemetry between the microservices.
+- B. Use Anthos Config Management to create a ClusterSelector selecting the relevant cluster. On the Google Cloud Console page for Google Kubernetes Engine, view the Workloads and filter on the cluster. Inspect the configurations of the filtered workloads.
+- C. Use Anthos Config Management to create a namespaceSelector selecting the relevant cluster namespace. On the Google Cloud Console page for Google Kubernetes Engine, visit the workloads and filter on the namespace. Inspect the configurations of the filtered workloads.
+- D. Reinstall istio using the default istio profile in order to collect request latency. Evaluate the telemetry between the microservices in the Cloud Console.
+
+***My choice is A.***
+
+----
+
+### **Q125.**
+
+You are working at a financial institution that stores mortgage loan approval documents on Cloud Storage. Any change to these approval documents must be uploaded as a separate approval file, so you want to ensure that these documents cannot be deleted or overwritten for the next 5 years. What should you do?
+
+- A. Create a retention policy on the bucket for the duration of 5 years. Create a lock on the retention policy.
+- B. Create the bucket with uniform bucket-level access, and grant a service account the role of Object Writer. Use the service account to upload new files.
+- C. Use a customer-managed key for the encryption of the bucket. Rotate the key after 5 years.
+- D. Create the bucket with fine-grained access control, and grant a service account the role of Object Writer. Use the service account to upload new files.
+
+***My choice is A.***
+
+Reason: https://cloud.google.com/storage/docs/using-bucket-lock
+
+----
+
+### **Q126.**
+
+Your team will start developing a new application using microservices architecture on Kubernetes Engine. As part of the development lifecycle, any code change that has been pushed to the remote develop branch on your GitHub repository should be built and tested automatically. When the build and test are successful, the relevant microservice will be deployed automatically in the development environment. You want to ensure that all code deployed in the development environment follows this process. What should you do?
+
+- A. Have each developer install a pre-commit hook on their workstation that tests the code and builds the container when committing on the development branch. After a successful commit, have the developer deploy the newly built container image on the development cluster.
+- B. Install a post-commit hook on the remote git repository that tests the code and builds the container when code is pushed to the development branch. After a successful commit, have the developer deploy the newly built container image on the development cluster.
+- C. Create a Cloud Build trigger based on the development branch that tests the code, builds the container, and stores it in Container Registry. Create a deployment pipeline that watches for new images and deploys the new image on the development cluster. Ensure only the deployment tool has access to deploy new versions.
+- D. Create a Cloud Build trigger based on the development branch to build a new container image and store it in Container Registry. Rely on Vulnerability Scanning to ensure the code tests succeed. As the final step of the Cloud Build process, deploy the new container image on the development cluster. Ensure only Cloud Build has access to deploy new versions.
+
+***My choice is C .***
+
+---
+
+### **Q127.**
+
+Your operations team has asked you to help diagnose a performance issue in a production application that runs on Compute Engine. The application is dropping requests that reach it when under heavy load. The process list for affected instances shows a single application process that is consuming all available CPU, and autoscaling has reached the upper limit of instances. There is no abnormal load on any other related systems, including the database. You want to allow production traffic to be served again as quickly as possible. Which action should you recommend?
+
+- A. Change the autoscaling metric to agent.googleapis.com/memory/percent_used.
+- B. Restart the affected instances on a staggered schedule.
+- C. SSH to each instance and restart the application process.
+- D. Increase the maximum number of instances in the autoscaling group.
+
+***My choice is D .***
+
+Reason: If the application is dropping requests under heavy load and the process list for affected instances shows a single application process consuming all available CPU, increasing the maximum number of instances in the autoscaling group may help to alleviate the performance issue. By adding more instances to the group, you can distribute the load across multiple instances, which should help to reduce the strain on any single instance. This will allow production traffic to be served again more quickly.
 
 ---
 
