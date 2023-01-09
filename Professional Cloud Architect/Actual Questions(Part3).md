@@ -100,350 +100,348 @@ Reason: If the application is dropping requests under heavy load and the process
 
 ---
 
-### **Q70.**
+### **Q128.**
 
-You are using a single Cloud SQL instance to serve your application from a specific zone. You want to introduce high availability. What should you do?
+You are implementing the infrastructure for a web service on Google Cloud. The web service needs to receive and store the data from 500,000 requests per second. The data will be queried later in real time, based on exact matches of a known set of attributes. There will be periods where the web service will not receive any requests. The business wants to keep costs low. Which web service platform and database should you use for the application?
 
-- A. Create a read replica instance in a different region
-- B. Create a failover replica instance in a different region
-- C. Create a read replica instance in the same region, but in a different zone
-- D. Create a failover replica instance in the same region, but in a different zone
+- A. Cloud Run and BigQuery
+- B. Cloud Run and Cloud Bigtable
+- C. A Compute Engine autoscaling managed instance group and BigQuery
+- D. A Compute Engine autoscaling managed instance group and Cloud Bigtable
 
-***My choice is D.***
+***My choice is B.***
 
-Reason: No comment.
+Reason:  "Cloud Run only runs when requests come in, so you don't pay for time spent idling"
+
+So Cloud run is perfect to match high peak activity and scale to 0 to allow low cost when you don't need it.
 
 ----
 
-### **Q71.**
+### **Q129.**
 
-Your company is running a stateless application on a Compute Engine instance. The application is used heavily during regular business hours and lightly outside of business hours. Users are reporting that the application is slow during peak hours. You need to optimize the application's performance. What should you do?
+You are developing an application using different microservices that should remain internal to the cluster. You want to be able to configure each microservice with a specific number of replicas. You also want to be able to address a specific microservice from any other microservice in a uniform way, regardless of the number of replicas the microservice scales to. You need to implement this solution on Google Kubernetes Engine. What should you do?
 
-- A. Create a snapshot of the existing disk. Create an instance template from the snapshot. Create an autoscaled managed instance group from the instance template.
-- B. Create a snapshot of the existing disk. Create a custom image from the snapshot. Create an autoscaled managed instance group from the custom image.
-- C. Create a custom image from the existing disk. Create an instance template from the custom image. Create an autoscaled managed instance group from the instance template.
-- D. Create an instance template from the existing disk. Create a custom image from the instance template. Create an autoscaled managed instance group from the custom image.
+- A. Deploy each microservice as a Deployment. Expose the Deployment in the cluster using a Service, and use the Service DNS name to address it from other microservices within the cluster.
+- B. Deploy each microservice as a Deployment. Expose the Deployment in the cluster using an Ingress, and use the Ingress IP address to address the Deployment from other microservices within the cluster.
+- C. Deploy each microservice as a Pod. Expose the Pod in the cluster using a Service, and use the Service DNS name to address the microservice from other microservices within the cluster.
+- D. Deploy each microservice as a Pod. Expose the Pod in the cluster using an Ingress, and use the Ingress IP address name to address the Pod from other microservices within the cluster.
+
+***My choice is A.***
+
+Reason: B, D not correct, they used Ingress however Ingress comes with a HTTP(S) LB with external IP hence is not needed for communications within the cluster internally.
+
+Benefit of using Service 
+
+Leveraging Service allows for you to set up your environment with static IP addresses. So when your pods die and restart the IP address associated with the deceased pod remains for the new pod that replaces it (ephemeral). I think using "Service" is helpful if you are setting up your pods to be able to communicate with specific pods in the cluster. 
+
+Benefit of using DNS for Service 
+
+Using DNS for your Service (static IP) you can look up Services and/or Pods by name instead of IP. Addressability by name instead of IP is easier for me.
+
+----
+
+### **Q130.**
+
+Your company has a networking team and a development team. The development team runs applications on Compute Engine instances that contain sensitive data. The development team requires administrative permissions for Compute Engine. Your company requires all network resources to be managed by the networking team. The development team does not want the networking team to have access to the sensitive data on the instances. What should you do?
+
+- A. 1. Create a project with a standalone VPC and assign the Network Admin role to the networking team. 2. Create a second project with a standalone VPC and assign the Compute Admin role to the development team. 3. Use Cloud VPN to join the two VPCs.
+- B. 1. Create a project with a standalone Virtual Private Cloud (VPC), assign the Network Admin role to the networking team, and assign the Compute Admin role to the development team.
+- C. 1. Create a project with a Shared VPC and assign the Network Admin role to the networking team. 2. Create a second project without a VPC, configure it as a Shared VPC service project, and assign the Compute Admin role to the development team.
+- D. 1. Create a project with a standalone VPC and assign the Network Admin role to the networking team. 2. Create a second project with a standalone VPC and assign the Compute Admin role to the development team. 3. Use VPC Peering to join the two VPCs.
+
+***My choice is B.***
+
+Reason: no need shared vpc.
+
+----
+
+### **Q131.**
+
+Your company wants you to build a highly reliable web application with a few public APIs as the backend. You don't expect a lot of user traffic, but traffic could spike occasionally. You want to leverage Cloud Load Balancing, and the solution must be cost-effective for users. What should you do?
+
+- A. Store static content such as HTML and images in Cloud CDN. Host the APIs on App Engine and store the user data in Cloud SQL.
+- B. Store static content such as HTML and images in a Cloud Storage bucket. Host the APIs on a zonal Google Kubernetes Engine cluster with worker nodes in multiple zones, and save the user data in Cloud Spanner.
+- C. Store static content such as HTML and images in Cloud CDN. Use Cloud Run to host the APIs and save the user data in Cloud SQL.
+- D. Store static content such as HTML and images in a Cloud Storage bucket. Use Cloud Functions to host the APIs and save the user data in Firestore.
+
+***My choice is D.***
+
+Reason: it is most cost saving method.
+
+----
+
+### **Q132.**
+
+Your company sends all Google Cloud logs to Cloud Logging. Your security team wants to monitor the logs. You want to ensure that the security team can react quickly if an anomaly such as an unwanted firewall change or server breach is detected. You want to follow Google-recommended practices. What should you do?
+
+- A. Schedule a cron job with Cloud Scheduler. The scheduled job queries the logs every minute for the relevant events.
+- B. Export logs to BigQuery, and trigger a query in BigQuery to process the log data for the relevant events.
+- C. Export logs to a Pub/Sub topic, and trigger Cloud Function with the relevant log events.
+- D. Export logs to a Cloud Storage bucket, and trigger Cloud Run with the relevant log events.
 
 ***My choice is C.***
 
-Reason: (https://cloud.google.com/compute/docs/instance-templates/create-instance-templates#using_custom_or_public_images_in_your_instance_templates).
+Reason: Using a Logging sink, you can build an event-driven system to detect and respond to log events in real time. Cloud Logging can help you to build this event-driven architecture through its integration with Cloud Pub/Sub and a serverless computing service such as Cloud Functions or Cloud Run. https://cloud.google.com/blog/products/management-tools/automate-your-response-to-a-cloud-logging-event.
 
 ----
 
-### **Q72.**
+### **Q133.**
 
-Your web application has several VM instances running within a VPC. You want to restrict communications between instances to only the paths and ports you authorize, but you don't want to rely on static IP addresses or subnets because the app can autoscale. How should you restrict communications?
+You have deployed several instances on Compute Engine. As a security requirement, instances cannot have a public IP address. There is no VPN connection between Google Cloud and your office, and you need to connect via SSH into a specific machine without violating the security requirements. What should you do?
 
-- A. Use separate VPCs to restrict traffic
-- B. Use firewall rules based on network tags attached to the compute instances
-- C. Use Cloud DNS and only allow connections from authorized hostnames
-- D. Use service accounts and configure the web application to authorize particular service accounts to have access
-
-***My choice is B.***
-
-Reason: This answer avoids using IP, which are replaced by tags.
-
-----
-
-### **Q73.**
-
-You are using Cloud SQL as the database backend for a large CRM deployment. You want to scale as usage increases and ensure that you don't run out of storage, maintain 75% CPU usage cores, and keep replication lag below 60 seconds. What are the correct steps to meet your requirements?
-
-- A. 1. Enable automatic storage increase for the instance. 2. Create a Stackdriver alert when CPU usage exceeds 75%, and change the instance type to reduce CPU usage. 3. Create a Stackdriver alert for replication lag, and shard the database to reduce replication time.
-- B. 1. Enable automatic storage increase for the instance. 2. Change the instance type to a 32-core machine type to keep CPU usage below 75%. 3. Create a Stackdriver alert for replication lag, and deploy memcache to reduce load on the master.
-- C. 1. Create a Stackdriver alert when storage exceeds 75%, and increase the available storage on the instance to create more space. 2. Deploy memcached to reduce CPU load. 3. Change the instance type to a 32-core machine type to reduce replication lag.
-- D. 1. Create a Stackdriver alert when storage exceeds 75%, and increase the available storage on the instance to create more space. 2. Deploy memcached to reduce CPU load. 3. Create a Stackdriver alert for replication lag, and change the instance type to a 32-core machine type to reduce replication lag.
-
-***My choice is A.***
-
-Reason: (https://cloud.google.com/sql/docs/mysql/instance-settings#storage-capacity-2ndgen).
-
-----
-
-### **Q74.**
-
-You are tasked with building an online analytical processing (OLAP) marketing analytics and reporting tool. This requires a relational database that can operate on hundreds of terabytes of data. What is the Google-recommended tool for such applications?
-
-- A. Cloud Spanner, because it is globally distributed
-- B. Cloud SQL, because it is a fully managed relational database
-- C. Cloud Firestore, because it offers real-time synchronization across devices
-- D. BigQuery, because it is designed for large-scale processing of tabular data
-
-***My choice is D.***
-
-Reason: OLAP = BQ; OLTP = Cloud Spanner&Cloud SQL; NoSQL = FileStore&BigTable.
-
-----
-
-### **Q75.**
-
-You have deployed an application to Google Kubernetes Engine (GKE), and are using the Cloud SQL proxy container to make the Cloud SQL database available to the services running on Kubernetes. You are notified that the application is reporting database connection issues. Your company policies require a post- mortem. What should you do?
-
-- A. Use gcloud sql instances restart.
-- B. Validate that the Service Account used by the Cloud SQL proxy container still has the Cloud Build Editor role.
-- C. In the GCP Console, navigate to Stackdriver Logging. Consult logs for (GKE) and Cloud SQL.
-- D. In the GCP Console, navigate to Cloud SQL. Restore the latest backup. Use kubectl to restart all pods.
+- A. Configure Cloud NAT on the subnet where the instance is hosted. Create an SSH connection to the Cloud NAT IP address to reach the instance.
+- B. Add all instances to an unmanaged instance group. Configure TCP Proxy Load Balancing with the instance group as a backend. Connect to the instance using the TCP Proxy IP.
+- C. Configure Identity-Aware Proxy (IAP) for the instance and ensure that you have the role of IAP-secured Tunnel User. Use the gcloud command line tool to ssh into the instance.
+- D. Create a bastion host in the network to SSH into the bastion host from your office location. From the bastion host, SSH into the desired instance.
 
 ***My choice is C.***
 
-Reason: post mortem always includes log analysis.
+Reason: no instance should have public ip, but bastion host still has.
 
 ----
 
-### **Q76.**
+### **Q134.**
 
-Your company pushes batches of sensitive transaction data from its application server VMs to Cloud Pub/Sub for processing and storage. What is the Google- recommended way for your application to authenticate to the required Google Cloud services?
+Your company is using Google Cloud. You have two folders under the Organization: Finance and Shopping. The members of the development team are in a
+Google Group. The development team group has been assigned the Project Owner role on the Organization. You want to prevent the development team from creating resources in projects in the Finance folder. What should you do?
 
-- A. Ensure that VM service accounts are granted the appropriate Cloud Pub/Sub IAM roles.
-- B. Ensure that VM service accounts do not have access to Cloud Pub/Sub, and use VM access scopes to grant the appropriate Cloud Pub/Sub IAM roles.
-- C. Generate an OAuth2 access token for accessing Cloud Pub/Sub, encrypt it, and store it in Cloud Storage for access from each VM.
-- D. Create a gateway to Cloud Pub/Sub using a Cloud Function, and grant the Cloud Function service account the appropriate Cloud Pub/Sub IAM roles.
+- A. Assign the development team group the Project Viewer role on the Finance folder, and assign the development team group the Project Owner role on the Shopping folder.
+- B. Assign the development team group only the Project Viewer role on the Finance folder.
+- C. Assign the development team group the Project Owner role on the Shopping folder, and remove the development team group Project Owner role from the Organization.
+- D. Assign the development team group only the Project Owner role on the Shopping folder.
+
+***My choice is C.***
+
+Reason: nope
+
+----
+
+### **Q135.**
+
+You are developing your microservices application on Google Kubernetes Engine. During testing, you want to validate the behavior of your application in case a specific microservice should suddenly crash. What should you do?
+
+- A. Add a taint to one of the nodes of the Kubernetes cluster. For the specific microservice, configure a pod anti-affinity label that has the name of the tainted node as a value.
+- B. Use Istio's fault injection on the particular microservice whose faulty behavior you want to simulate.
+- C. Destroy one of the nodes of the Kubernetes cluster to observe the behavior.
+- D. Configure Istio's traffic management features to steer the traffic away from a crashing microservice.
+
+***My choice is B.***
+
+Reason: application crash, not node.
+
+----
+
+### **Q136.**
+
+Your company is developing a new application that will allow globally distributed users to upload pictures and share them with other selected users. The application will support millions of concurrent users. You want to allow developers to focus on just building code without having to create and maintain the underlying infrastructure. Which service should you use to deploy the application?
+
+- A. App Engine
+- B. Cloud Endpoints
+- C. Compute Engine
+- D. Google Kubernetes Engine
 
 ***My choice is A.***
 
-Reason: (https://cloud.google.com/pubsub/docs/authentication#service-accounts).
+Reason: .
 
 ----
 
-### **Q77.**
+### **Q137.**
 
-You want to establish a Compute Engine application in a single VPC across two regions. The application must communicate over VPN to an on-premises network.
-How should you deploy the VPN?
+Your company provides a recommendation engine for retail customers. You are providing retail customers with an API where they can submit a user ID and the
+API returns a list of recommendations for that user. You are responsible for the API lifecycle and want to ensure stability for your customers in case the API makes backward-incompatible changes. You want to follow Google-recommended practices. What should you do?
 
-- A. Use VPC Network Peering between the VPC and the on-premises network.
-- B. Expose the VPC to the on-premises network using IAM and VPC Sharing.
-- C. Create a global Cloud VPN Gateway with VPN tunnels from each region to the on-premises peer gateway.
-- D. Deploy Cloud VPN Gateway in each region. Ensure that each region has at least one VPN tunnel to the on-premises peer gateway.
+- A. Create a distribution list of all customers to inform them of an upcoming backward-incompatible change at least one month before replacing the old API with the new API.
+- B. Create an automated process to generate API documentation, and update the public API documentation as part of the CI/CD process when deploying an update to the API.
+- C. Use a versioning strategy for the APIs that increases the version number on every backward-incompatible change.
+- D. Use a versioning strategy for the APIs that adds the suffix ג€DEPRECATEDג€ to the current API version number on every backward-incompatible change. Use the current version number for the new API.
 
-***My choice is D.***
+***My choice is C.***
 
-Reason:(https://cloud.google.com/vpn/docs/how-to/creating-static-vpns).
-
-----
-
-### **Q78.**
-
-Your applications will be writing their logs to BigQuery for analysis. Each application should have its own table. Any logs older than 45 days should be removed.
-You want to optimize storage and follow Google-recommended practices. What should you do?
-
-- A. Configure the expiration time for your tables at 45 days
-- B. Make the tables time-partitioned, and configure the partition expiration at 45 days
-- C. Rely on BigQuery's default behavior to prune application logs older than 45 days
-- D. Create a script that uses the BigQuery command line tool (bq) to remove records older than 45 days
-
-***My choice is B.***
-
-Reason: (https://cloud.google.com/bigquery/docs/creating-partitioned-tables#sql).
-
-CREATE TABLE mydataset.newtable (transaction_id INT64, transaction_date DATE) PARTITION BY transaction_date OPTIONS( partition_expiration_days=3, require_partition_filter=true )
+Reason: All Google API interfaces must provide a major version number, which is encoded at the end of the protobuf package, and included as the first part of the URI path for REST APIs. If an API introduces a breaking change, such as removing or renaming a field, it must increment its API version number to ensure that existing user code does not suddenly break.
 
 ----
 
-### **Q79.**
+### **Q138.**
 
-You want your Google Kubernetes Engine cluster to automatically add or remove nodes based on CPU load.
-What should you do?
+Your company has developed a monolithic, 3-tier application to allow external users to upload and share files. The solution cannot be easily enhanced and lacks reliability. The development team would like to re-architect the application to adopt microservices and a fully managed service approach, but they need to convince their leadership that the effort is worthwhile. Which advantage(s) should they highlight to leadership?
 
-- A. Configure a HorizontalPodAutoscaler with a target CPU usage. Enable the Cluster Autoscaler from the GCP Console.
-- B. Configure a HorizontalPodAutoscaler with a target CPU usage. Enable autoscaling on the managed instance group for the cluster using the gcloud command.
-- C. Create a deployment and set the maxUnavailable and maxSurge properties. Enable the Cluster Autoscaler using the gcloud command.
-- D. Create a deployment and set the maxUnavailable and maxSurge properties. Enable autoscaling on the cluster managed instance group from the GCP Console.
+- A. The new approach will be significantly less costly, make it easier to manage the underlying infrastructure, and automatically manage the CI/CD pipelines.
+- B. The monolithic solution can be converted to a container with Docker. The generated container can then be deployed into a Kubernetes cluster.
+- C. The new approach will make it easier to decouple infrastructure from application, develop and release new features, manage the underlying infrastructure, manage CI/CD pipelines and perform A/B testing, and scale the solution if necessary.
+- D. The process can be automated with Migrate for Compute Engine.
+
+***My choice is C.***
+
+Reason: .
+
+----
+
+### **Q139.**
+
+Your team is developing a web application that will be deployed on Google Kubernetes Engine (GKE). Your CTO expects a successful launch and you need to ensure your application can handle the expected load of tens of thousands of users. You want to test the current deployment to ensure the latency of your application stays below a certain threshold. What should you do?
+
+- A. Use a load testing tool to simulate the expected number of concurrent users and total requests to your application, and inspect the results.
+- B. Enable autoscaling on the GKE cluster and enable horizontal pod autoscaling on your application deployments. Send curl requests to your application, and validate if the auto scaling works.
+- C. Replicate the application over multiple GKE clusters in every Google Cloud region. Configure a global HTTP(S) load balancer to expose the different clusters over a single global IP address.
+- D. Use Cloud Debugger in the development environment to understand the latency between the different microservices.
 
 ***My choice is A.***
 
-Reason: Horizontal Pod Autoscaler changes the deployment's or replicaset's number of replicas based on the current CPU load. If the load increases, HPA will create new replicas, for which there may or may not be enough space in the cluster. If there are not enough resources, CA will try to bring up some nodes, so that the HPA-created pods have a place to run. If the load decreases, HPA will stop some of the replicas. As a result, some nodes may become underutilized or completely empty, and then CA will terminate such unneeded nodes.
-
-----
-
-### **Q80.**
-
-You need to develop procedures to verify resilience of disaster recovery for remote recovery using GCP. Your production environment is hosted on-premises. You need to establish a secure, redundant connection between your on-premises network and the GCP network.
-What should you do?
-
-- A. Verify that Dedicated Interconnect can replicate files to GCP. Verify that direct peering can establish a secure connection between your networks if Dedicated Interconnect fails.
-- B. Verify that Dedicated Interconnect can replicate files to GCP. Verify that Cloud VPN can establish a secure connection between your networks if Dedicated Interconnect fails.
-- C. Verify that the Transfer Appliance can replicate files to GCP. Verify that direct peering can establish a secure connection between your networks if the Transfer Appliance fails.
-- D. Verify that the Transfer Appliance can replicate files to GCP. Verify that Cloud VPN can establish a secure connection between your networks if the Transfer Appliance fails.
-
-***My choice is B.***
-
-Reason: Transfer appliance is a physical appliance for transferring huge bulk of data. does not fit into disaster recovery testing.
-
-----
-
-### **Q81.**
-
-Your company operates nationally and plans to use GCP for multiple batch workloads, including some that are not time-critical. You also need to use GCP services that are HIPAA-certified and manage service costs.
-How should you design to meet Google best practices?
-
-- A. Provision preemptible VMs to reduce cost. Discontinue use of all GCP services and APIs that are not HIPAA-compliant.
-- B. Provision preemptible VMs to reduce cost. Disable and then discontinue use of all GCP services and APIs that are not HIPAA-compliant.
-- C. Provision standard VMs in the same region to reduce cost. Discontinue use of all GCP services and APIs that are not HIPAA-compliant.
-- D. Provision standard VMs to the same region to reduce cost. Disable and then discontinue use of all GCP services and APIs that are not HIPAA-compliant.
-
-***My choice is B.***
-
-Reason: ( https://cloud.google.com/security/compliance/hipaa#unique_features ) .
+Reason: no load ==> no latency checking.
 
 ---
 
-### **Q82.**
+### **Q140.**
 
-Your customer wants to do resilience testing of their authentication layer. This consists of a regional managed instance group serving a public REST API that reads from and writes to a Cloud SQL instance.
-What should you do?
+Your company has a Kubernetes application that pulls messages from Pub/Sub and stores them in Filestore. Because the application is simple, it was deployed as a single pod. The infrastructure team has analyzed Pub/Sub metrics and discovered that the application cannot process the messages in real time. Most of them wait for minutes before being processed. You need to scale the elaboration process that is I/O-intensive. What should you do?
 
-- A. Engage with a security company to run web scrapers that look your for users' authentication data om malicious websites and notify you if any is found.
-- B. Deploy intrusion detection software to your virtual machines to detect and log unauthorized access.
-- C. Schedule a disaster simulation exercise during which you can shut off all VMs in a zone to see how your application behaves.
-- D. Configure a read replica for your Cloud SQL instance in a different zone than the master, and then manually trigger a failover while monitoring KPIs for our REST API.
-
-***My choice is C.***
-
-Reason: (As per google documentation(https://cloud.google.com/solutions/scalable-and-resilient-apps) answer is C.)
-
-----
-
-### **Q83.**
-
-Your BigQuery project has several users. For audit purposes, you need to see how many queries each user ran in the last month. What should you do?
-
-- A. Connect Google Data Studio to BigQuery. Create a dimension for the users and a metric for the amount of queries per user.
-- B. In the BigQuery interface, execute a query on the JOBS table to get the required information.
-- C. Use 'bq show' to list all jobs. Per job, use 'bq ls' to list job information and get the required information.
-- D. Use Cloud Audit Logging to view Cloud Audit Logs, and create a filter on the query operation to get the required information.
+- A. Use kubectl autoscale deployment APP_NAME --max 6 --min 2 --cpu-percent 50 to configure Kubernetes autoscaling deployment.
+- B. Configure a Kubernetes autoscaling deployment based on the subscription/push_request_latencies metric.
+- C. Use the --enable-autoscaling flag when you create the Kubernetes cluster.
+- D. Configure a Kubernetes autoscaling deployment based on the subscription/num_undelivered_messages metric.
 
 ***My choice is D.***
 
-Reason: (https://cloud.google.com/bigquery/docs/reference/auditlogs#example_query_cost_breakdown_by_identity). Activity log is automatically logged.
+Reason:https://cloud.google.com/kubernetes-engine/docs/samples/container-pubsub-horizontal-pod-autoscaler.
 
 ----
 
-### **Q84.**
+### **Q141.**
 
-You want to automate the creation of a managed instance group. The VMs have many OS package dependencies. You want to minimize the startup time for new VMs in the instance group.
-What should you do?
+Your company is developing a web-based application. You need to make sure that production deployments are linked to source code commits and are fully auditable. What should you do?
 
-A. Use Terraform to create the managed instance group and a startup script to install the OS package dependencies.
-B. Create a custom VM image with all OS package dependencies. Use Deployment Manager to create the managed instance group with the VM image.
-C. Use Puppet to create the managed instance group and install the OS package dependencies.
-D. Use Deployment Manager to create the managed instance group and Ansible to install the OS package dependencies.
-
-***My choice is B.***
-
-Reason: Image has all the packages, so minimal start up time.
-
-----
-
-### **Q85.**
-
-Your company captures all web traffic data in Google Analytics 360 and stores it in BigQuery. Each country has its own dataset. Each dataset has multiple tables.
-You want analysts from each country to be able to see and query only the data for their respective countries.
-How should you configure the access rights?
-
-- A. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery jobUser. Share the appropriate dataset with view access with each respective analyst country-group.
-- B. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery jobUser. Share the appropriate tables with view access with each respective analyst country-group.
-- C. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery dataViewer. Share the appropriate dataset with view access with each respective analyst country- group.
-- D. Create a group per country. Add analysts to their respective country-groups. Create a single group 'all_analysts', and add all country-groups as members. Grant the 'all_analysts' group the IAM role of BigQuery dataViewer. Share the appropriate table with view access with each respective analyst country-group.
+- A. Make sure a developer is tagging the code commit with the date and time of commit.
+- B. Make sure a developer is adding a comment to the commit that links to the deployment.
+- C. Make the container tag match the source code commit hash.
+- D. Make sure the developer is tagging the commits with latest.
 
 ***My choice is C.***
 
-Reason: in C, dataviewer are not able to execute jobs.
+Reason: https://cloud.google.com/architecture/best-practices-for-building-containers#tagging_using_the_git_commit_hash.
 
 ----
 
-### **Q86.**
+### **Q142.**
 
-You have been engaged by your client to lead the migration of their application infrastructure to GCP. One of their current problems is that the on-premises high performance SAN is requiring frequent and expensive upgrades to keep up with the variety of workloads that are identified as follows: 20 TB of log archives retained for legal reasons; 500 GB of VM boot/data volumes and templates; 500 GB of image thumbnails; 200 GB of customer session state data that allows customers to restart sessions even if off-line for several days.
-Which of the following best reflects your recommendations for a cost-effective storage allocation?
+An application development team has come to you for advice. They are planning to write and deploy an HTTP(S) API using Go 1.12. The API will have a very unpredictable workload and must remain reliable during peaks in traffic. They want to minimize operational overhead for this application. Which approach should you recommend?
 
-- A. Local SSD for customer session state data. Lifecycle-managed Cloud Storage for log archives, thumbnails, and VM boot/data volumes.
-- B. Memcache backed by Cloud Datastore for the customer session state data. Lifecycle-managed Cloud Storage for log archives, thumbnails, and VM boot/data volumes.
-- C. Memcache backed by Cloud SQL for customer session state data. Assorted local SSD-backed instances for VM boot/data volumes. Cloud Storage for log archives and thumbnails.
-- D. Memcache backed by Persistent Disk SSD storage for customer session state data. Assorted local SSD-backed instances for VM boot/data volumes. Cloud Storage for log archives and thumbnails.
+- A. Develop the application with containers, and deploy to Google Kubernetes Engine.
+- B. Develop the application for App Engine standard environment.
+- C. Use a Managed Instance Group when deploying to Compute Engine.
+- D. Develop the application for App Engine flexible environment, using a custom runtime.
 
 ***My choice is B.***
 
-Reason: Memcache backed by Cloud Datastore https://cloud.google.com/appengine/docs/standard/python/memcache.
+Reason: https://cloud.google.com/appengine/docs/the-appengine-environments.
+
+----
+
+### **Q143.**
+
+Your company is designing its data lake on Google Cloud and wants to develop different ingestion pipelines to collect unstructured data from different sources.
+After the data is stored in Google Cloud, it will be processed in several data pipelines to build a recommendation engine for end users on the website. The structure of the data retrieved from the source systems can change at any time. The data must be stored exactly as it was retrieved for reprocessing purposes in case the data structure is incompatible with the current processing pipelines. You need to design an architecture to support the use case after you retrieve the data. What should you do?
+
+- A. Send the data through the processing pipeline, and then store the processed data in a BigQuery table for reprocessing.
+- B. Store the data in a BigQuery table. Design the processing pipelines to retrieve the data from the table.
+- C. Send the data through the processing pipeline, and then store the processed data in a Cloud Storage bucket for reprocessing.
+- D. Store the data in a Cloud Storage bucket. Design the processing pipelines to retrieve the data from the bucket.
+
+***My choice is D.***
+
+Reason: The data needs to be stored as it is retrieved. This would mean that any processing should be done after it is stored.
+
+----
+
+### **Q144.**
+
+You are responsible for the Google Cloud environment in your company. Multiple departments need access to their own projects, and the members within each department will have the same project responsibilities. You want to structure your Google Cloud environment for minimal maintenance and maximum overview of
+IAM permissions as each department's projects start and end. You want to follow Google-recommended practices. What should you do?
+
+- A. Grant all department members the required IAM permissions for their respective projects.
+- B. Create a Google Group per department and add all department members to their respective groups. Create a folder per department and grant the respective group the required IAM permissions at the folder level. Add the projects under the respective folders.
+- C. Create a folder per department and grant the respective members of the department the required IAM permissions at the folder level. Structure all projects for each department under the respective folders.
+- D. Create a Google Group per department and add all department members to their respective groups. Grant each group the required IAM permissions for their respective projects.
+
+***My choice is B.***
+
+Reason: Use groups whenever possible to manage principals. 
 
 ---
 
-### **Q87.**
+### **Q145.**
 
-Your web application uses Google Kubernetes Engine to manage several workloads. One workload requires a consistent set of hostnames even after pod scaling and relaunches.
-Which feature of Kubernetes should you use to accomplish this?
+Your company has an application running as a Deployment in a Google Kubernetes Engine (GKE) cluster. You have separate clusters for development, staging, and production. You have discovered that the team is able to deploy a Docker image to the production cluster without first testing the deployment in development and then staging. You want to allow the team to have autonomy but want to prevent this from happening. You want a Google Cloud solution that can be implemented quickly with minimal effort. What should you do?
 
-- A. StatefulSets
-- B. Role-based access control
-- C. Container environment variables
-- D. Persistent Volumes
+- A. Configure a Kubernetes lifecycle hook to prevent the container from starting if it is not approved for usage in the given environment.
+- B. Implement a corporate policy to prevent teams from deploying Docker images to an environment unless the Docker image was tested in an earlier environment.
+- C. Configure binary authorization policies for the development, staging, and production clusters. Create attestations as part of the continuous integration pipeline.
+- D. Create a Kubernetes admissions controller to prevent the container from starting if it is not approved for usage in the given environment.
 
-***My choice is A.***
+***My choice is C.***
 
-Reason: (https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/)
+Reason: Binary Authorization implements a policy model, where a policy is a set of rules that governs the deployment of container images. Rules in a policy provide specific criteria that an image must satisfy before it can be deployed.
 
 -----
 
-### **Q88.**
+### **Q146.**
 
-You are using Cloud CDN to deliver static HTTP(S) website content hosted on a Compute Engine instance group. You want to improve the cache hit ratio.
-What should you do?
+Your company wants to migrate their 10-TB on-premises database export into Cloud Storage. You want to minimize the time it takes to complete this activity, the overall cost, and database load. The bandwidth between the on-premises environment and Google Cloud is 1 Gbps. You want to follow Google-recommended practices. What should you do?
 
-- A. Customize the cache keys to omit the protocol from the key.
-- B. Shorten the expiration time of the cached objects.
-- C. Make sure the HTTP(S) header ג€Cache-Regionג€ points to the closest region of your users.
-- D. Replicate the static content in a Cloud Storage bucket. Point CloudCDN toward a load balancer on that bucket.
+- A. Develop a Dataflow job to read data directly from the database and write it into Cloud Storage.
+- B. Use the Data Transfer appliance to perform an offline migration.
+- C. Use a commercial partner ETL solution to extract the data from the on-premises database and upload it into Cloud Storage.
+- D. Compress the data and upload it with gsutil -m to enable multi-threaded copy.
 
-***My choice is A.***
+***My choice is D.***
 
-Reason:(https://cloud.google.com/cdn/docs/caching#cache-keys) and (https://cloud.google.com/cdn/docs/best-practices#using_custom_cache_keys_to_improve_cache_hit_ratio).
+Reason:.
 
 ----
 
-### **Q89.**
+### **Q147.**
 
-Your architecture calls for the centralized collection of all admin activity and VM system logs within your project.
-How should you collect these logs from both VMs and services?
+Your company has an enterprise application running on Compute Engine that requires high availability and high performance. The application has been deployed on two instances in two zones in the same region in active-passive mode. The application writes data to a persistent disk. In the case of a single zone outage, that data should be immediately made available to the other instance in the other zone. You want to maximize performance while minimizing downtime and data loss.
+What should you do?
 
-- A. All admin and VM system logs are automatically collected by Stackdriver.
-- B. Stackdriver automatically collects admin activity logs for most services. The Stackdriver Logging agent must be installed on each instance to collect system logs.
-- C. Launch a custom syslogd compute instance and configure your GCP project and VMs to forward all logs to it.
-- D. Install the Stackdriver Logging agent on a single compute instance and let it collect all audit and access logs for your environment.
+- A. 1. Attach a persistent SSD disk to the first instance. 2. Create a snapshot every hour. 3. In case of a zone outage, recreate a persistent SSD disk in the second instance where data is coming from the created snapshot.
+- B. 1. Create a Cloud Storage bucket. 2. Mount the bucket into the first instance with gcs-fuse. 3. In case of a zone outage, mount the Cloud Storage bucket to the second instance with gcs-fuse.
+- C. 1. Attach a regional SSD persistent disk to the first instance. 2. In case of a zone outage, force-attach the disk to the other instance.
+- D. 1. Attach a local SSD to the first instance disk. 2. Execute an rsync command every hour where the target is a persistent SSD disk attached to the second instance. 3. In case of a zone outage, use the second instance.
+
+**My choice is C.**
+
+Reason: NOPE. 
+
+----
+
+### **Q148.**
+
+You are designing a Data Warehouse on Google Cloud and want to store sensitive data in BigQuery. Your company requires you to generate the encryption keys outside of Google Cloud. You need to implement a solution. What should you do?
+
+- A. Generate a new key in Cloud Key Management Service (Cloud KMS). Store all data in Cloud Storage using the customer-managed key option and select the created key. Set up a Dataflow pipeline to decrypt the data and to store it in a new BigQuery dataset.
+- B. Generate a new key in Cloud KMS. Create a dataset in BigQuery using the customer-managed key option and select the created key.
+- C. Import a key in Cloud KMS. Store all data in Cloud Storage using the customer-managed key option and select the created key. Set up a Dataflow pipeline to decrypt the data and to store it in a new BigQuery dataset.
+- D. Import a key in Cloud KMS. Create a dataset in BigQuery using the customer-supplied key option and select the created key.
+
+**My choice is D.**
+
+Reason: https://cloud.google.com/bigquery/docs/customer-managed-encryption.
+
+----
+
+### **Q149.**
+
+Your organization has stored sensitive data in a Cloud Storage bucket. For regulatory reasons, your company must be able to rotate the encryption key used to encrypt the data in the bucket. The data will be processed in Dataproc. You want to follow Google-recommended practices for security. What should you do?
+
+- A. Create a key with Cloud Key Management Service (KMS). Encrypt the data using the encrypt method of Cloud KMS.
+- B. Create a key with Cloud Key Management Service (KMS). Set the encryption key on the bucket to the Cloud KMS key.
+- C. Generate a GPG key pair. Encrypt the data using the GPG key. Upload the encrypted data to the bucket.
+- D. Generate an AES-256 encryption key. Encrypt the data in the bucket using the customer-supplied encryption keys feature.
 
 **My choice is B.**
 
-Reason: Admin and event logs are configured by default. VM System logs require a logging agent to be configured. 
-
-----
-
-### **Q90.**
-
-You have an App Engine application that needs to be updated. You want to test the update with production traffic before replacing the current application version.
-What should you do?
-
-- A. Deploy the update using the Instance Group Updater to create a partial rollout, which allows for canary testing.
-- B. Deploy the update as a new version in the App Engine application, and split traffic between the new and current versions.
-- C. Deploy the update in a new VPC, and use Google's global HTTP load balancing to split traffic between the update and current applications.
-- D. Deploy the update as a new App Engine application, and use Google's global HTTP load balancing to split traffic between the new and current applications.
-
-**My choice is B.**
-
-Reason: Versioning is supported in App Engine.
-
-----
-
-### **Q91.**
-
-All Compute Engine instances in your VPC should be able to connect to an Active Directory server on specific ports. Any other traffic emerging from your instances is not allowed. You want to enforce this using VPC firewall rules.
-How should you configure the firewall rules?
-
-- A. Create an egress rule with priority 1000 to deny all traffic for all instances. Create another egress rule with priority 100 to allow the Active Directory traffic for all instances.
-- B. Create an egress rule with priority 100 to deny all traffic for all instances. Create another egress rule with priority 1000 to allow the Active Directory traffic for all instances.
-- C. Create an egress rule with priority 1000 to allow the Active Directory traffic. Rely on the implied deny egress rule with priority 100 to block all traffic for all instances.
-- D. Create an egress rule with priority 100 to allow the Active Directory traffic. Rely on the implied deny egress rule with priority 1000 to block all traffic for all instances.
-
-**My choice is A.**
-
-Reason: NO REASON.
+Reason: https://cloud.google.com/storage/docs/encryption/using-customer-managed-keys#add-object-key.
 
 ---
 
