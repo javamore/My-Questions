@@ -477,90 +477,68 @@ Cloud (VPC) network fully connected to the company's on-premises environment thr
 
 **My choice is D.**
 
-Reason: refer to https://cloud.google.com/vpc/docs/serverless-vpc-access#use_cases.
+Reason: refer to https://cloud.google.com/vpc/docs/serverless-vpc-access#use_cases. Use case example: Your serverless environment needs to access data from your on-premises database through Cloud VPN.
 
 ---
 
-### **Q94.**
+### **Q152.**
 
-You need to design a solution for global load balancing based on the URL path being requested. You need to ensure operations reliability and end-to-end in- transit encryption based on Google best practices.
-What should you do?
+Your company is planning to upload several important files to Cloud Storage. After the upload is completed, they want to verify that the uploaded content is identical to what they have on-premises. You want to minimize the cost and effort of performing this check. What should you do?
 
-- A. Create a cross-region load balancer with URL Maps.
-- B. Create an HTTPS load balancer with URL Maps.
-- C. Create appropriate instance groups and instances. Configure SSL proxy load balancing.
-- D. Create a global forwarding rule. Configure SSL proxy load balancing.
+- A. 1. Use Linux shasum to compute a digest of files you want to upload. 2. Use gsutil -m to upload all the files to Cloud Storage. 3. Use gsutil cp to download the uploaded files. 4. Use Linux shasum to compute a digest of the downloaded files. 5. Compare the hashes.
+- B. 1. Use gsutil -m to upload the files to Cloud Storage. 2. Develop a custom Java application that computes CRC32C hashes. 3. Use gsutil ls -L gs://[YOUR_BUCKET_NAME] to collect CRC32C hashes of the uploaded files. 4. Compare the hashes.
+- C. 1. Use gsutil -m to upload all the files to Cloud Storage. 2. Use gsutil cp to download the uploaded files. 3. Use Linux diff to compare the content of the files.
+- D. 1. Use gsutil -m to upload the files to Cloud Storage. 2. Use gsutil hash -c FILE_NAME to generate CRC32C hashes of all on-premises files. 3. Use gsutil ls -L gs://[YOUR_BUCKET_NAME] to collect CRC32C hashes of the uploaded files. 4. Compare the hashes.
 
-**My choice is B .**
+**My choice is D .**
 
-Reason: UrlMaps are used to route requests to a backend service based on rules that you define for the host and path of an incoming URL and see this:https://cloud.google.com/load-balancing/docs/https/url-map.
+Reason: https://cloud.google.com/storage/docs/gsutil/commands/hash.
 
 ---
 
-### **Q95.**
+### **Q153.**
 
-You have an application that makes HTTP requests to Cloud Storage. Occasionally the requests fail with HTTP status codes of 5xx and 429.
+You have deployed an application on Anthos clusters (formerly Anthos GKE). According to the SRE practices at your company, you need to be alerted if request latency is above a certain threshold for a specified amount of time. What should you do?
 
-How should you handle these types of errors?
+- A. Install Anthos Service Mesh on your cluster. Use the Google Cloud Console to define a Service Level Objective (SLO), and create an alerting policy based on this SLO.
+- B. Enable the Cloud Trace API on your project, and use Cloud Monitoring Alerts to send an alert based on the Cloud Trace metrics.
+- C. Use Cloud Profiler to follow up the request latency. Create a custom metric in Cloud Monitoring based on the results of Cloud Profiler, and create an Alerting policy in case this metric exceeds the threshold.
+- D. Configure Anthos Config Management on your cluster, and create a yaml file that defines the SLO and alerting policy you want to deploy in your cluster.
 
-- A. Use gRPC instead of HTTP for better performance.
-- B. Implement retry logic using a truncated exponential backoff strategy.
-- C. Make sure the Cloud Storage bucket is multi-regional for geo-redundancy.
-- D. Monitor https://status.cloud.google.com/feed.atom and only make requests if Cloud Storage is not reporting an incident.
+**My choice is A.**
 
-**My choice is B.**
-
-Reason: You should use exponential backoff to retry your requests when receiving errors with 5xx or 429(too many requests) response codes from Cloud Storage. 
-
-Exponential backoff algorithm 
-
-For requests that meet both the response and idempotency criteria, you should generally use truncated exponential backoff. 
-
-Truncated exponential backoff is a standard error handling strategy for network applications in which a client periodically retries a failed request with increasing delays between requests. 
-
-An exponential backoff algorithm retries requests exponentially, increasing the waiting time between retries up to a maximum backoff time. See the following workflow example to learn how exponential backoff works: 
-
-You make a request to Cloud Storage. 
-
-If the request fails, wait 1 + random_number_milliseconds seconds and retry the request. 
-
-If the request fails, wait 2 + random_number_milliseconds seconds and retry the request. 
-
-If the request fails, wait 4 + random_number_milliseconds seconds and retry the request. 
-
-And so on, up to a maximum_backoff time. Continue waiting and retrying up to a maximum amount of time (deadline), but do not increase the maximum_backoff wait period between retries. https://cloud.google.com/storage/docs/request-rate
+Reason: https://cloud.google.com/service-mesh/docs/observability/slo-overview.
 
 ----
 
-### **Q96.**
+### **Q154.**
 
-You need to develop procedures to test a disaster plan for a mission-critical application. You want to use Google-recommended practices and native capabilities within GCP.
+Your company has a stateless web API that performs scientific calculations. The web API runs on a single Google Kubernetes Engine (GKE) cluster. The cluster is currently deployed in us-central1. Your company has expanded to offer your API to customers in Asia. You want to reduce the latency for users in Asia.
 What should you do?
 
-- A. Use Deployment Manager to automate service provisioning. Use Activity Logs to monitor and debug your tests.
-- B. Use Deployment Manager to automate service provisioning. Use Stackdriver to monitor and debug your tests.
-- C. Use gcloud scripts to automate service provisioning. Use Activity Logs to monitor and debug your tests.
-- D. Use gcloud scripts to automate service provisioning. Use Stackdriver to monitor and debug your tests.
+- A. Create a second GKE cluster in asia-southeast1, and expose both APIs using a Service of type LoadBalancer. Add the public IPs to the Cloud DNS zone.
+- B. Use a global HTTP(s) load balancer with Cloud CDN enabled.
+- C. Create a second GKE cluster in asia-southeast1, and use kubemci to create a global HTTP(s) load balancer.
+- D. Increase the memory and CPU allocated to the application in the cluster.
 
-**My choice is B**
+**My choice is C.**
 
-Reason: no reason.
+Reason: https://cloud.google.com/blog/products/gcp/how-to-deploy-geographically-distributed-services-on-kubernetes-engine-with-kubemci.
 
 ----
 
-### **Q97.**
+### **Q155.**
 
-Your company creates rendering software which users can download from the company website. Your company has customers all over the world. You want to minimize latency for all your customers. You want to follow Google-recommended practices.
-How should you store the files?
+You are migrating third-party applications from optimized on-premises virtual machines to Google Cloud. You are unsure about the optimum CPU and memory options. The applications have a consistent usage pattern across multiple weeks. You want to optimize resource usage for the lowest cost. What should you do?
 
-- A. Save the files in a Multi-Regional Cloud Storage bucket.
-- B. Save the files in a Regional Cloud Storage bucket, one bucket per zone of the region.
-- C. Save the files in multiple Regional Cloud Storage buckets, one bucket per zone per region.
-- D. Save the files in multiple Multi-Regional Cloud Storage buckets, one bucket per multi-region.
+- A. Create an instance template with the smallest available machine type, and use an image of the third-party application taken from a current on-premises virtual machine. Create a managed instance group that uses average CPU utilization to autoscale the number of instances in the group. Modify the average CPU utilization threshold to optimize the number of instances running.
+- B. Create an App Engine flexible environment, and deploy the third-party application using a Dockerfile and a custom runtime. Set CPU and memory options similar to your application's current on-premises virtual machine in the app.yaml file.
+- C. Create multiple Compute Engine instances with varying CPU and memory options. Install the Cloud Monitoring agent, and deploy the third-party application on each of them. Run a load test with high traffic levels on the application, and use the results to determine the optimal settings.
+- D. Create a Compute Engine instance with CPU and memory options similar to your application's current on-premises virtual machine. Install the Cloud Monitoring agent, and deploy the third-party application. Run a load test with normal traffic levels on the application, and follow the Rightsizing Recommendations in the Cloud Console.
 
-**My choice is D**
+**My choice is D. **
 
-Reason: If your company has customers all over the world you will need your rendering software to be located in all multi-region designations. There are three multi-regions: Asia, EU and US. 
+Reason: https://cloud.google.com/migrate/compute-engine/docs/4.9/concepts/planning-a-migration/cloud-instance-rightsizing?hl=en.
 
 ----
 
