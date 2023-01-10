@@ -445,36 +445,39 @@ Reason: https://cloud.google.com/storage/docs/encryption/using-customer-managed-
 
 ---
 
-### **Q92.**
+### **Q150.**
 
-Your customer runs a web service used by e-commerce sites to offer product recommendations to users. The company has begun experimenting with a machine learning model on Google Cloud Platform to improve the quality of results.
-What should the customer do to improve their model's results over time?
+Your team needs to create a Google Kubernetes Engine (GKE) cluster to host a newly built application that requires access to third-party services on the internet.
+Your company does not allow any Compute Engine instance to have a public IP address on Google Cloud. You need to create a deployment strategy that adheres to these guidelines. What should you do?
 
-- A. Export Cloud Machine Learning Engine performance metrics from Stackdriver to BigQuery, to be used to analyze the efficiency of the model.
-- B. Build a roadmap to move the machine learning model training from Cloud GPUs to Cloud TPUs, which offer better results.
-- C. Monitor Compute Engine announcements for availability of newer CPU architectures, and deploy the model to them as soon as they are available for additional performance.
-- D. Save a history of recommendations and results of the recommendations in BigQuery, to be used as training data.
-
-**My choice is D.**
-
-Reason: training data will improve quality of results.
-
-----
-
-### **Q93.**
-
-A development team at your company has created a dockerized HTTPS web application. You need to deploy the application on Google Kubernetes Engine (GKE) and make sure that the application scales automatically.
-
-How should you deploy to GKE?
-
-A. Use the Horizontal Pod Autoscaler and enable cluster autoscaling. Use an Ingress resource to load-balance the HTTPS traffic.
-B. Use the Horizontal Pod Autoscaler and enable cluster autoscaling on the Kubernetes cluster. Use a Service resource of type LoadBalancer to load-balance the HTTPS traffic.
-C. Enable autoscaling on the Compute Engine instance group. Use an Ingress resource to load-balance the HTTPS traffic.
-D. Enable autoscaling on the Compute Engine instance group. Use a Service resource of type LoadBalancer to load-balance the HTTPS traffic.
+- A. Configure the GKE cluster as a private cluster, and configure Cloud NAT Gateway for the cluster subnet.
+- B. Configure the GKE cluster as a private cluster. Configure Private Google Access on the Virtual Private Cloud (VPC).
+- C. Configure the GKE cluster as a route-based cluster. Configure Private Google Access on the Virtual Private Cloud (VPC).
+- D. Create a Compute Engine instance, and install a NAT Proxy on the instance. Configure all workloads on GKE to pass through this proxy to access third-party services on the Internet.
 
 **My choice is A.**
 
-Reason: Ingress is a Kubernetes resource that encapsulates a collection of rules and configurations for routing external HTTP(S) traffic to internal services. On GKE, Ingress is implemented using Cloud Load Balancing. When you create an Ingress in your cluster, GKE creates an HTTP(S) load balancer and configures it to route traffic to your application."
+Reason: since it mentioned "access to third-party services on the internet", so B, C are incorrect. 
+
+Granting private nodes outbound internet access. To provide outbound internet access for your private nodes, such as to pull images from an external registry, use Cloud NAT to create and configure a Cloud Router. Cloud NAT lets private clusters establish outbound connections over the internet to send and receive packets. The Cloud Router allows all your nodes in the region to use Cloud NAT for all primary and alias IP ranges. It also automatically allocates the external IP addresses for the NAT gateway. 
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#private-nodes-outbound
+
+----
+
+### **Q151.**
+
+Your company has a support ticketing solution that uses App Engine Standard. The project that contains the App Engine application already has a Virtual Private
+Cloud (VPC) network fully connected to the company's on-premises environment through a Cloud VPN tunnel. You want to enable the App Engine application to communicate with a database that is running in the company's on-premises environment. What should you do?
+
+- A. Configure private Google access for on-premises hosts only.
+- B. Configure private Google access.
+- C. Configure private services access.
+- D. Configure serverless VPC access.
+
+**My choice is D.**
+
+Reason: refer to https://cloud.google.com/vpc/docs/serverless-vpc-access#use_cases.
 
 ---
 
