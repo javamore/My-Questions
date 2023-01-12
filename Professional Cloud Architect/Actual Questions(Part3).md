@@ -616,276 +616,302 @@ Which process should you implement?
 - C. ג€¢ Compress individual files ג€¢ Name files with serverName ג€" EventSequence ג€¢ Save files to one bucket ג€¢ Set custom metadata headers for each object after saving
 - D. ג€¢ Append metadata to file body ג€¢ Compress individual files ג€¢ Name files with a random prefix pattern ג€¢ Save files to one bucket
 
-**My choice is B .**
-
-reason: "Pub/Sub doesn't provide guarantees about the order of message delivery. Strict message ordering can be achieved with buffering, often using Dataflow." https://cloud.google.com/solutions/data-lifecycle-cloud-platform. 
-
----
-
-### Q103.
-
-Your company is planning to perform a lift and shift migration of their Linux RHEL 6.5+ virtual machines. The virtual machines are running in an on-premises
-VMware environment. You want to migrate them to Compute Engine following Google-recommended practices. What should you do?
-
-- A. 1. Define a migration plan based on the list of the applications and their dependencies. 2. Migrate all virtual machines into Compute Engine individually with Migrate for Compute Engine.
-- B. 1. Perform an assessment of virtual machines running in the current VMware environment. 2. Create images of all disks. Import disks on Compute Engine. 3. Create standard virtual machines where the boot disks are the ones you have imported.
-- C. 1. Perform an assessment of virtual machines running in the current VMware environment. 2. Define a migration plan, prepare a Migrate for Compute Engine migration RunBook, and execute the migration.
-- D. 1. Perform an assessment of virtual machines running in the current VMware environment. 2. Install a third-party agent on all selected virtual machines. 3. Migrate all virtual machines into Compute Engine.
-
-**My choice is C .**
-
-reason: NOPE.
-
----
-
-### Q104.
-
-You need to deploy an application to Google Cloud. The application receives traffic via TCP and reads and writes data to the filesystem. The application does not support horizontal scaling. The application process requires full control over the data on the file system because concurrent access causes corruption. The business is willing to accept a downtime when an incident occurs, but the application must be available 24/7 to support their business operations. You need to design the architecture of this application on Google Cloud. What should you do?
-
-- A. Use a managed instance group with instances in multiple zones, use Cloud Filestore, and use an HTTP load balancer in front of the instances.
-- B. Use a managed instance group with instances in multiple zones, use Cloud Filestore, and use a network load balancer in front of the instances.
-- C. Use an unmanaged instance group with an active and standby instance in different zones, use a regional persistent disk, and use an HTTP load balancer in front of the instances.
-- D. Use an unmanaged instance group with an active and standby instance in different zones, use a regional persistent disk, and use a network load balancer in front of the instances.
-
 **My choice is D .**
 
-reason: The application receives traffic via TCP.
-
-----
-
-### Q105.
-
-Your company has an application running on multiple Compute Engine instances. You need to ensure that the application can communicate with an on-premises service that requires high throughput via internal IPs, while minimizing latency. What should you do?
-
-- A. Use OpenVPN to configure a VPN tunnel between the on-premises environment and Google Cloud.
-- B. Configure a direct peering connection between the on-premises environment and Google Cloud.
-- C. Use Cloud VPN to configure a VPN tunnel between the on-premises environment and Google Cloud.
-- D. Configure a Cloud Dedicated Interconnect connection between the on-premises environment and Google Cloud.
-
-**My choice is D .**
-
-reason: high throughput.
+reason: https://cloud.google.com/storage/docs/request-rate#naming-convention.
 
 ---
 
-### Q106.
+### Q161.
 
-You are managing an application deployed on Cloud Run for Anthos, and you need to define a strategy for deploying new versions of the application. You want to evaluate the new code with a subset of production traffic to decide whether to proceed with the rollout. What should you do?
+A recent audit revealed that a new network was created in your GCP project. In this network, a GCE instance has an SSH port open to the world. You want to discover this network's origin.
+What should you do?
 
-- A. Deploy a new revision to Cloud Run with the new version. Configure traffic percentage between revisions.
-- B. Deploy a new service to Cloud Run with the new version. Add a Cloud Load Balancing instance in front of both services.
-- C. In the Google Cloud Console page for Cloud Run, set up continuous deployment using Cloud Build for the development branch. As part of the Cloud Build trigger, configure the substitution variable TRAFFIC_PERCENTAGE with the percentage of traffic you want directed to a new version.
-- D. In the Google Cloud Console, configure Traffic Director with a new Service that points to the new version of the application on Cloud Run. Configure Traffic Director to send a small percentage of traffic to the new version of the application.
-
-**My choice is A .**
-
-reason: nope.
-
-----
-
-### Q107.
-
-You are monitoring Google Kubernetes Engine (GKE) clusters in a Cloud Monitoring workspace. As a Site Reliability Engineer (SRE), you need to triage incidents quickly. What should you do?
-
-- A. Navigate the predefined dashboards in the Cloud Monitoring workspace, and then add metrics and create alert policies.
-- B. Navigate the predefined dashboards in the Cloud Monitoring workspace, create custom metrics, and install alerting software on a Compute Engine instance.
-- C. Write a shell script that gathers metrics from GKE nodes, publish these metrics to a Pub/Sub topic, export the data to BigQuery, and make a Data Studio dashboard.
-- D. Create a custom dashboard in the Cloud Monitoring workspace for each incident, and then add metrics and create alert policies.
-
-**My choice is  A.**
-
-reason: D is not good.
-
----
-
-### Q108.
-
-You are implementing a single Cloud SQL MySQL second-generation database that contains business-critical transaction data. You want to ensure that the minimum amount of data is lost in case of catastrophic failure. Which two features should you implement? (Choose two.)
-
-- A. Sharding
-- B. Read replicas
-- C. Binary logging
-- D. Automated backups
-- E. Semisynchronous replication
-
-**My choice is  C,D.**
-
-reason: Binary logging is a feature of MySQL that records all changes made to the database in a binary log file. By enabling binary logging on your Cloud SQL instance, you can use the log file to recover your database in case of catastrophic failure. 
-
-Automated backups are a feature of Cloud SQL that allows you to automatically create and retain backups of your database. By enabling automated backups, you can restore your database in case of catastrophic failure or other data loss events. 
-
----
-
-### Q109.
-
-You are working at a sports association whose members range in age from 8 to 30. The association collects a large amount of health data, such as sustained injuries. You are storing this data in BigQuery. Current legislation requires you to delete such information upon request of the subject. You want to design a solution that can accommodate such a request. What should you do?
-
-- A. Use a unique identifier for each individual. Upon a deletion request, delete all rows from BigQuery with this identifier.
-- B. When ingesting new data in BigQuery, run the data through the Data Loss Prevention (DLP) API to identify any personal information. As part of the DLP scan, save the result to Data Catalog. Upon a deletion request, query Data Catalog to find the column with personal information.
-- C. Create a BigQuery view over the table that contains all data. Upon a deletion request, exclude the rows that affect the subject's data from this view. Use this view instead of the source table for all analysis tasks.
-- D. Use a unique identifier for each individual. Upon a deletion request, overwrite the column with the unique identifier with a salted SHA256 of its value.
-
-**My choice is  A.**
-
-reason: Primary task is "legislation requires you to delete" .. and B is not deleting. only A is deleting.
-
----
-
-### Q110.
-
-Your company has announced that they will be outsourcing operations functions. You want to allow developers to easily stage new versions of a cloud-based application in the production environment and allow the outsourced operations team to autonomously promote staged versions to production. You want to minimize the operational overhead of the solution. Which Google Cloud product should you migrate to?
-
-- A. App Engine
-- B. GKE On-Prem
-- C. Compute Engine
-- D. Google Kubernetes Engine
-
-**My choice is  A.**
-
-reason: Answer should be A as only with App Engine we have a default service account which allows the user to deploy the changes per project. for GKE we may have to configure additional permission for both DEV and Operations team to deploy the changes.
-
----
-
-### Q111.
-
-Your company is running its application workloads on Compute Engine. The applications have been deployed in production, acceptance, and development environments. The production environment is business-critical and is used 24/7, while the acceptance and development environments are only critical during office hours. Your CFO has asked you to optimize these environments to achieve cost savings during idle times. What should you do?
-
-- A. Create a shell script that uses the gcloud command to change the machine type of the development and acceptance instances to a smaller machine type outside of office hours. Schedule the shell script on one of the production instances to automate the task.
-- B. Use Cloud Scheduler to trigger a Cloud Function that will stop the development and acceptance environments after office hours and start them just before office hours.
-- C. Deploy the development and acceptance applications on a managed instance group and enable autoscaling.
-- D. Use regular Compute Engine instances for the production environment, and use preemptible VMs for the acceptance and development environments.
-
-**My choice is  B.**
-
-reason: nope.
-
----
-
-### **Q112.**
-
-You are moving an application that uses MySQL from on-premises to Google Cloud. The application will run on Compute Engine and will use Cloud SQL. You want to cut over to the Compute Engine deployment of the application with minimal downtime and no data loss to your customers. You want to migrate the application with minimal modification. You also need to determine the cutover strategy. What should you do?
-
-- A. 1. Set up Cloud VPN to provide private network connectivity between the Compute Engine application and the on-premises MySQL server. 2. Stop the on-premises application. 3. Create a mysqldump of the on-premises MySQL server. 4. Upload the dump to a Cloud Storage bucket. 5. Import the dump into Cloud SQL. 6. Modify the source code of the application to write queries to both databases and read from its local database. 7. Start the Compute Engine application. 8. Stop the on-premises application.
-- B. 1. Set up Cloud SQL proxy and MySQL proxy. 2. Create a mysqldump of the on-premises MySQL server. 3. Upload the dump to a Cloud Storage bucket. 4. Import the dump into Cloud SQL. 5. Stop the on-premises application. 6. Start the Compute Engine application.
-- C. 1. Set up Cloud VPN to provide private network connectivity between the Compute Engine application and the on-premises MySQL server. 2. Stop the on-premises application. 3. Start the Compute Engine application, configured to read and write to the on-premises MySQL server. 4. Create the replication configuration in Cloud SQL. 5. Configure the source database server to accept connections from the Cloud SQL replica. 6. Finalize the Cloud SQL replica configuration. 7. When replication has been completed, stop the Compute Engine application. 8. Promote the Cloud SQL replica to a standalone instance. 9. Restart the Compute Engine application, configured to read and write to the Cloud SQL standalone instance.
-- D. 1. Stop the on-premises application. 2. Create a mysqldump of the on-premises MySQL server. 3. Upload the dump to a Cloud Storage bucket. 4. Import the dump into Cloud SQL. 5. Start the application on Compute Engine.
+- A. Search for Create VM entry in the Stackdriver alerting console
+- B. Navigate to the Activity page in the Home section. Set category to Data Access and search for Create VM entry
+- C. In the Logging section of the console, specify GCE Network as the logging section. Search for the Create Insert entry
+- D. Connect to the GCE instance using project SSH keys. Identify previous logins in system logs, and match these with the project owners list
 
 **My choice is  C.**
 
+reason: When you search for Create Insert, it displays a JSON code string that contains the creators e-mail.
+
+---
+
+### Q162.
+
+You want to make a copy of a production Linux virtual machine in the US-Central region. You want to manage and replace the copy easily if there are changes on the production virtual machine. You will deploy the copy as a new instance in a different project in the US-East region.
+What steps must you take?
+
+- A. Use the Linux dd and netcat commands to copy and stream the root disk contents to a new virtual machine instance in the US-East region.
+- B. Create a snapshot of the root disk and select the snapshot as the root disk when you create a new virtual machine instance in the US-East region.
+- C. Create an image file from the root disk with Linux dd command, create a new virtual machine instance in the US-East region
+- D. Create a snapshot of the root disk, create an image file in Google Cloud Storage from the snapshot, and create a new virtual machine instance in the US-East region using the image file the root disk.
+
+**My choice is B.**
+
+reason: no need D.
+
 ----
 
-### **Q113.**
+### Q163.
 
-Your organization has decided to restrict the use of external IP addresses on instances to only approved instances. You want to enforce this requirement across all of your Virtual Private Clouds (VPCs). What should you do?
+Your company runs several databases on a single MySQL instance. They need to take backups of a specific database at regular intervals. The backup activity needs to complete as quickly as possible and cannot be allowed to impact disk performance.
+How should you configure the storage?
 
-- A. Remove the default route on all VPCs. Move all approved instances into a new subnet that has a default route to an internet gateway.
-- B. Create a new VPC in custom mode. Create a new subnet for the approved instances, and set a default route to the internet gateway on this new subnet.
-- C. Implement a Cloud NAT solution to remove the need for external IP addresses entirely.
-- D. Set an Organization Policy with a constraint on constraints/compute.vmExternalIpAccess. List the approved instances in the allowedValues list.
+- A. Configure a cron job to use the gcloud tool to take regular backups using persistent disk snapshots.
+- B. Mount a Local SSD volume as the backup location. After the backup is complete, use gsutil to move the backup to Google Cloud Storage.
+- C. Use gcsfise to mount a Google Cloud Storage bucket as a volume directly on the instance and write backups to the mounted location using mysqldump.
+- D. Mount additional persistent disk volumes onto each virtual machine (VM) instance in a RAID10 array and use LVM to create snapshots to send to Cloud Storage
 
-**My choice is  D.**
+**My choice is B .**
+
+reason: Mounting a Local SSD volume as the backup location will allow the backups to be taken quickly and efficiently, as Local SSDs have very high I/O performance and low latencies. Additionally, using gsutil to move the backups to Google Cloud Storage after they have been taken will provide a secure and durable storage location for the backups.
+
+---
+
+### Q164.
+
+You are helping the QA team to roll out a new load-testing tool to test the scalability of your primary cloud services that run on Google Compute Engine with Cloud
+Bigtable.
+Which three requirements should they include? (Choose three.)
+
+- A. Ensure that the load tests validate the performance of Cloud Bigtable
+- B. Create a separate Google Cloud project to use for the load-testing environment
+- C. Schedule the load-testing tool to regularly run against the production environment
+- D. Ensure all third-party systems your services use is capable of handling high load
+- E. Instrument the production services to record every transaction for replay by the load-testing tool
+- F. Instrument the load-testing tool and the target services with detailed logging and metrics collection
+
+**My choice is ABF.**
+
+reason: nope.
 
 ----
 
-### Q114.
+### Q165.
 
-Your company uses the Firewall Insights feature in the Google Network Intelligence Center. You have several firewall rules applied to Compute Engine instances.
-You need to evaluate the efficiency of the applied firewall ruleset. When you bring up the Firewall Insights page in the Google Cloud Console, you notice that there are no log rows to display. What should you do to troubleshoot the issue?
+Your customer is moving their corporate applications to Google Cloud Platform. The security team wants detailed visibility of all projects in the organization. You provision the Google Cloud Resource Manager and set up yourself as the org admin.
+What Google Cloud Identity and Access Management (Cloud IAM) roles should you give to the security team?
 
-- A. Enable Virtual Private Cloud (VPC) flow logging.
-- B. Enable Firewall Rules Logging for the firewall rules you want to monitor.
-- C. Verify that your user account is assigned the compute.networkAdmin Identity and Access Management (IAM) role.
-- D. Install the Google Cloud SDK, and verify that there are no Firewall logs in the command line output.
+- A. Org viewer, project owner
+- B. Org viewer, project viewer
+- C. Org admin, project browser
+- D. Project owner, network admin
 
 **My choice is  B.**
 
+reason: B is good.
+
+---
+
+### Q166.
+
+Your company places a high value on being responsive and meeting customer needs quickly. Their primary business objectives are release speed and agility. You want to reduce the chance of security errors being accidentally introduced.
+Which two actions can you take? (Choose two.)
+
+- A. Ensure every code check-in is peer reviewed by a security SME
+- B. Use source code security analyzers as part of the CI/CD pipeline
+- C. Ensure you have stubs to unit test all interfaces between components
+- D. Enable code signing and a trusted binary repository integrated with your CI/CD pipeline
+- E. Run a vulnerability security scanner as part of your continuous-integration /continuous-delivery (CI/CD) pipeline
+
+**My choice is  BE.**
+
+reason: 
+
+---
+
+### Q167.
+
+You want to enable your running Google Kubernetes Engine cluster to scale as demand for your application changes.
+What should you do?
+
+- A. Add additional nodes to your Kubernetes Engine cluster using the following command: gcloud container clusters resize CLUSTER_Name ג€" -size 10
+- B. Add a tag to the instances in the cluster with the following command: gcloud compute instances add-tags INSTANCE - -tags enable- autoscaling max-nodes-10
+- C. Update the existing Kubernetes Engine cluster with the following command: gcloud alpha container clusters update mycluster - -enable- autoscaling - -min-nodes=1 - -max-nodes=10
+- D. Create a new Kubernetes Engine cluster with the following command: gcloud alpha container clusters create mycluster - -enable- autoscaling - -min-nodes=1 - -max-nodes=10 and redeploy your application
+
+**My choice is  C.**
+
+reason: .
+
+---
+
+### Q168.
+
+Your marketing department wants to send out a promotional email campaign. The development team wants to minimize direct operation management. They project a wide range of possible customer responses, from 100 to 500,000 click-through per day. The link leads to a simple website that explains the promotion and collects user information and preferences.
+Which infrastructure should you recommend? (Choose two.)
+
+- A. Use Google App Engine to serve the website and Google Cloud Datastore to store user data.
+- B. Use a Google Container Engine cluster to serve the website and store data to persistent disk.
+- C. Use a managed instance group to serve the website and Google Cloud Bigtable to store user data.
+- D. Use a single Compute Engine virtual machine (VM) to host a web server, backend by Google Cloud SQL.
+
+**My choice is  AC.**
+
+reason: 
+
+A: Google App Engine is a fully managed platform for building and running web applications and APIs. It can automatically scale to meet high traffic demands, making it a good choice for serving the website for the promotional email campaign. Google Cloud Datastore can also scale automatically to meet high traffic demands, making it a good choice for storing user data.
+
+C: A managed instance group are managed as a single entity and can automatically scale up or down based on demand. This makes it a good choice for serving the website for the promotional email campaign. Google Cloud Bigtable is a fully managed, high-performance NoSQL database that can store and serve large amounts of structured data with low latency. It is designed to scale horizontally and can handle high traffic demands, making it a good choice for storing user data.
+
+---
+
+### Q169.
+
+Your company just finished a rapid lift and shift to Google Compute Engine for your compute needs. You have another 9 months to design and deploy a more cloud-native solution. Specifically, you want a system that is no-ops and auto-scaling.
+Which two compute products should you choose? (Choose two.)
+
+- A. Compute Engine with containers
+- B. Google Kubernetes Engine with containers
+- C. Google App Engine Standard Environment
+- D. Compute Engine with custom instance types
+- E. Compute Engine with managed instance groups
+
+**My choice is  BC.**
+
+reason: 
+
+App Engine standard = container based (can even go to zero) App Engine flexible = VM based (minimum 1) No ops: container > VM. 
+
+E needs lots of Ops to build image, instance template and instance group, ... maintain your image always
+
+---
+
+### **Q170.**
+
+One of your primary business objectives is being able to trust the data stored in your application. You want to log all changes to the application data.
+How can you design your logging system to verify authenticity of your logs?
+
+- A. Write the log concurrently in the cloud and on premises
+- B. Use a SQL database and limit who can modify the log table
+- C. Digitally sign each timestamp and log entry and store the signature
+- D. Create a JSON dump of each log entry and store it in Google Cloud Storage
+
+**My choice is C.**
+
+reason: Digitally signing a log entry involves creating a cryptographic hash of the log entry and a timestamp, and then encrypting the hash using a private key. The encrypted hash, known as the signature, can be stored along with the log entry in a secure manner. To verify the authenticity of the log entry, you can use the public key associated with the private key used to create the signature to decrypt the signature and recreate the hash. If the recreated hash matches the original hash, it indicates that the log entry has not been tampered with and is authentic.
+
 ----
 
-### Q115.
+### **Q171.**
 
-Your company has sensitive data in Cloud Storage buckets. Data analysts have Identity Access Management (IAM) permissions to read the buckets. You want to prevent data analysts from retrieving the data in the buckets from outside the office network. What should you do?
+Your company has a Google Workspace account and Google Cloud Organization. Some developers in the company have created Google Cloud projects outside of the Google Cloud Organization.
+You want to create an Organization structure that allows developers to create projects, but prevents them from modifying production projects. You want to manage policies for all projects centrally and be able to set more restrictive policies for production projects.
+You want to minimize disruption to users and developers when business needs change in the future. You want to follow Google-recommended practices. Now should you design the Organization structure?
 
-- A. 1. Create a VPC Service Controls perimeter that includes the projects with the buckets. 2. Create an access level with the CIDR of the office network.
-- B. 1. Create a firewall rule for all instances in the Virtual Private Cloud (VPC) network for source range. 2. Use the Classless Inter-domain Routing (CIDR) of the office network.
-- C. 1. Create a Cloud Function to remove IAM permissions from the buckets, and another Cloud Function to add IAM permissions to the buckets. 2. Schedule the Cloud Functions with Cloud Scheduler to add permissions at the start of business and remove permissions at the end of business.
-- D. 1. Create a Cloud VPN to the office network. 2. Configure Private Google Access for on-premises hosts.
+- A. 1. Create a second Google Workspace account and Organization. 2. Grant all developers the Project Creator IAM role on the new Organization. 3. Move the developer projects into the new Organization. 4. Set the policies for all projects on both Organizations. 5. Additionally, set the production policies on the original Organization.
+- B. 1. Create a folder under the Organization resource named ג€Production.ג€ 2. Grant all developers the Project Creator IAM role on the new Organization. 3. Move the developer projects into the new Organization. 4. Set the policies for all projects on the Organization. 5. Additionally, set the production policies on the ג€Productionג€ folder.
+- C. 1. Create folders under the Organization resource named ג€Developmentג€ and ג€Production.ג€ 2. Grant all developers the Project Creator IAM role on the ג€Developmentג€ folder. 3. Move the developer projects into the ג€Developmentג€ folder. 4. Set the policies for all projects on the Organization. 5. Additionally, set the production policies on the ג€Productionג€ folder.
+- D. 1. Designate the Organization for production projects only. 2. Ensure that developers do not have the Project Creator IAM role on the Organization. 3. Create development projects outside of the Organization using the developer Google Workspace accounts. 4. Set the policies for all projects on the Organization. 5. Additionally, set the production policies on the individual production projects.
+
+**My choice is  C.**
+
+reason: managing multiple organizations is not a Google best practice
+
+----
+
+### Q172.
+
+Your company has an application running on Compute Engine that allows users to play their favorite music. There are a fixed number of instances. Files are stored in Cloud Storage, and data is streamed directly to users. Users are reporting that they sometimes need to attempt to play popular songs multiple times before they are successful. You need to improve the performance of the application. What should you do?
+
+- A. 1. Mount the Cloud Storage bucket using gcsfuse on all backend Compute Engine instances. 2. Serve music files directly from the backend Compute Engine instance.
+- B. 1. Create a Cloud Filestore NFS volume and attach it to the backend Compute Engine instances. 2. Download popular songs in Cloud Filestore. 3. Serve music files directly from the backend Compute Engine instance.
+- C. 1. Copy popular songs into CloudSQL as a blob. 2. Update application code to retrieve data from CloudSQL when Cloud Storage is overloaded.
+- D. 1. Create a managed instance group with Compute Engine instances. 2. Create a global load balancer and configure it with two backends: ג—‹ Managed instance group ג—‹ Cloud Storage bucket 3. Enable Cloud CDN on the bucket backend.
+
+**My choice is  D.**
+
+reason: This approach would allow you to scale the number of instances in the managed instance group as needed to handle the demand for the application, and would also use the Cloud CDN to improve the performance of the application by caching the music files closer to the users.
+
+----
+
+### Q173.
+
+The operations team in your company wants to save Cloud VPN log events for one year. You need to configure the cloud infrastructure to save the logs. What should you do?
+
+- A. Set up a filter in Cloud Logging and a Cloud Storage bucket as an export target for the logs you want to save.
+- B. Enable the Compute Engine API, and then enable logging on the firewall rules that match the traffic you want to save.
+- C. Set up a Cloud Logging Dashboard titled Cloud VPN Logs, and then add a chart that queries for the VPN metrics over a one-year time period.
+- D. Set up a filter in Cloud Logging and a topic in Pub/Sub to publish the logs.
 
 **My choice is  A.**
 
 ---
 
-### Q116.
+### Q174.
 
- You have developed a non-critical update to your application that is running in a managed instance group, and have created a new instance template with the update that you want to release. To prevent any possible impact to the application, you don't want to update any running instances. You want any new instances that are created by the managed instance group to contain the new update. What should you do?
+You are working with a data warehousing team that performs data analysis. The team needs to process data from external partners, but the data contains personally identifiable information (PII). You need to process and store the data without storing any of the PIIE data. What should you do?
 
-- A. Start a new rolling restart operation.
-- B. Start a new rolling replace operation.
-- C. Start a new rolling update. Select the Proactive update mode.
-- D. Start a new rolling update. Select the Opportunistic update mode.
+- A. Create a Dataflow pipeline to retrieve the data from the external sources. As part of the pipeline, use the Cloud Data Loss Prevention (Cloud DLP) API to remove any PII data. Store the result in BigQuery.
+- B. Create a Dataflow pipeline to retrieve the data from the external sources. As part of the pipeline, store all non-PII data in BigQuery and store all PII data in a Cloud Storage bucket that has a retention policy set.
+- C. Ask the external partners to upload all data on Cloud Storage. Configure Bucket Lock for the bucket. Create a Dataflow pipeline to read the data from the bucket. As part of the pipeline, use the Cloud Data Loss Prevention (Cloud DLP) API to remove any PII data. Store the result in BigQuery.
+- D. Ask the external partners to import all data in your BigQuery dataset. Create a dataflow pipeline to copy the data into a new table. As part of the Dataflow bucket, skip all data in columns that have PII data
 
-**My choice is  D.**
+**My choice is A .**
+
+REASON: we should not store PI data at all as per question says.
 
 ----
 
-### Q117.
+### Q175.
 
-Your company is designing its application landscape on Compute Engine. Whenever a zonal outage occurs, the application should be restored in another zone as quickly as possible with the latest application data. You need to design the solution to meet this requirement. What should you do?
+You want to allow your operations team to store logs from all the production projects in your Organization, without including logs from other projects. All of the production projects are contained in a folder. You want to ensure that all logs for existing and new production projects are captured automatically. What should you do?
 
-- A. Create a snapshot schedule for the disk containing the application data. Whenever a zonal outage occurs, use the latest snapshot to restore the disk in the same zone.
-- B. Configure the Compute Engine instances with an instance template for the application, and use a regional persistent disk for the application data. Whenever a zonal outage occurs, use the instance template to spin up the application in another zone in the same region. Use the regional persistent disk for the application data.
-- C. Create a snapshot schedule for the disk containing the application data. Whenever a zonal outage occurs, use the latest snapshot to restore the disk in another zone within the same region.
-- D. Configure the Compute Engine instances with an instance template for the application, and use a regional persistent disk for the application data. Whenever a zonal outage occurs, use the instance template to spin up the application in another region. Use the regional persistent disk for the application data.
-
-**My choice is  B.**
-
-reason: regional PD is used for HA.
-
----
-
-### Q118.
-
-Your company has just acquired another company, and you have been asked to integrate their existing Google Cloud environment into your company's data center. Upon investigation, you discover that some of the RFC 1918 IP ranges being used in the new company's Virtual Private Cloud (VPC) overlap with your data center IP space. What should you do to enable connectivity and make sure that there are no routing conflicts when connectivity is established?
-
-- A. Create a Cloud VPN connection from the new VPC to the data center, create a Cloud Router, and apply new IP addresses so there is no overlapping IP space.
-- B. Create a Cloud VPN connection from the new VPC to the data center, and create a Cloud NAT instance to perform NAT on the overlapping IP space.
-- C. Create a Cloud VPN connection from the new VPC to the data center, create a Cloud Router, and apply a custom route advertisement to block the overlapping IP space.
-- D. Create a Cloud VPN connection from the new VPC to the data center, and apply a firewall rule that blocks the overlapping IP space.
+- A. Create an aggregated export on the Production folder. Set the log sink to be a Cloud Storage bucket in an operations project.
+- B. Create an aggregated export on the Organization resource. Set the log sink to be a Cloud Storage bucket in an operations project.
+- C. Create log exports in the production projects. Set the log sinks to be a Cloud Storage bucket in an operations project.
+- D. Create log exports in the production projects. Set the log sinks to be BigQuery datasets in the production projects, and grant IAM access to the operations team to run queries on the datasets.
 
 **My choice is  A.**
 
-Reason: IP Should not overlap so applying new IP address is the solution.
-
-----
-
-### Q119.
-
-You need to migrate Hadoop jobs for your company's Data Science team without modifying the underlying infrastructure. You want to minimize costs and infrastructure management effort. What should you do?
-
-- A. Create a Dataproc cluster using standard worker instances.
-- B. Create a Dataproc cluster using preemptible worker instances.
-- C. Manually deploy a Hadoop cluster on Compute Engine using standard instances.
-- D. Manually deploy a Hadoop cluster on Compute Engine using preemptible instances.
-
-**My choice is  B.**
-
-reason: preemptible worker instances is cheaper.
+reason: The best option to achieve the desired result is to create an aggregated export on the Production folder. Set the log sink to be a Cloud Storage bucket in an operations project. This will allow the operations team to store logs from all the production projects in the Organization, without including logs from other projects. Additionally, this setup will automatically capture logs for existing and new production projects..
 
 ---
 
-### **Q120.**
+### Q176.
 
-Your company has a project in Google Cloud with three Virtual Private Clouds (VPCs). There is a Compute Engine instance on each VPC. Network subnets do not overlap and must remain separated. The network configuration is shown below.
+Your company has an application that is running on multiple instances of Compute Engine. It generates 1 TB per day of logs. For compliance reasons, the logs need to be kept for at least two years. The logs need to be available for active query for 30 days. After that, they just need to be retained for audit purposes. You want to implement a storage solution that is compliant, minimizes costs, and follows Google-recommended practices. What should you do?
 
-Instance #1 is an exception and must communicate directly with both Instance #2 and Instance #3 via internal IPs. How should you accomplish this?
+- A. 1. Install a Cloud Logging agent on all instances. 2. Create a sink to export logs into a regional Cloud Storage bucket. 3. Create an Object Lifecycle rule to move files into a Coldline Cloud Storage bucket after one month. 4. Configure a retention policy at the bucket level using bucket lock.
+- B. 1. Write a daily cron job, running on all instances, that uploads logs into a Cloud Storage bucket. 2. Create a sink to export logs into a regional Cloud Storage bucket. 3. Create an Object Lifecycle rule to move files into a Coldline Cloud Storage bucket after one month.
+- C. 1. Install a Cloud Logging agent on all instances. 2. Create a sink to export logs into a partitioned BigQuery table. 3. Set a time_partitioning_expiration of 30 days.
+- D. 1. Create a daily cron job, running on all instances, that uploads logs into a partitioned BigQuery table. 2. Set a time_partitioning_expiration of 30 days.
 
-- A. Create a cloud router to advertise subnet #2 and subnet #3 to subnet #1.
-- B. Add two additional NICs to Instance #1 with the following configuration: ג€¢ NIC1 ג—‹ VPC: VPC #2 ג—‹ SUBNETWORK: subnet #2 ג€¢ NIC2 ג—‹ VPC: VPC #3 ג—‹ SUBNETWORK: subnet #3 Update firewall rules to enable traffic between instances.
-- C. Create two VPN tunnels via CloudVPN: ג€¢ 1 between VPC #1 and VPC #2. ג€¢ 1 between VPC #2 and VPC #3. Update firewall rules to enable traffic between the instances.
-- D. Peer all three VPCs: ג€¢ Peer VPC #1 with VPC #2. ג€¢ Peer VPC #2 with VPC #3. Update firewall rules to enable traffic between the instances.
+**My choice is  A.**
 
-**My choice is  B.**
+Reason:  The practice for managing logs generated on Compute Engine on Google Cloud is to install the Cloud Logging agent and send them to Cloud Logging. The sent logs will be aggregated into a Cloud Logging sink and exported to Cloud Storage.
 
-reason:"Use multiple network interfaces when an individual instance needs access to more than one VPC network, but you don't want to connect both networks directly." https://cloud.google.com/vpc/docs/multiple-interfaces-concepts
+----
+
+### Q177.
+
+Your company has just recently activated Cloud Identity to manage users. The Google Cloud Organization has been configured as well. The security team needs to secure projects that will be part of the Organization. They want to prohibit IAM users outside the domain from gaining permissions from now on. What should they do?
+
+- A. Configure an organization policy to restrict identities by domain.
+- B. Configure an organization policy to block creation of service accounts.
+- C. Configure Cloud Scheduler to trigger a Cloud Function every hour that removes all users that don't belong to the Cloud Identity domain from all projects.
+- D. Create a technical user (e.g., crawler@yourdomain.com), and give it the project owner role at root organization level. Write a bash script that: ג€¢ Lists all the IAM rules of all projects within the organization. ג€¢ Deletes all users that do not belong to the company domain. Create a Compute Engine instance in a project within the Organization and configure gcloud to be executed with technical user credentials. Configure a cron job that executes the bash script every hour.
+
+**My choice is  A.**
+
+reason: .
+
+---
+
+### **Q178.**
+
+Your company has an application running on Google Cloud that is collecting data from thousands of physical devices that are globally distributed. Data is published to Pub/Sub and streamed in real time into an SSD Cloud Bigtable cluster via a Dataflow pipeline. The operations team informs you that your Cloud Bigtable cluster has a hotspot, and queries are taking longer than expected. You need to resolve the problem and prevent it from happening in the future. What should you do?
+
+- A. Advise your clients to use HBase APIs instead of NodeJS APIs.
+- B. Delete records older than 30 days.
+- C. Review your RowKey strategy and ensure that keys are evenly spread across the alphabet.
+- D. Double the number of nodes you currently have.
+
+**My choice is  C.**
+
+reason: The RowKey is used to sort data within a Cloud Bigtable cluster. If the keys are not evenly spread across the alphabet, it can result in a hotspot and slow down queries. To prevent this from happening in the future, you should review your RowKey strategy and ensure that keys are evenly spread across the alphabet. This will help to distribute the data evenly across the cluster and improve query performance. Other potential solutions to consider include adding more nodes to the cluster or optimizing your query patterns. However, deleting records older than 30 days or advising clients to use HBase APIs instead of NodeJS APIs would not address the issue of a hotspot in the cluster.
 
 
 
