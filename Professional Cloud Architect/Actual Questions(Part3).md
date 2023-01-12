@@ -542,78 +542,79 @@ Reason: https://cloud.google.com/migrate/compute-engine/docs/4.9/concepts/planni
 
 ----
 
-### **Q98.**
+### **Q156.**
 
-Your company acquired a healthcare startup and must retain its customers' medical information for up to 4 more years, depending on when it was created. Your corporate policy is to securely retain this data, and then delete it as soon as regulations allow.
-Which approach should you take?
+Your company has a Google Cloud project that uses BigQuery for data warehousing. They have a VPN tunnel between the on-premises environment and Google
+Cloud that is configured with Cloud VPN. The security team wants to avoid data exfiltration by malicious insiders, compromised code, and accidental oversharing.
+What should they do?
 
-- A. Store the data in Google Drive and manually delete records as they expire.
-- B. Anonymize the data using the Cloud Data Loss Prevention API and store it indefinitely.
-- C. Store the data in Cloud Storage and use lifecycle management to delete files when they expire.
-- D. Store the data in Cloud Storage and run a nightly batch script that deletes all expired data.
+- A. Configure Private Google Access for on-premises only.
+- B. Perform the following tasks: 1. Create a service account. 2. Give the BigQuery JobUser role and Storage Reader role to the service account. 3. Remove all other IAM access from the project.
+- C. Configure VPC Service Controls and configure Private Google Access.
+- D. Configure Private Google Access.
 
 **My choice is C.**
 
-Reason: none
+Reason: To secure data from exfiltration by malicious insiders, compromised code or accidental oversharing, we use VPC Service controls https://cloud.google.com/vpc-service-controls/docs/overview.
 
 ----
 
-### Q99.
+### Q157.
 
-You are deploying a PHP App Engine Standard service with Cloud SQL as the backend. You want to minimize the number of queries to the database.
+You are working at an institution that processes medical data. You are migrating several workloads onto Google Cloud. Company policies require all workloads to run on physically separated hardware, and workloads from different clients must also be separated. You created a sole-tenant node group and added a node for each client. You need to deploy the workloads on these dedicated hosts. What should you do?
+
+- A. Add the node group name as a network tag when creating Compute Engine instances in order to host each workload on the correct node group.
+- B. Add the node name as a network tag when creating Compute Engine instances in order to host each workload on the correct node.
+- C. Use node affinity labels based on the node group name when creating Compute Engine instances in order to host each workload on the correct node group.
+- D. Use node affinity labels based on the node name when creating Compute Engine instances in order to host each workload on the correct node.
+
+**My choice is D.**
+
+reason: Afinity should be set at node level, not node-group as every client has its own node in the group.
+
+----
+
+### **Q158.**
+
+Your company's test suite is a custom C++ application that runs tests throughout each day on Linux virtual machines. The full test suite takes several hours to complete, running on a limited number of on-premises servers reserved for testing. Your company wants to move the testing infrastructure to the cloud, to reduce the amount of time it takes to fully test a change to the system, while changing the tests as little as possible.
+Which cloud infrastructure should you recommend?
+
+- A. Google Compute Engine unmanaged instance groups and Network Load Balancer
+- B. Google Compute Engine managed instance groups with auto-scaling
+- C. Google Cloud Dataproc to run Apache Hadoop jobs to process each test
+- D. Google App Engine with Google StackDriver for logging
+
+**My choice is B .**
+
+reason: https://cloud.google.com/compute/docs/autoscaler.
+
+---
+
+### **Q159.**
+
+A lead software engineer tells you that his new application design uses websockets and HTTP sessions that are not distributed across the web servers. You want to help him ensure his application will run properly on Google Cloud Platform.
 What should you do?
 
-- A. Set the memcache service level to dedicated. Create a key from the hash of the query, and return database values from memcache before issuing a query to Cloud SQL.
-- B. Set the memcache service level to dedicated. Create a cron task that runs every minute to populate the cache with keys containing query results.
-- C. Set the memcache service level to shared. Create a cron task that runs every minute to save all expected queries to a key called ג€cached_queriesג€.
-- D. Set the memcache service level to shared. Create a key called ג€cached_queriesג€, and return database values from the key before using a query to Cloud SQL.
+- A. Help the engineer to convert his websocket code to use HTTP streaming
+- B. Review the encryption requirements for websocket connections with the security team
+- C. Meet with the cloud operations team and the engineer to discuss load balancer options
+- D. Help the engineer redesign the application to use a distributed user session service that does not rely on websockets and HTTP sessions.
 
-**My choice is A .**
+**My choice is C .**
 
-reason: https://cloud.google.com/appengine/docs/standard/php/memcache/using**.** 
-
-----
-
-### **Q100.**
-
-You need to ensure reliability for your application and operations by supporting reliable task scheduling for compute on GCP. Leveraging Google best practices, what should you do?
-
-- A. Using the Cron service provided by App Engine, publish messages directly to a message-processing utility service running on Compute Engine instances.
-- B. Using the Cron service provided by App Engine, publish messages to a Cloud Pub/Sub topic. Subscribe to that topic using a message-processing utility service running on Compute Engine instances.
-- C. Using the Cron service provided by Google Kubernetes Engine (GKE), publish messages directly to a message-processing utility service running on Compute Engine instances.
-- D. Using the Cron service provided by GKE, publish messages to a Cloud Pub/Sub topic. Subscribe to that topic using a message-processing utility service running on Compute Engine instances.
-
-**My choice is B .**
-
-reason: https://cloud.google.com/solutions/reliable-task-scheduling-compute-engine.
+reason: Google Cloud Platform (GCP) HTTP(S) load balancing provides global load balancing for HTTP(S) requests destined for your instances. The HTTP(S) load balancer has native support for the WebSocket protocol.
 
 ---
 
-### **Q101.**
+### Q160.
 
-Your company is building a new architecture to support its data-centric business focus. You are responsible for setting up the network. Your company's mobile and web-facing applications will be deployed on-premises, and all data analysis will be conducted in GCP. The plan is to process and load 7 years of archived .csv files totaling 900 TB of data and then continue loading 10 TB of data daily. You currently have an existing 100-MB internet connection.
-What actions will meet your company's needs?
+The application reliability team at your company this added a debug feature to their backend service to send all server events to Google Cloud Storage for eventual analysis. The event records are at least 50 KB and at most 15 MB and are expected to peak at 3,000 events per second. You want to minimize data loss.
+Which process should you implement?
 
-- A. Compress and upload both archived files and files uploaded daily using the gsutil ג€"m option.
-- B. Lease a Transfer Appliance, upload archived files to it, and send it to Google to transfer archived data to Cloud Storage. Establish a connection with Google using a Dedicated Interconnect or Direct Peering connection and use it to upload files daily.
-- C. Lease a Transfer Appliance, upload archived files to it, and send it to Google to transfer archived data to Cloud Storage. Establish one Cloud VPN Tunnel to VPC networks over the public internet, and compress and upload files daily using the gsutil ג€"m option.
-- D. Lease a Transfer Appliance, upload archived files to it, and send it to Google to transfer archived data to Cloud Storage. Establish a Cloud VPN Tunnel to VPC networks over the public internet, and compress and upload files daily.
-
-**My choice is B .**
-
-reason: B is fast and suitable.
-
----
-
-### Q102.
-
-You are developing a globally scaled frontend for a legacy streaming backend data API. This API expects events in strict chronological order with no repeat data for proper processing.
-Which products should you deploy to ensure guaranteed-once FIFO (first-in, first-out) delivery of data?
-
-- A. Cloud Pub/Sub alone
-- B. Cloud Pub/Sub to Cloud Dataflow
-- C. Cloud Pub/Sub to Stackdriver
-- D. Cloud Pub/Sub to Cloud SQL
+- A. ג€¢ Append metadata to file body ג€¢ Compress individual files ג€¢ Name files with serverName ג€" Timestamp ג€¢ Create a new bucket if bucket is older than 1 hour and save individual files to the new bucket. Otherwise, save files to existing bucket.
+- B. ג€¢ Batch every 10,000 events with a single manifest file for metadata ג€¢ Compress event files and manifest file into a single archive file ג€¢ Name files using serverName ג€" EventSequence ג€¢ Create a new bucket if bucket is older than 1 day and save the single archive file to the new bucket. Otherwise, save the single archive file to existing bucket.
+- C. ג€¢ Compress individual files ג€¢ Name files with serverName ג€" EventSequence ג€¢ Save files to one bucket ג€¢ Set custom metadata headers for each object after saving
+- D. ג€¢ Append metadata to file body ג€¢ Compress individual files ג€¢ Name files with a random prefix pattern ג€¢ Save files to one bucket
 
 **My choice is B .**
 
