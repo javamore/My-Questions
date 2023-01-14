@@ -990,167 +990,483 @@ Which two architectures should you consider? (Choose two.)
 
 Reason:  
 
------
 
-### **Q184.**
 
-You are managing several internal applications that are deployed on Compute Engine. Business users inform you that an application has become very slow over the past few days. You want to find the underlying cause in order to solve the problem. What should you do first?
+### **Question11**
 
-- A. Inspect the logs and metrics from the instances in Cloud Logging and Cloud Monitoring.
-- B. Change the Compute Engine Instances behind the application to a machine type with more CPU and memory.
-- C. Restore a backup of the application database from a time before the application became slow.
-- D. Deploy the applications on a managed instance group with autoscaling enabled. Add a load balancer in front of the managed instance group, and have the users connect to the IP of the load balancer.
+Operational parameters such as oil pressure are adjustable on each of TerramEarth's vehicles to increase their efficiency, depending on their environmental conditions. Your primary goal is to increase the operating efficiency of all 20 million cellular and unconnected vehicles in the field.
+How can you accomplish this goal?
 
-***My choice is A.***
-
-Reason: nope.
-
-----
-
-### **Q185.**
-
-Your company has an application running as a Deployment in a Google Kubernetes Engine (GKE) cluster. When releasing new versions of the application via a rolling deployment, the team has been causing outages. The root cause of the outages is misconfigurations with parameters that are only used in production. You want to put preventive measures for this in the platform to prevent outages. What should you do?
-
-- A. Configure liveness and readiness probes in the Pod specification.
-- B. Configure health checks on the managed instance group.
-- C. Create a Scheduled Task to check whether the application is available.
-- D. Configure an uptime alert in Cloud Monitoring.
-
-***My choice is A.***
-
-Reason:  Liveness probes are used to determine whether a Pod is running, and readiness probes are used to determine whether a Pod is able to receive traffic.
-
-By configuring liveness and readiness probes in the Pod specification, you can help to prevent outages when releasing new versions of the application via a rolling deployment. If a Pod fails a liveness or readiness probe, it will be restarted, which can help to prevent issues caused by misconfigured parameters or other problems.
-
-----
-
-### **Q186.**
-
-Your company uses Google Kubernetes Engine (GKE) as a platform for all workloads. Your company has a single large GKE cluster that contains batch, stateful, and stateless workloads. The GKE cluster is configured with a single node pool with 200 nodes. Your company needs to reduce the cost of this cluster but does not want to compromise availability. What should you do?
-
-- A. Create a second GKE cluster for the batch workloads only. Allocate the 200 original nodes across both clusters.
-- B. Configure CPU and memory limits on the namespaces in the cluster. Configure all Pods to have a CPU and memory limits.
-- C. Configure a HorizontalPodAutoscaler for all stateless workloads and for all compatible stateful workloads. Configure the cluster to use node auto scaling.
-- D. Change the node pool to use preemptible VMs.
-
-***My choice is C.***
-
-Reason: nope.
-
----
-
-### **Q187.**
-
-Your company has a Google Cloud project that uses BigQuery for data warehousing on a pay-per-use basis. You want to monitor queries in real time to discover the most costly queries and which users spend the most. What should you do?
-
-- A. 1. In the BigQuery dataset that contains all the tables to be queried, add a label for each user that can launch a query. 2. Open the Billing page of the project. 3. Select Reports. 4. Select BigQuery as the product and filter by the user you want to check.
-- B. 1. Create a Cloud Logging sink to export BigQuery data access logs to BigQuery. 2. Perform a BigQuery query on the generated table to extract the information you need.
-- C. 1. Create a Cloud Logging sink to export BigQuery data access logs to Cloud Storage. 2. Develop a Dataflow pipeline to compute the cost of queries split by users.
-- D. 1. Activate billing export into BigQuery. 2. Perform a BigQuery query on the billing table to extract the information you need.
-
-***My choice is C.***
-
-Reason: nope.
-
----
-
-### **Q188.**
-
-Your company and one of its partners each have a Google Cloud project in separate organizations. Your company's project (prj-a) runs in Virtual Private Cloud(vpc-a). The partner's project (prj-b) runs in vpc-b. There are two instances running on vpc-a and one instance running on vpc-b. Subnets defined in both VPCs are not overlapping. You need to ensure that all instances communicate with each other via internal IPs, minimizing latency and maximizing throughput. What should you do?
-
-- A. Set up a network peering between vpc-a and vpc-b.
-- B. Set up a VPN between vpc-a and vpc-b using Cloud VPN.
-- C. Configure IAP TCP forwarding on the instance in vpc-b, and then launch the following gcloud command from one of the instances in vpc-a gcloud: gcloud compute start-iap-tunnel INSTANCE_NAME_IN_VPC_8 22 \ --local-host-port=localhost:22
-- D. 1. Create an additional instance in vpc-a. 2. Create an additional instance in vpc-b. 3. Install OpenVPN in newly created instances. 4. Configure a VPN tunnel between vpc-a and vpc-b with the help of OpenVPN.
-
-***My choice is A.***
-
-Reason: A is OK.
-
--------
-
-### **Q189.**
-
-You want to store critical business information in Cloud Storage buckets. The information is regularly changed, but previous versions need to be referenced on a regular basis. You want to ensure that there is a record of all changes to any information in these buckets. You want to ensure that accidental edits or deletions can be easily rolled back. Which feature should you enable?
-
-- A. Bucket Lock
-- B. Object Versioning
-- C. Object change notification
-- D. Object Lifecycle Management
+- A. Have you engineers inspect the data for patterns, and then create an algorithm with rules that make operational adjustments automatically
+- B. Capture all operating data, train machine learning models that identify ideal operations, and run locally to make operational adjustments automatically
+- C. Implement a Google Cloud Dataflow streaming job with a sliding window, and use Google Cloud Messaging (GCM) to make operational adjustments automatically
+- D. Capture all operating data, train machine learning models that identify ideal operations, and host in Google Cloud Machine Learning (ML) Platform to make operational adjustments automatically
 
 ***My choice is B.***
 
-Reason: NO REASON.
+Reason:  
 
-----
 
-### **Q190.**
 
-You have a Compute Engine application that you want to autoscale when total memory usage exceeds 80%. You have installed the Cloud Monitoring agent and configured the autoscaling policy as follows:
-✑ Metric identifier: agent.googleapis.com/memory/percent_used
-✑ Filter: metric.label.state = 'used'
-✑ Target utilization level: 80
-✑ Target type: GAUGE
-You observe that the application does not scale under high load. You want to resolve this. What should you do?
+### **Question12**
 
-- A. Change the Target type to DELTA_PER_MINUTE.
-- B. Change the Metric identifier to agent.googleapis.com/memory/bytes_used.
-- C. Change the filter to metric.label.state = 'used' AND metric.label.state = 'buffered' AND metric.label.state = 'cached' AND metric.label.state = 'slab'.
-- D. Change the filter to metric.label.state = 'free' and the Target utilization to 20.
+For this question, refer to the TerramEarth case study. To be compliant with European GDPR regulation, TerramEarth is required to delete data generated from its European customers after a period of 36 months when it contains personal data. In the new architecture, this data will be stored in both Cloud Storage and BigQuery. What should you do?
+
+- A. Create a BigQuery table for the European data, and set the table retention period to 36 months. For Cloud Storage, use gsutil to enable lifecycle management using a DELETE action with an Age condition of 36 months.
+- B. Create a BigQuery table for the European data, and set the table retention period to 36 months. For Cloud Storage, use gsutil to create a SetStorageClass to NONE action when with an Age condition of 36 months.
+- C. Create a BigQuery time-partitioned table for the European data, and set the partition expiration period to 36 months. For Cloud Storage, use gsutil to enable lifecycle management using a DELETE action with an Age condition of 36 months.
+- D. Create a BigQuery time-partitioned table for the European data, and set the partition expiration period to 36 months. For Cloud Storage, use gsutil to create a SetStorageClass to NONE action with an Age condition of 36 months.
 
 ***My choice is C.***
 
-Reason: nope.
 
-----
 
-### **Q191.**
+### **Question13**
 
-You are deploying an application to Google Cloud. The application is part of a system. The application in Google Cloud must communicate over a private network with applications in a non-Google Cloud environment. The expected average throughput is 200 kbps. The business requires:
-✑ as close to 100% system availability as possible
-✑ cost optimization
-You need to design the connectivity between the locations to meet the business requirements. What should you provision?
+For this question, refer to the TerramEarth case study. TerramEarth has decided to store data files in Cloud Storage. You need to configure Cloud Storage lifecycle rule to store 1 year of data and minimize file storage cost. Which two actions should you take?
 
-- A. An HA Cloud VPN gateway connected with two tunnels to an on-premises VPN gateway
-- B. Two Classic Cloud VPN gateways connected to two on-premises VPN gateways Configure each Classic Cloud VPN gateway to have two tunnels, each connected to different on-premises VPN gateways
-- C. Two HA Cloud VPN gateways connected to two on-premises VPN gateways Configure each HA Cloud VPN gateway to have two tunnels, each connected to different on-premises VPN gateways
-- D. A single Cloud VPN gateway connected to an on-premises VPN gateway
+- A. Create a Cloud Storage lifecycle rule with Age: ג€30ג€, Storage Class: ג€Standardג€, and Action: ג€Set to Coldlineג€, and create a second GCS life-cycle rule with Age: ג€365ג€, Storage Class: ג€Coldlineג€, and Action: ג€Deleteג€.
+- B. Create a Cloud Storage lifecycle rule with Age: ג€30ג€, Storage Class: ג€Coldlineג€, and Action: ג€Set to Nearlineג€, and create a second GCS life-cycle rule with Age: ג€91ג€, Storage Class: ג€Coldlineג€, and Action: ג€Set to Nearlineג€.
+- C. Create a Cloud Storage lifecycle rule with Age: ג€90ג€, Storage Class: ג€Standardג€, and Action: ג€Set to Nearlineג€, and create a second GCS life-cycle rule with Age: ג€91ג€, Storage Class: ג€Nearlineג€, and Action: ג€Set to Coldlineג€.
+- D. Create a Cloud Storage lifecycle rule with Age: ג€30ג€, Storage Class: ג€Standardג€, and Action: ג€Set to Coldlineג€, and create a second GCS life-cycle rule with Age: ג€365ג€, Storage Class: ג€Nearlineג€, and Action: ג€Deleteג€.
+
+***My choice is A.***
+
+
+
+### **Question14**
+
+For this question, refer to the TerramEarth case study. You need to implement a reliable, scalable GCP solution for the data warehouse for your company,
+TerramEarth. Considering the TerramEarth business and technical requirements, what should you do?
+
+- A. Replace the existing data warehouse with BigQuery. Use table partitioning.
+- B. Replace the existing data warehouse with a Compute Engine instance with 96 CPUs.
+- C. Replace the existing data warehouse with BigQuery. Use federated data sources.
+- D. Replace the existing data warehouse with a Compute Engine instance with 96 CPUs. Add an additional Compute Engine preemptible instance with 32 CPUs.
+
+***My choice is A.***
+
+
+
+### **Question15**
+
+For this question, refer to the TerramEarth case study. A new architecture that writes all incoming data to BigQuery has been introduced. You notice that the data is dirty, and want to ensure data quality on an automated daily basis while managing cost.
+What should you do?
+
+- A. Set up a streaming Cloud Dataflow job, receiving data by the ingestion process. Clean the data in a Cloud Dataflow pipeline.
+- B. Create a Cloud Function that reads data from BigQuery and cleans it. Trigger the Cloud Function from a Compute Engine instance.
+- C. Create a SQL statement on the data in BigQuery, and save it as a view. Run the view daily, and save the result to a new table.
+- D. Use Cloud Dataprep and configure the BigQuery tables as the source. Schedule a daily job to clean the data.
+
+***My choice is D.***
+
+
+
+### **Question16**
+
+For this question, refer to the TerramEarth case study. Considering the technical requirements, how should you reduce the unplanned vehicle downtime in GCP?
+
+- A. Use BigQuery as the data warehouse. Connect all vehicles to the network and stream data into BigQuery using Cloud Pub/Sub and Cloud Dataflow. Use Google Data Studio for analysis and reporting.
+- B. Use BigQuery as the data warehouse. Connect all vehicles to the network and upload gzip files to a Multi-Regional Cloud Storage bucket using gcloud. Use Google Data Studio for analysis and reporting.
+- C. Use Cloud Dataproc Hive as the data warehouse. Upload gzip files to a Multi-Regional Cloud Storage bucket. Upload this data into BigQuery using gcloud. Use Google Data Studio for analysis and reporting.
+- D. Use Cloud Dataproc Hive as the data warehouse. Directly stream data into partitioned Hive tables. Use Pig scripts to analyze data.
+
+***My choice is A.***
+
+
+
+### **Question17**
+
+For this question, refer to the TerramEarth case study. You are asked to design a new architecture for the ingestion of the data of the 200,000 vehicles that are connected to a cellular network. You want to follow Google-recommended practices.
+Considering the technical requirements, which components should you use for the ingestion of the data?
+
+- A. Google Kubernetes Engine with an SSL Ingress
+- B. Cloud IoT Core with public/private key pairs
+- C. Compute Engine with project-wide SSH keys
+- D. Compute Engine with specific SSH keys
+
+***My choice is B.***
+
+
+
+### **Question18**
+
+For this question, refer to the TerramEarth case study. You start to build a new application that uses a few Cloud Functions for the backend. One use case requires a Cloud Function func_display to invoke another Cloud Function func_query. You want func_query only to accept invocations from func_display. You also want to follow Google's recommended best practices. What should you do?
+
+- A. Create a token and pass it in as an environment variable to func_display. When invoking func_query, include the token in the request. Pass the same token to func_query and reject the invocation if the tokens are different.
+- B. Make func_query 'Require authentication.' Create a unique service account and associate it to func_display. Grant the service account invoker role for func_query. Create an id token in func_display and include the token to the request when invoking func_query.
+- C. Make func_query 'Require authentication' and only accept internal traffic. Create those two functions in the same VPC. Create an ingress firewall rule for func_query to only allow traffic from func_display.
+- D. Create those two functions in the same project and VPC. Make func_query only accept internal traffic. Create an ingress firewall for func_query to only allow traffic from func_display. Also, make sure both functions use the same service account.
+
+***My choice is B.***
+
+
+
+### **Question19**
+
+For this question, refer to the TerramEarth case study. You have broken down a legacy monolithic application into a few containerized RESTful microservices.
+You want to run those microservices on Cloud Run. You also want to make sure the services are highly available with low latency to your customers. What should you do?
+
+- A. Deploy Cloud Run services to multiple availability zones. Create Cloud Endpoints that point to the services. Create a global HTTP(S) Load Balancing instance and attach the Cloud Endpoints to its backend.
+- B. Deploy Cloud Run services to multiple regions. Create serverless network endpoint groups pointing to the services. Add the serverless NEGs to a backend service that is used by a global HTTP(S) Load Balancing instance.
+- C. Deploy Cloud Run services to multiple regions. In Cloud DNS, create a latency-based DNS name that points to the services.
+- D. Deploy Cloud Run services to multiple availability zones. Create a TCP/IP global load balancer. Add the Cloud Run Endpoints to its backend service.
+
+***My choice is B.***
+
+
+
+### **Question20**
+
+For this question, refer to the TerramEarth case study. TerramEarth has a legacy web application that you cannot migrate to cloud. However, you still want to build a cloud-native way to monitor the application. If the application goes down, you want the URL to point to a "Site is unavailable" page as soon as possible. You also want your Ops team to receive a notification for the issue. You need to build a reliable solution for minimum cost. What should you do?
+
+- A. Create a scheduled job in Cloud Run to invoke a container every minute. The container will check the application URL. If the application is down, switch the URL to the "Site is unavailable" page, and notify the Ops team.
+- B. Create a cron job on a Compute Engine VM that runs every minute. The cron job invokes a Python program to check the application URL. If the application is down, switch the URL to the "Site is unavailable" page, and notify the Ops team.
+- C. Create a Cloud Monitoring uptime check to validate the application URL. If it fails, put a message in a Pub/Sub queue that triggers a Cloud Function to switch the URL to the "Site is unavailable" page, and notify the Ops team.
+- D. Use Cloud Error Reporting to check the application URL. If the application is down, switch the URL to the "Site is unavailable" page, and notify the Ops team.
 
 ***My choice is C.***
 
-Reason: 
 
-A - Not Correct as it was working before with same ISP. 
 
-B - New code update caused an issue- why to open support ticket. 
+### **Question21**
 
-C - I agree with C. 
+For this question, refer to the TerramEarth case study. You are building a microservice-based application for TerramEarth. The application is based on Docker containers. You want to follow Google-recommended practices to build the application continuously and store the build artifacts. What should you do?
 
-D - This requires downtime and live prod affected too.
+- A. Configure a trigger in Cloud Build for new source changes. Invoke Cloud Build to build container images for each microservice, and tag them using the code commit hash. Push the images to the Container Registry.
+- B. Configure a trigger in Cloud Build for new source changes. The trigger invokes build jobs and build container images for the microservices. Tag the images with a version number, and push them to Cloud Storage.
+- C. Create a Scheduler job to check the repo every minute. For any new change, invoke Cloud Build to build container images for the microservices. Tag the images using the current timestamp, and push them to the Container Registry.
+- D. Configure a trigger in Cloud Build for new source changes. Invoke Cloud Build to build one container image, and tag the image with the label 'latest.' Push the image to the Container Registry.
+
+***My choice is A.***
+
+
+
+### **Question22**
+
+For this question, refer to the TerramEarth case study. TerramEarth has about 1 petabyte (PB) of vehicle testing data in a private data center. You want to move the data to Cloud Storage for your machine learning team. Currently, a 1-Gbps interconnect link is available for you. The machine learning team wants to start using the data in a month. What should you do?
+
+- A. Request Transfer Appliances from Google Cloud, export the data to appliances, and return the appliances to Google Cloud.
+- B. Configure the Storage Transfer service from Google Cloud to send the data from your data center to Cloud Storage.
+- C. Make sure there are no other users consuming the 1Gbps link, and use multi-thread transfer to upload the data to Cloud Storage.
+- D. Export files to an encrypted USB device, send the device to Google Cloud, and request an import of the data to Cloud Storage.
+
+***My choice is A.***
+
+-----
+
+## topic6-Dress4Win
+
+Dress4Win is a web-based company that helps their users organize and manage their personal wardrobe using a website and mobile application. The company also cultivates an active social network that connects their users with designers and retailers. They monetize their services through advertising, e-commerce, referrals, and a premium app model.
+
+Company Background -
+Dress4Win's application has grown from a few servers in the founder's garage to several hundred servers and appliances in a collocated data center. However, the capacity of their infrastructure is now insufficient for the application's rapid growth. Because of this growth and the company's desire to innovate faster,
+Dress4Win is committing to a full migration to a public cloud.
+
+Solution Concept -
+For the first phase of their migration to the cloud, Dress4Win is considering moving their development and test environments. They are also considering building a disaster recovery site, because their current infrastructure is at a single location. They are not sure which components of their architecture they can migrate as is and which components they need to change before migrating them.
+
+Existing Technical Environment -
+The Dress4Win application is served out of a single data center location.
+Databases:
+\- MySQL - user data, inventory, static data
+\- Redis - metadata, social graph, caching
+Application servers:
+\- Tomcat - Java micro-services
+\- Nginx - static content
+\- Apache Beam - Batch processing
+Storage appliances:
+\- iSCSI for VM hosts
+\- Fiber channel SAN - MySQL databases
+\- NAS - image storage, logs, backups
+Apache Hadoop/Spark servers:
+\- Data analysis
+\- Real-time trending calculations
+MQ servers:
+\- Messaging
+\- Social notifications
+\- Events
+Miscellaneous servers:
+\- Jenkins, monitoring, bastion hosts, security scanners
+
+Business Requirements -
+Build a reliable and reproducible environment with scaled parity of production.
+![img](https://www.examtopics.com/assets/media/exam-media/04339/0004600007.png)
+Improve security by defining and adhering to a set of security and Identity and Access Management (IAM) best practices for cloud.
+Improve business agility and speed of innovation through rapid provisioning of new resources.
+Analyze and optimize architecture for performance in the cloud.
+Migrate fully to the cloud if all other requirements are met.
+
+Technical Requirements -
+Evaluate and choose an automation framework for provisioning resources in cloud.
+Support failover of the production environment to cloud during an emergency.
+Identify production services that can migrate to cloud to save capacity.
+Use managed services whenever possible.
+Encrypt data on the wire and at rest.
+Support multiple VPN connections between the production data center and cloud environment.
+
+CEO Statement -
+Our investors are concerned about our ability to scale and contain costs with our current infrastructure. They are also concerned that a new competitor could use a public cloud platform to offset their up-front investment and freeing them to focus on developing better features.
+
+CTO Statement -
+We have invested heavily in the current infrastructure, but much of the equipment is approaching the end of its useful life. We are consistently waiting weeks for new gear to be racked before we can start new projects. Our traffic patterns are highest in the mornings and weekend evenings; during other times, 80% of our capacity is sitting idle.
+
+CFO Statement -
+Our capital expenditure is now exceeding our quarterly projections. Migrating to the cloud will likely cause an initial increase in spending, but we expect to fully transition before our next hardware refresh cycle. Our total cost of ownership (TCO) analysis over the next 5 years puts a cloud strategy between 30 to 50% lower than our current model.
+
+
+
+### **Q1.**
+
+The Dress4Win security team has disabled external SSH access into production virtual machines (VMs) on Google Cloud Platform (GCP).
+The operations team needs to remotely manage the VMs, build and push Docker containers, and manage Google Cloud Storage objects.
+What can they do?
+
+- A. Grant the operations engineer access to use Google Cloud Shell.
+- B. Configure a VPN connection to GCP to allow SSH access to the cloud VMs.
+- C. Develop a new access request process that grants temporary SSH access to cloud VMs when an operations engineer needs to perform a task.
+- D. Have the development team build an API service that allows the operations team to execute specific remote procedure calls to accomplish their tasks.
+
+***My choice is A.***
+
+
+
+### **Q2.**
+
+At Dress4Win, an operations engineer wants to create a tow-cost solution to remotely archive copies of database backup files.
+The database files are compressed tar files stored in their current data center.
+How should he proceed?
+
+- A. Create a cron script using gsutil to copy the files to a Coldline Storage bucket.
+- B. Create a cron script using gsutil to copy the files to a Regional Storage bucket.
+- C. Create a Cloud Storage Transfer Service Job to copy the files to a Coldline Storage bucket.
+- D. Create a Cloud Storage Transfer Service job to copy the files to a Regional Storage bucket.
+
+***My choice is C.***
+
+
+
+### **Q3.**
+
+Dress4Win has asked you to recommend machine types they should deploy their application servers to.
+How should you proceed?
+
+- A. Perform a mapping of the on-premises physical hardware cores and RAM to the nearest machine types in the cloud.
+- B. Recommend that Dress4Win deploy application servers to machine types that offer the highest RAM to CPU ratio available.
+- C. Recommend that Dress4Win deploy into production with the smallest instances available, monitor them over time, and scale the machine type up until the desired performance is reached.
+- D. Identify the number of virtual cores and RAM associated with the application server virtual machines align them to a custom machine type in the cloud, monitor performance, and scale the machine types up until the desired performance is reached.
+
+***My choice is D.***
+
+
+
+### **Q4.**
+
+As part of Dress4Win's plans to migrate to the cloud, they want to be able to set up a managed logging and monitoring system so they can handle spikes in their traffic load.
+They want to ensure that:
+
+* The infrastructure can be notified when it needs to scale up and down to handle the ebb and flow of usage throughout the day
+* Their administrators are notified automatically when their application reports errors.
+* They can filter their aggregated logs down in order to debug one piece of the application across many hosts
+Which Google StackDriver features should they use?
+
+- A. Logging, Alerts, Insights, Debug
+- B. Monitoring, Trace, Debug, Logging
+- C. Monitoring, Logging, Alerts, Error Reporting
+- D. Monitoring, Logging, Debug, Error Report
+
+***My choice is C.***
+
+
+
+### **Q5.**
+
+Dress4Win would like to become familiar with deploying applications to the cloud by successfully deploying some applications quickly, as is. They have asked for your recommendation.
+What should you advise?
+
+- A. Identify self-contained applications with external dependencies as a first move to the cloud.
+- B. Identify enterprise applications with internal dependencies and recommend these as a first move to the cloud.
+- C. Suggest moving their in-house databases to the cloud and continue serving requests to on-premise applications.
+- D. Recommend moving their message queuing servers to the cloud and continue handling requests to on-premise applications.
+
+***My choice is A.***
+
+
+
+### **Q6.**
+
+Dress4Win has asked you for advice on how to migrate their on-premises MySQL deployment to the cloud.
+They want to minimize downtime and performance impact to their on-premises solution during the migration.
+Which approach should you recommend?
+
+- A. Create a dump of the on-premises MySQL master server, and then shut it down, upload it to the cloud environment, and load into a new MySQL cluster.
+- B. Setup a MySQL replica server/slave in the cloud environment, and configure it for asynchronous replication from the MySQL master server on-premises until cutover.
+- C. Create a new MySQL cluster in the cloud, configure applications to begin writing to both on premises and cloud MySQL masters, and destroy the original cluster at cutover.
+- D. Create a dump of the MySQL replica server into the cloud environment, load it into: Google Cloud Datastore, and configure applications to read/write to Cloud Datastore at cutover.
+
+***My choice is B.***
+
+
+
+### **Q7.**
+
+Dress4Win has configured a new uptime check with Google Stackdriver for several of their legacy services. The Stackdriver dashboard is not reporting the services as healthy.
+What should they do?
+
+- A. Install the Stackdriver agent on all of the legacy web servers.
+- B. In the Cloud Platform Console download the list of the uptime servers' IP addresses and create an inbound firewall rule
+- C. Configure their load balancer to pass through the User-Agent HTTP header when the value matches GoogleStackdriverMonitoring-UptimeChecks (https:// cloud.google.com/monitoring)
+- D. Configure their legacy web servers to allow requests that contain user-Agent HTTP header when the value matches GoogleStackdriverMonitoring- UptimeChecks (https://cloud.google.com/monitoring)
+
+***My choice is B.***
+
+
+
+### **Q8.**
+
+As part of their new application experience, Dress4Wm allows customers to upload images of themselves.
+The customer has exclusive control over who may view these images.
+Customers should be able to upload images with minimal latency and also be shown their images quickly on the main application page when they log in.
+Which configuration should Dress4Win use?
+
+- A. Store image files in a Google Cloud Storage bucket. Use Google Cloud Datastore to maintain metadata that maps each customer's ID and their image files.
+- B. Store image files in a Google Cloud Storage bucket. Add custom metadata to the uploaded images in Cloud Storage that contains the customer's unique ID.
+- C. Use a distributed file system to store customers' images. As storage needs increase, add more persistent disks and/or nodes. Assign each customer a unique ID, which sets each file's owner attribute, ensuring privacy of images.
+- D. Use a distributed file system to store customers' images. As storage needs increase, add more persistent disks and/or nodes. Use a Google Cloud SQL database to maintain metadata that maps each customer's ID to their image files.
+
+***My choice is A.***
+
+
+
+### **Q9.**
+
+Dress4Win has end-to-end tests covering 100% of their endpoints.
+They want to ensure that the move to the cloud does not introduce any new bugs.
+Which additional testing methods should the developers employ to prevent an outage?
+
+- A. They should enable Google Stackdriver Debugger on the application code to show errors in the code.
+- B. They should add additional unit tests and production scale load tests on their cloud staging environment.
+- C. They should run the end-to-end tests in the cloud staging environment to determine if the code is working as intended.
+- D. They should add canary tests so developers can measure how much of an impact the new release causes to latency.
+
+***My choice is B.***
+
+
+
+### **Q10.**
+
+You want to ensure Dress4Win's sales and tax records remain available for infrequent viewing by auditors for at least 10 years.
+Cost optimization is your top priority.
+Which cloud services should you choose?
+
+- A. Google Cloud Storage Coldline to store the data, and gsutil to access the data.
+- B. Google Cloud Storage Nearline to store the data, and gsutil to access the data.
+- C. Google Bigtabte with US or EU as location to store the data, and gcloud to access the data.
+- D. BigQuery to store the data, and a web server cluster in a managed instance group to access the data. Google Cloud SQL mirrored across two distinct regions to store the data, and a Redis cluster in a managed instance group to access the data.
+
+***My choice is A.***
+
+
+
+### **Q11.**
+
+The current Dress4Win system architecture has high latency to some customers because it is located in one data center.
+As of a future evaluation and optimizing for performance in the cloud, Dresss4Win wants to distribute its system architecture to multiple locations when Google cloud platform.
+Which approach should they use?
+
+- A. Use regional managed instance groups and a global load balancer to increase performance because the regional managed instance group can grow instances in each region separately based on traffic.
+- B. Use a global load balancer with a set of virtual machines that forward the requests to a closer group of virtual machines managed by your operations team.
+- C. Use regional managed instance groups and a global load balancer to increase reliability by providing automatic failover between zones in different regions.
+- D. Use a global load balancer with a set of virtual machines that forward the requests to a closer group of virtual machines as part of a separate managed instance groups.
+
+***My choice is A.***
+
+
+
+### **Q12.**
+
+For this question, refer to the Dress4Win case study. Dress4Win is expected to grow to 10 times its size in 1 year with a corresponding growth in data and traffic that mirrors the existing patterns of usage. The CIO has set the target of migrating production infrastructure to the cloud within the next 6 months. How will you configure the solution to scale for this growth without making major application changes and still maximize the ROI?
+
+- A. Migrate the web application layer to App Engine, and MySQL to Cloud Datastore, and NAS to Cloud Storage. Deploy RabbitMQ, and deploy Hadoop servers using Deployment Manager.
+- B. Migrate RabbitMQ to Cloud Pub/Sub, Hadoop to BigQuery, and NAS to Compute Engine with Persistent Disk storage. Deploy Tomcat, and deploy Nginx using Deployment Manager.
+- C. Implement managed instance groups for Tomcat and Nginx. Migrate MySQL to Cloud SQL, RabbitMQ to Cloud Pub/Sub, Hadoop to Cloud Dataproc, and NAS to Compute Engine with Persistent Disk storage.
+- D. Implement managed instance groups for the Tomcat and Nginx. Migrate MySQL to Cloud SQL, RabbitMQ to Cloud Pub/Sub, Hadoop to Cloud Dataproc, and NAS to Cloud Storage.
+
+***My choice is D.***
+
+
+
+### **Q13.**
+
+For this question, refer to the Dress4Win case study. Considering the given business requirements, how would you automate the deployment of web and transactional data layers?
+
+-  Deploy Nginx and Tomcat using Cloud Deployment Manager to Compute Engine. Deploy a Cloud SQL server to replace MySQL. Deploy Jenkins using Cloud Deployment Manager.
+- B. Deploy Nginx and Tomcat using Cloud Launcher. Deploy a MySQL server using Cloud Launcher. Deploy Jenkins to Compute Engine using Cloud Deployment Manager scripts.
+- C. Migrate Nginx and Tomcat to App Engine. Deploy a Cloud Datastore server to replace the MySQL server in a high-availability configuration. Deploy Jenkins to Compute Engine using Cloud Launcher.
+- D. Migrate Nginx and Tomcat to App Engine. Deploy a MySQL server using Cloud Launcher. Deploy Jenkins to Compute Engine using Cloud Launcher.
+
+***My choice is A.***
+
+
+
+### **Q14.**
+
+For this question, refer to the Dress4Win case study. Which of the compute services should be migrated as-is and would still be an optimized architecture for performance in the cloud?
+
+- A. Web applications deployed using App Engine standard environment
+- B. RabbitMQ deployed using an unmanaged instance group
+- C. Hadoop/Spark deployed using Cloud Dataproc Regional in High Availability mode
+- D. Jenkins, monitoring, bastion hosts, security scanners services deployed on custom machine types
+
+***My choice is C.***
+
+
+
+### **Q15.**
+
+For this question, refer to the Dress4Win case study. To be legally compliant during an audit, Dress4Win must be able to give insights in all administrative actions that modify the configuration or metadata of resources on Google Cloud.
+What should you do?
+
+- A. Use Stackdriver Trace to create a Trace list analysis.
+- B. Use Stackdriver Monitoring to create a dashboard on the project's activity.
+- C. Enable Cloud Identity-Aware Proxy in all projects, and add the group of Administrators as a member.
+- D. Use the Activity page in the GCP Console and Stackdriver Logging to provide the required insight.
+
+***My choice is D.***
+
+
+
+### **Q16.**
+
+For this question, refer to the Dress4Win case study. You are responsible for the security of data stored in Cloud Storage for your company, Dress4Win. You have already created a set of Google Groups and assigned the appropriate users to those groups. You should use Google best practices and implement the simplest design to meet the requirements.
+Considering Dress4Win's business and technical requirements, what should you do?
+
+- A. Assign custom IAM roles to the Google Groups you created in order to enforce security requirements. Encrypt data with a customer-supplied encryption key when storing files in Cloud Storage.
+- B. Assign custom IAM roles to the Google Groups you created in order to enforce security requirements. Enable default storage encryption before storing files in Cloud Storage.
+- C. Assign predefined IAM roles to the Google Groups you created in order to enforce security requirements. Utilize Google's default encryption at rest when storing files in Cloud Storage.
+- D. Assign predefined IAM roles to the Google Groups you created in order to enforce security requirements. Ensure that the default Cloud KMS key is set before storing files in Cloud Storage.
+
+***My choice is C.***
+
+
+
+### **Q17.**
+
+For this question, refer to the Dress4Win case study. You want to ensure that your on-premises architecture meets business requirements before you migrate your solution.
+What change in the on-premises architecture should you make?
+
+- A. Replace RabbitMQ with Google Pub/Sub.
+- B. Downgrade MySQL to v5.7, which is supported by Cloud SQL for MySQL.
+- C. Resize compute resources to match predefined Compute Engine machine types.
+- D. Containerize the micro-services and host them in Google Kubernetes Engine.
+
+***My choice is D.***
 
 ----
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**OVER**
 
 
 
