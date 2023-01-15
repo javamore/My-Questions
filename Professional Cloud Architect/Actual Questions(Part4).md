@@ -198,17 +198,7 @@ You need to design the connectivity between the locations to meet the business r
 - C. Two HA Cloud VPN gateways connected to two on-premises VPN gateways Configure each HA Cloud VPN gateway to have two tunnels, each connected to different on-premises VPN gateways
 - D. A single Cloud VPN gateway connected to an on-premises VPN gateway
 
-***My choice is C.***
-
-Reason: 
-
-A - Not Correct as it was working before with same ISP. 
-
-B - New code update caused an issue- why to open support ticket. 
-
-C - I agree with C. 
-
-D - This requires downtime and live prod affected too.
+***My choice is A.***
 
 ----
 

@@ -224,7 +224,7 @@ Reference: https://cloud.google.com/dataflow/.
 
 ----
 
-**Q13.**
+### **Q13.**
 
 Your customer is receiving reports that their recently updated Google App Engine application is taking approximately 30 seconds to load for some of their users.
 This behavior was not reported before the update.
@@ -249,7 +249,7 @@ D - This requires downtime and live prod affected too.
 
 ----
 
-**Q14.**
+### **Q14.**
 
 A production database virtual machine on Google Compute Engine has an ext4-formatted persistent disk for data files. The database is about to run out of storage space.
 How can you remediate the problem with the least amount of downtime?
@@ -268,7 +268,7 @@ https://cloud.google.com/compute/docs/disks/add-persistent-disk#resize_partition
 
 ----
 
-**Q15.**
+### **Q15.**
 
 Your application needs to process credit card transactions. You want the smallest scope of Payment Card Industry (PCI) compliance without compromising the ability to analyze transactional data and trends relating to which payment methods are used.
 How should you design your architecture?
@@ -285,7 +285,7 @@ Reason: see this : https://cloud.google.com/architecture/tokenizing-sensitive-ca
 
 ---
 
-**Q16.**
+### **Q16.**
 
 You have been asked to select the storage system for the click-data of your company's large portfolio of websites. This data is streamed in from a custom website analytics package at a typical rate of 6,000 clicks per minute. With bursts of up to 8,500 clicks per second. It must have been stored for future analysis by your data science and user experience teams.
 Which storage infrastructure should you choose?
@@ -301,7 +301,7 @@ Reason: steram -> BIgtable.
 
 -----
 
-**Q17.**
+### **Q17.**
 
 You are creating a solution to remove backup files older than 90 days from your backup Cloud Storage bucket. You want to optimize ongoing Cloud Storage spend.
 What should you do?
@@ -313,11 +313,11 @@ What should you do?
 
 ***My choice is B.***
 
-Reason: Policy = JSON format. No matter if its AWS or GCP.
+Reason: Policy = JSON format. No matter if it's AWS or GCP.
 
 ---
 
-**Q18.**
+### **Q18.**
 
 Your company is forecasting a sharp increase in the number and size of Apache Spark and Hadoop jobs being run on your local datacenter. You want to utilize the cloud to help you scale this upcoming demand with the least amount of operations work and code change.
 Which product should you use?
@@ -336,7 +336,7 @@ https://cloud.google.com/dataproc/docs/resources/faq.
 
 ----
 
-**Q19.**
+### **Q19.**
 
 The database administration team has asked you to help them improve the performance of their new database server running on Google Compute Engine. The database is for importing and normalizing their performance statistics and is built with MySQL running on Debian Linux. They have an n1-standard-8 virtual machine with 80 GB of SSD persistent disk.
 What should they change to get better performance from this system?
@@ -353,7 +353,7 @@ Reason: persistent disk performance is based on the total persistent disk capaci
 
 ----
 
-**Q20.**
+### **Q20.**
 
 You want to optimize the performance of an accurate, real-time, weather-charting application. The data comes from 50,000 sensors sending 10 readings a second, in the format of a timestamp and sensor reading.
 Where should you store the data?
@@ -374,7 +374,7 @@ Good for:
 
 ---
 
-**Q21.**
+### **Q21.**
 
 Your company's user-feedback portal comprises a standard LAMP stack replicated across two zones. It is deployed in the us-central1 region and uses autoscaled managed instance groups on all layers, except the database. Currently, only a small group of select customers have access to the portal. The portal meets a
 99,99% availability SLA under these conditions. However next quarter, your company will be making the portal available to all users, including unauthenticated users. You need to develop a resiliency testing strategy to ensure the system maintains the SLA once they introduce additional user load.
@@ -391,7 +391,7 @@ Reason: see this: https://cloud.google.com/architecture/scalable-and-resilient-a
 
 ----
 
-**Q22.**
+### **Q22.**
 
 One of the developers on your team deployed their application in Google Container Engine with the Dockerfile below. They report that their application deployments are taking too long.
 
@@ -421,7 +421,7 @@ https://groups.google.com/forum/#!topic/google-appengine/hZMEkmmObDU https://www
 
 ---
 
-**Q23.**
+### **Q23.**
 
 Your solution is producing performance bugs in production that you did not see in staging and test environments. You want to adjust your test and deployment procedures to avoid this problem in the future.
 What should you do?
@@ -437,7 +437,7 @@ Reason: it is the only one talking about doing changes in the test environment.
 
 ----
 
-**Q24.**
+### **Q24.**
 
 A small number of API requests to your microservices-based application take a very long time. You know that each request to the API can traverse many services.
 You want to know which service takes the longest in those cases.
@@ -454,7 +454,7 @@ Reason: Stackdriver Trace is what we need to understand the latency of our app. 
 
 ---
 
-**Q25.**
+### **Q25.**
 
 During a high traffic portion of the day, one of your relational databases crashes, but the replica is never promoted to a master. You want to avoid this in the future.
 What should you do?
@@ -470,7 +470,7 @@ Reason: The problem is stated that DB crashes because it receives too much traff
 
 ---
 
-**Q26.**
+### **Q26.**
 
 Your organization requires that metrics from all applications be retained for 5 years for future analysis in possible legal proceedings.
 Which approach should you use?
@@ -486,7 +486,7 @@ Reason: D is correct and best practice for long term log storage.
 
 ---
 
-**Q27.**
+### **Q27.**
 
 Your company has decided to build a backup replica of their on-premises user authentication PostgreSQL database on Google Cloud Platform. The database is 4
 TB, and large updates are frequent. Replication requires private address space communication.
@@ -503,7 +503,7 @@ Reason: A, direct connect is private. VPN not enough for 4 TB with huge frequent
 
 ----
 
-**Q28.**
+### **Q28.**
 
 Auditors visit your teams every 12 months and ask to review all the Google Cloud Identity and Access Management (Cloud IAM) policy changes in the previous 12 months. You want to streamline and expedite the analysis and audit process.
 What should you do?
@@ -519,7 +519,7 @@ Reason: https://cloud.google.com/iam/docs/roles-audit-logging#scenario_external_
 
 -----
 
-**Q29.**
+### **Q29.**
 
 You are designing a large distributed application with 30 microservices. Each of your distributed microservices needs to connect to a database back-end. You want to store the credentials securely.
 Where should you store the credentials?
@@ -535,7 +535,7 @@ Reason: https://cloud.google.com/kms/docs/secret-management.
 
 ---
 
-**Q30.**
+### **Q30.**
 
 A lead engineer wrote a custom tool that deploys virtual machines in the legacy data center. He wants to migrate the custom tool to the new cloud environment.
 You want to advocate for the adoption of Google Cloud Deployment Manager.
@@ -554,7 +554,7 @@ Reason:**A**. Nothing to see;  **B**. Any functionality of any tool can be depre
 
 ---
 
-**Q31.**
+### **Q31.**
 
 A development manager is building a new application. He asks you to review his requirements and identify what cloud technologies he can use to meet them. The application must:
 
@@ -577,7 +577,7 @@ Reason: helm is needed for "Deploy application bundles using dynamic templates" 
 
 ---
 
-**Q32.**
+### **Q32.**
 
 You have created several pre-emptible Linux virtual machine instances using Google Compute Engine. You want to properly shut down your application before the virtual machines are preempted.
 What should you do?
@@ -594,7 +594,7 @@ Reference:https://cloud.google.com/compute/docs/startupscript.
 
 ----
 
-**Q33.**
+### **Q33.**
 
 Your organization has a 3-tier web application deployed in the same network on Google Cloud Platform. Each tier (web, API, and database) scales independently of the others. Network traffic should flow through the web to the API tier and then on to the database tier. Traffic should not flow between the web and the database tier.
 How should you configure the network?
@@ -612,7 +612,7 @@ refer to target filtering. https://cloud.google.com/solutions/best-practices-vpc
 
 ----
 
-**Q34.**
+### **Q34.**
 
 Your development team has installed a new Linux kernel module on the batch servers in Google Compute Engine (GCE) virtual machines (VMs) to speed up the nightly batch process. Two days after the installation, 50% of the batch servers failed the nightly batch run. You want to collect details on the failure to pass back to the development team.
 Which three actions should you take? **(Choose three.)**
@@ -630,7 +630,7 @@ Reason: **A.** Use Stackdriver Logging to search for the module log entries = Ch
 
 ----
 
-**Q35.**
+### **Q35.**
 
 Your company wants to try out the cloud with low risk. They want to archive approximately 100 TB of their log data to the cloud and test the analytics features available to them there, while also retaining that data as a long-term disaster recovery backup.
 Which two steps should you take? **(Choose two.)**
@@ -647,7 +647,7 @@ Reason: **A** is correct because BigQuery is the fully managed cloud data wareho
 
 --------
 
-**Q36.**
+### **Q36.**
 
 You created a pipeline that can deploy your source code changes to your infrastructure in instance groups for self-healing. One of the changes negatively affects your key performance indicator. You are not sure how to fix it, and investigation could take up to a week. What should you do?
 
@@ -662,7 +662,7 @@ Reason: MIG templates support versioning, they were created to solve this exact 
 
 ----
 
-**Q37.**
+### **Q37.**
 
 Your organization wants to control IAM policies for different departments independently, but centrally.
 Which approach should you take?
@@ -678,7 +678,7 @@ Reason: https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-o
 
 ---
 
-**Q38.**
+### **Q38.**
 
 You deploy your custom Java application to Google App Engine. It fails to deploy and gives you the following stack trace. What should you do?
 
@@ -694,7 +694,7 @@ Reason: it is a security issue and neither A or C is trying to fix the problem.
 
 -----
 
-**Q39.**
+### **Q39.**
 
 You are designing a mobile chat application. You want to ensure people cannot spoof chat messages, by providing a message were sent by a specific user. What should you do?
 
@@ -709,7 +709,7 @@ Reason: **C** is correct because PKI requires that both the server and the clien
 
 ----
 
-**Q40.**
+### **Q40.**
 
 As part of implementing their disaster recovery plan, your company is trying to replicate their production MySQL database from their private data center to their GCP project using a Google Cloud VPN connection. They are experiencing latency issues and a small amount of packet loss that is disrupting the replication.
 What should they do?
@@ -726,7 +726,7 @@ Reason: Interconnect is more reliable.
 
 -----
 
-**Q41.**
+### **Q41.**
 
 Your customer support tool logs all email and chat conversations to Cloud Bigtable for retention and analysis. What is the recommended approach for sanitizing this data of personally identifiable information or payment card information before initial storage?
 
@@ -741,7 +741,7 @@ Reason: Reference: https://cloud.google.com/solutions/pci-dss-compliance-in-gcp#
 
 -----
 
-**Q42.**
+### **Q42.**
 
 You are using Cloud Shell and need to install a custom utility for use in a few weeks. Where can you store the file so it is in the default execution path and persists across sessions?
 
@@ -756,7 +756,7 @@ Reason:  Cloud Shell provisions 5 GB of persistent disk storage mounted as your 
 
 ---
 
-**Q43.**
+### **Q43.**
 
 You want to create a private connection between your instances on Compute Engine and your on-premises data center. You require a connection of at least 20 Gbps. You want to follow Google-recommended practices. How should you set up the connection?
 
@@ -773,7 +773,7 @@ https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview#network
 
 ---
 
-**Q44.**
+### **Q44.**
 
 You are analyzing and defining business processes to support your startup's trial usage of GCP, and you don't yet know what consumer demand for your product will be. Your manager requires you to minimize GCP service costs and adhere to Google best practices. What should you do?
 
@@ -788,7 +788,7 @@ Reason: see this:  https://cloud.google.com/docs/enterprise/best-practices-for-e
 
 ----
 
-**Q45.**
+### **Q45.**
 
 You are building a continuous deployment pipeline for a project stored in a Git source repository and want to ensure that code changes can be verified before deploying to production. What should you do?
 
@@ -803,7 +803,7 @@ Reason: before deploying to production, better have test.
 
 ----
 
-**Q46.**
+### **Q46.**
 
 You have an outage in your Compute Engine managed instance group: all instances keep restarting after 5 seconds. You have a health check configured, but autoscaling is disabled. Your colleague, who is a Linux expert, offered to look into the issue. You need to make sure that he can access the VMs. What should you do?
 
@@ -818,7 +818,7 @@ Reason: keep restarting after 5 seconds because Health Check is enabled. Give IA
 
 ----
 
-**Q47.**
+### **Q47.**
 
 Your company is migrating its on-premises data center into the cloud. As part of the migration, you want to integrate Google Kubernetes Engine (GKE) for workload orchestration. Parts of your architecture must also be PCI DSS-compliant. Which of the following is most accurate?
 
@@ -1007,7 +1007,7 @@ Reason:  "When should you use a signed URL? In some scenarios, you might not wan
 Your web application must comply with the requirements of the European Union's General Data Protection Regulation (GDPR). You are responsible for the technical architecture of your web application. What should you do?
 
 - A. Ensure that your web application only uses native features and services of Google Cloud Platform, because Google already has various certifications and provides ג€pass-onג€ compliance when you use native features.
-- B. Enable the relevant GDPR compliance setting within the GCPConsole for each of the services in use within your application.
+- B. Enable the relevant GDPR compliance setting within the GCP Console for each of the services in use within your application.
 - C. Ensure that Cloud Security Scanner is part of your test planning strategy in order to pick up any compliance gaps.
 - D. Define a design for the security of data in your web application that meets GDPR requirements.
 
